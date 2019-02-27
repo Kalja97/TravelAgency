@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">TravelAgency</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Array mit Ländernamen-->
+    <string-array name="country_names">
+        <item>Spain</item>
+        <item>Scotland</item>
+        <item>Switzerland</item>
+    </string-array>
+
+    <!-- Array mit Bilder-->
+    <array name="country_pics">
+        <item>@drawable/spain</item>
+        <item>@drawable/scotland</item>
+        <item>@drawable/switzerland</item>
+    </array>
+
+    <!-- Array mit Texten-->
+    <string-array name="action_title">
+        <item>Entdecken Sie die spanische Kultur...</item>
+        <item>Entdecken Sie die schottische Natur...</item>
+        <item>Entdecken Sie die schweizer Berge...</item>
+    </string-array>
+
+
 </resources>
