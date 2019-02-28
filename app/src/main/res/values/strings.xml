@@ -23,15 +23,4 @@
         <item>Entdecken Sie die schweizer Berge...</item>
     </string-array>
 
-    <!-- Array mit Tripnamen-->
-    <string-array name="trip_name">
-        <item>Barcelona</item>
-    </string-array>
-
-    <!-- Array mit Beschreibung-->
-    <string-array name="quickDescription">
-        <item>4 Nächte ab CHF 465.-</item>
-    </string-array>
-
-
 </resources>

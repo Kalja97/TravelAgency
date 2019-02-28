@@ -18,7 +18,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".addTripActivity" />
-        <activity android:name=".tripsActivity" />
         <activity android:name=".TripActivity" />
         <activity android:name=".MainActivity"></activity>
     </application>
