@@ -1,12 +1,12 @@
 package com.example.travelagency;
 
-public class RowItem {
+public class MainPageRowItem {
 
     private String country_name;
     private int country_pic_id;
     private String action_title;
 
-    public RowItem(String country_name, int country_pic_id, String action_title) {
+    public MainPageRowItem(String country_name, int country_pic_id, String action_title) {
 
         this.country_name = country_name;
         this.country_pic_id = country_pic_id;

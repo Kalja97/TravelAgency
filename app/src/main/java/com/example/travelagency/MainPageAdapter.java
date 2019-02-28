@@ -2,7 +2,6 @@ package com.example.travelagency;
 
 import android.app.Activity;
 import android.content.Context;
-import android.media.session.PlaybackState;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,29 +11,29 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class CustomAdapter extends BaseAdapter {
+public class MainPageAdapter extends BaseAdapter {
 
    Context context;
-   List<RowItem> rowItems;
+   List<MainPageRowItem> mainPageRowItems;
 
-   CustomAdapter(Context context, List<RowItem> rowItems){
+   MainPageAdapter(Context context, List<MainPageRowItem> mainPageRowItems){
        this.context = context;
-       this.rowItems = rowItems;
+       this.mainPageRowItems = mainPageRowItems;
    }
 
     @Override
     public int getCount() {
-        return rowItems.size();
+        return mainPageRowItems.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return rowItems.get(position);
+        return mainPageRowItems.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return rowItems.indexOf(getItem(position));
+        return mainPageRowItems.indexOf(getItem(position));
     }
 
     private class ViewHolder{
@@ -59,7 +58,7 @@ public class CustomAdapter extends BaseAdapter {
             holder.action_title = (TextView) convertView.findViewById(R.id.action_title);
 
 
-            RowItem row_pos = rowItems.get(position);
+            MainPageRowItem row_pos = mainPageRowItems.get(position);
 
             holder.country_pic.setImageResource(row_pos.getCountry_pic_id());
             holder.country_name.setText(row_pos.getCountry_name());

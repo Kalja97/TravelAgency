@@ -1,6 +1,5 @@
 package com.example.travelagency;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     TypedArray country_pics;
     String[] action_title;
 
-    List<RowItem> rowItems;
+    List<MainPageRowItem> mainPageRowItems;
     ListView mylistview;
 
     @Override
@@ -30,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-        rowItems = new ArrayList<RowItem>();
+        mainPageRowItems = new ArrayList<MainPageRowItem>();
 
         country_names = getResources().getStringArray(R.array.country_names);
 
@@ -41,13 +39,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
         for (int i = 0; i < country_names.length; i++) {
-            RowItem item = new RowItem(country_names[i],
+            MainPageRowItem item = new MainPageRowItem(country_names[i],
                     country_pics.getResourceId(i, -1), action_title[i]);
-            rowItems.add(item);
+            mainPageRowItems.add(item);
         }
 
         mylistview = (ListView) findViewById(R.id.list);
-        CustomAdapter adapter = new CustomAdapter(this, rowItems);
+        MainPageAdapter adapter = new MainPageAdapter(this, mainPageRowItems);
         mylistview.setAdapter(adapter);
 
         mylistview.setOnItemClickListener(this);
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        String member_name = rowItems.get(position).getCountry_name();
+        String member_name = mainPageRowItems.get(position).getCountry_name();
         Toast.makeText(getApplicationContext(), "" + member_name,
                 Toast.LENGTH_SHORT).show();
 
