@@ -57,7 +57,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/bgbtn"
+        android:background="@drawable/bgbtnstart"
         android:text="Search Trip"
         android:textAllCaps="false"
         android:textColor="#FFF"
