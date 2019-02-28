@@ -62,4 +62,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Intent intent = new Intent(this, TripActivity.class);
         startActivity(intent);
     }
+
+    public void addCountry (View view){
+        Intent intent = new Intent (this, addLocationActivity.class);
+        startActivity(intent);
+    }
 }
