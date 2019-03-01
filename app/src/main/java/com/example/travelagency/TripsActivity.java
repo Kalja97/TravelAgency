@@ -3,6 +3,9 @@ package com.example.travelagency;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -26,6 +29,15 @@ public class TripsActivity extends AppCompatActivity {
             R.drawable.scotland,
             R.drawable.switzerland,
     };
+
+    //Menü-Items auf der Actionbar anbringen
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +68,18 @@ public class TripsActivity extends AppCompatActivity {
     public void nextpage (View view){
         Intent intent = new Intent (this, TripActivity.class);
         startActivity(intent);
+    }
+
+    //Actions für Actionbar
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_add:
+                Intent intentHome = new Intent(this, addTripActivity.class);
+                startActivity(intentHome);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
