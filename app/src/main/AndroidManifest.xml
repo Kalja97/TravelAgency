@@ -14,6 +14,7 @@
         <activity
             android:name=".StartActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,7 +23,9 @@
         </activity>
         <activity android:name=".addTripActivity" />
         <activity android:name=".TripActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".TripActivityEdit"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>
