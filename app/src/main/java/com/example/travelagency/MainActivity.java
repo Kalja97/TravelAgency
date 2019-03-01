@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Toast.makeText(getApplicationContext(), "" + member_name,
                 Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(this, TripActivity.class);
+        Intent intent = new Intent(this, TripsActivity.class);
         startActivity(intent);
     }
 
