@@ -1,7 +1,6 @@
 package com.example.travelagency;
 
 import android.content.DialogInterface;
-import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class TripActivityEdit extends AppCompatActivity {
+public class TripActivityEdit extends AppCompatActivity implements View.OnClickListener {
 
     //-----------------
     TextView country;
@@ -58,7 +57,7 @@ public class TripActivityEdit extends AppCompatActivity {
         dialog.setView(editText);
 
 
-        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+        /*dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
 
             public void onClick(DialogInterface dialogInterface, int i){
                 country.setText(editText.getText());
@@ -70,12 +69,58 @@ public class TripActivityEdit extends AppCompatActivity {
                 editText.setText(country.getText());
                 dialog.show();
             }
-        });
+        });*/
+
+
+        country.setOnClickListener(this);
+        city.setOnClickListener(this);
+        days.setOnClickListener(this);
+        price.setOnClickListener(this);
+        date.setOnClickListener(this);
+        description.setOnClickListener(this);
 
 
 
+      }
 
 
+    //TextViews auswählen und dialogbox zum Text ändern anzeigen
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.country:
+                editText.setText(country.getText());
+                dialog.show();
+                country.setText(editText.getText());
+                break;
+
+            case R.id.trip:
+                editText.setText(city.getText());
+                dialog.show();
+                city.setText(editText.getText());
+                break;
+
+            case R.id.duration:
+                editText.setText(days.getText());
+                dialog.show();
+                break;
+
+            case R.id.price:
+                editText.setText(price.getText());
+                dialog.show();
+                break;
+
+            case R.id.date:
+                editText.setText(date.getText());
+                dialog.show();
+                break;
+
+            case R.id.description:
+                editText.setText(description.getText());
+                dialog.show();
+                break;
+
+
+        }
     }
-
 }

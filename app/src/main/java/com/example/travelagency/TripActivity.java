@@ -16,6 +16,8 @@ public class TripActivity extends AppCompatActivity  {
         MenuInflater inflater = getMenuInflater();
 
 
+
+
         inflater.inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
 
