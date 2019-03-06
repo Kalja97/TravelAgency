@@ -1,4 +1,4 @@
-package com.example.travelagency;
+package com.example.travelagency.RowItems;
 
 public class MainPageRowItem {
 

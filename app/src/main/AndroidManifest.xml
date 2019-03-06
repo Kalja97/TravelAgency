@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
-        <activity android:name=".TripsActivity"></activity>
-        <activity android:name=".addLocationActivity" />
+        <activity android:name=".Activities.TripsActivity"></activity>
+        <activity android:name=".Activities.addLocationActivity" />
         <activity
-            android:name=".StartActivity"
+            android:name=".Activities.StartActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
 
             <intent-filter>
@@ -21,10 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".addTripActivity" />
-        <activity android:name=".TripActivity" />
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".TripActivityEdit"
+        <activity android:name=".Activities.addTripActivity" />
+        <activity android:name=".Activities.TripActivity" />
+        <activity android:name=".Activities.MainActivity"></activity>
+        <activity android:name=".Activities.TripActivityEdit"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 

@@ -1,10 +1,11 @@
-package com.example.travelagency;
+package com.example.travelagency.Activities;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.travelagency.R;
 
 public class StartActivity extends AppCompatActivity {
 

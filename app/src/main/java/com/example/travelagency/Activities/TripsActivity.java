@@ -1,4 +1,4 @@
-package com.example.travelagency;
+package com.example.travelagency.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,9 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.travelagency.Adapters.GridAdapter;
+import com.example.travelagency.R;
 
 public class TripsActivity extends AppCompatActivity {
 

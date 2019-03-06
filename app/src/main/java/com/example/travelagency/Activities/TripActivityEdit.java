@@ -1,4 +1,4 @@
-package com.example.travelagency;
+package com.example.travelagency.Activities;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.travelagency.R;
 
 public class TripActivityEdit extends AppCompatActivity implements View.OnClickListener {
 
@@ -56,13 +58,14 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         dialog.setTitle("Edit");
         dialog.setView(editText);
 
-
-        /*dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+/*
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
 
             public void onClick(DialogInterface dialogInterface, int i){
-                country.setText(editText.getText());
+                //country.setText(editText.getText());
                 }
         });
+
 
        country.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
@@ -92,6 +95,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                 editText.setText(country.getText());
                 dialog.show();
                 country.setText(editText.getText());
+
                 break;
 
             case R.id.trip:

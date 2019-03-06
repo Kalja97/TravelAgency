@@ -1,4 +1,4 @@
-package com.example.travelagency;
+package com.example.travelagency.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.travelagency.RowItems.MainPageRowItem;
+import com.example.travelagency.R;
+
 import java.util.List;
 
 public class MainPageAdapter extends BaseAdapter {
@@ -16,7 +19,7 @@ public class MainPageAdapter extends BaseAdapter {
    Context context;
    List<MainPageRowItem> mainPageRowItems;
 
-   MainPageAdapter(Context context, List<MainPageRowItem> mainPageRowItems){
+   public MainPageAdapter(Context context, List<MainPageRowItem> mainPageRowItems){
        this.context = context;
        this.mainPageRowItems = mainPageRowItems;
    }

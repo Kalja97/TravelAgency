@@ -1,4 +1,4 @@
-package com.example.travelagency;
+package com.example.travelagency.Activities;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.travelagency.Adapters.MainPageAdapter;
+import com.example.travelagency.RowItems.MainPageRowItem;
+import com.example.travelagency.R;
 
 import java.util.ArrayList;
 import java.util.List;
