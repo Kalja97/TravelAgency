@@ -25,4 +25,10 @@
         <item>Entdecken Sie die schweizer Berge...</item>
     </string-array>
 
+    <!-- Array für Auswahl von Farben (Settings) -->
+    <string-array name="change_background">
+        <item>DarkWhite</item>
+        <item>WhiteDark</item>
+    </string-array>
+
 </resources>

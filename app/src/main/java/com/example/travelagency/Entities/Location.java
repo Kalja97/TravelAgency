@@ -1,8 +1,12 @@
 package com.example.travelagency.Entities;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity
 public class Location {
 
-    //@PrimaryKey
+    @PrimaryKey
     public String countryName;
 
 

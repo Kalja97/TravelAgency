@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListPreference
+        android:title="List Preference"
+        android:key="list_preference"
+        android:summary="Change Background color"
+        android:entries="@array/change_background"
+        android:entryValues="@array/change_background"
+        />
+
+</PreferenceScreen>

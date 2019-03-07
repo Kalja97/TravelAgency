@@ -1,7 +1,12 @@
 package com.example.travelagency.Entities;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity
 public class Trip {
 
+    @PrimaryKey
     public int id;
 
     public String location;
