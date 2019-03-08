@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -26,13 +27,13 @@
 
 
         <EditText
-            android:id="@+id/tripname"
+            android:id="@+id/countryname"
             android:layout_width="288dp"
             android:layout_height="50dp"
             android:layout_marginStart="48dp"
             android:layout_marginTop="56dp"
             android:background="@drawable/bginput"
-            android:hint="Countryname"
+            android:hint="Country name"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -42,51 +43,35 @@
 
 
         <EditText
-            android:id="@+id/duration"
+            android:id="@+id/language"
             android:layout_width="288dp"
             android:layout_height="50dp"
             android:layout_marginStart="48dp"
             android:layout_marginTop="28dp"
             android:background="@drawable/bginput"
-            android:hint="Duration"
+            android:hint="Language"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:textColorHint="#87ffffff"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tripname" />
+            app:layout_constraintTop_toBottomOf="@+id/countryname" />
 
 
         <EditText
-            android:id="@+id/date"
+            android:id="@+id/inhabitant"
             android:layout_width="288dp"
             android:layout_height="50dp"
             android:layout_marginStart="48dp"
             android:layout_marginTop="28dp"
             android:background="@drawable/bginput"
-            android:hint="Date"
+            android:hint="Inhabitant"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:textColorHint="#87ffffff"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/duration" />
-
-
-        <EditText
-            android:id="@+id/price"
-            android:layout_width="288dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/bginput"
-            android:hint="Price"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:textColorHint="#87ffffff"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date" />
+            app:layout_constraintTop_toBottomOf="@+id/language" />
 
 
         <EditText
@@ -102,11 +87,11 @@
             android:paddingBottom="10dp"
             android:textColorHint="#87ffffff"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/price" />
+            app:layout_constraintTop_toBottomOf="@+id/inhabitant" />
 
 
         <Button
-            android:id="@+id/btnaddlocation"
+            android:id="@+id/btnaddtrip"
             android:layout_width="168dp"
             android:layout_height="40dp"
             android:layout_marginTop="70dp"

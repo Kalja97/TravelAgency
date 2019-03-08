@@ -17,6 +17,7 @@ import com.example.travelagency.R;
 
 public class TripsActivity extends AppCompatActivity {
 
+
     GridView gridview;
 
     String[] values = {
