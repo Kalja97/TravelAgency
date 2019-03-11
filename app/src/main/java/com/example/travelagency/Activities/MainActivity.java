@@ -89,9 +89,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 Intent intentHome = new Intent(this, addLocationActivity.class);
                 startActivity(intentHome);
                 return true;
-            /*case R.id.action_settings:
+            case R.id.action_settings:
                 Intent intentSettings = new Intent(this, SettingsActivity.class);
-                startActivity(intentSettings);*/
+                startActivity(intentSettings);
             default:
                 return super.onOptionsItemSelected(item);
         }

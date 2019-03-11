@@ -1,7 +1,10 @@
 package com.example.travelagency.Dao;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.example.travelagency.Entities.Trip;
 
@@ -16,10 +19,13 @@ public interface TripDao {
     @Query("Select * FROM trip WHERE location IN (:countryName)")
     Trip trip(String countryName);
 
-    @Query("Delete From Trip where id = :id")
+    @Delete
     void delete(int id);
 
-    @Query("Insert Into Trip Values(:location, :tripname, :duration, :date, :price, :description)")
+    @Insert
     void insert(String location, String tripname, String duration, String date, String price, String description);
+
+    @Update
+    void update();
 
 }

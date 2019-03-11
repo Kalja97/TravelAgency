@@ -7,12 +7,12 @@ import android.arch.persistence.room.PrimaryKey;
 public class Location {
 
     @PrimaryKey
-    public String countryName;
+    private String countryName;
 
 
-    public String inhabitants;
-    public String description;
-    public String language;
+    private String inhabitants;
+    private String description;
+    private String language;
 
     public String getCountryName() {
         return countryName;

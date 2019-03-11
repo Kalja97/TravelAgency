@@ -1,7 +1,10 @@
 package com.example.travelagency.Dao;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.example.travelagency.Entities.Location;
 
@@ -13,9 +16,12 @@ public interface LocationDao {
     @Query("Select * From Location")
     List<Location> getAllLocation();
 
-    @Query("Insert Into Location Values(:countryName, :inhabitants, :description, :language)")
+    @Insert
     void insert(String countryName, String inhabitants, String description, String language);
 
-    @Query("Delete From Location Where countryName = :countryName")
+    @Delete
     void delete(String countryName);
+
+    @Update
+    void update();
 }

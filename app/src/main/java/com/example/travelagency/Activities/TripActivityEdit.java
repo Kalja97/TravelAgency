@@ -58,21 +58,14 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         dialog.setTitle("Edit");
         dialog.setView(editText);
 
-/*
+
         dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
 
             public void onClick(DialogInterface dialogInterface, int i){
-                //country.setText(editText.getText());
+
                 }
         });
 
-
-       country.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                editText.setText(country.getText());
-                dialog.show();
-            }
-        });*/
 
 
         country.setOnClickListener(this);
@@ -94,34 +87,74 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
             case R.id.country:
                 editText.setText(country.getText());
                 dialog.show();
-                country.setText(editText.getText());
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        country.setText(editText.getText());
+                    }
+                });
 
                 break;
 
             case R.id.trip:
                 editText.setText(city.getText());
                 dialog.show();
-                city.setText(editText.getText());
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        city.setText(editText.getText());
+                    }
+                });
                 break;
 
             case R.id.duration:
                 editText.setText(days.getText());
                 dialog.show();
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        days.setText(editText.getText());
+                    }
+                });
                 break;
 
             case R.id.price:
                 editText.setText(price.getText());
                 dialog.show();
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        price.setText(editText.getText());
+                    }
+                });
                 break;
 
             case R.id.date:
                 editText.setText(date.getText());
                 dialog.show();
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        date.setText(editText.getText());
+                    }
+                });
                 break;
 
             case R.id.description:
                 editText.setText(description.getText());
                 dialog.show();
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        description.setText(editText.getText());
+                    }
+                });
                 break;
 
 

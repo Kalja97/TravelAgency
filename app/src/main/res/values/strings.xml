@@ -24,11 +24,12 @@
         <item>Entdecken Sie die schottische Natur...</item>
         <item>Entdecken Sie die schweizer Berge...</item>
     </string-array>
+    <string name="title_activity_settings">SettingsActivity</string>
 
-    <!-- Array für Auswahl von Farben (Settings) -->
-    <string-array name="change_background">
+    <string-array name="Template">
         <item>DarkWhite</item>
         <item>WhiteDark</item>
+
     </string-array>
 
 </resources>

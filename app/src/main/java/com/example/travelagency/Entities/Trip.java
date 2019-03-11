@@ -6,15 +6,15 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Trip {
 
-    @PrimaryKey
-    public int id;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
-    public String location;
-    public String tripname;
-    public String duration;
-    public String date;
-    public String price;
-    public String description;
+    private String location;
+    private String tripname;
+    private String duration;
+    private String date;
+    private String price;
+    private String description;
 
     public int getId() {
         return id;
