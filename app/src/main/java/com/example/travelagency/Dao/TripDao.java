@@ -1,11 +1,13 @@
 package com.example.travelagency.Dao;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import com.example.travelagency.Entities.Location;
 import com.example.travelagency.Entities.Trip;
 
 import java.util.List;
@@ -13,19 +15,19 @@ import java.util.List;
 @Dao
 public interface TripDao {
 
-    @Query("SELECT * FROM trip")
-    List<Trip> getAll();
+    @Query("SELECT * FROM trips")
+    LiveData<List<Trip>> getAll();
 
-    @Query("Select * FROM trip WHERE location IN (:countryName)")
-    Trip trip(String countryName);
+    @Query("Select * FROM trips WHERE location = :countryName")
+    LiveData<Trip> trip(String countryName);
 
     @Delete
-    void delete(int id);
+    void delete(Trip trip);
 
     @Insert
-    void insert(String location, String tripname, String duration, String date, String price, String description);
+    long insert(Trip trip);
 
     @Update
-    void update();
+    void update(Trip trip);
 
 }

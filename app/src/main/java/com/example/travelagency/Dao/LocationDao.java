@@ -1,5 +1,6 @@
 package com.example.travelagency.Dao;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -11,17 +12,17 @@ import com.example.travelagency.Entities.Location;
 import java.util.List;
 
 @Dao
-public interface LocationDao {
+public abstract class LocationDao {
 
-    @Query("Select * From Location")
-    List<Location> getAllLocation();
+    @Query("Select * From Locations")
+    public abstract LiveData<List<Location>> getAllLocation();
 
     @Insert
-    void insert(String countryName, String inhabitants, String description, String language);
-
-    @Delete
-    void delete(String countryName);
+    public abstract long insert(Location location);
 
     @Update
-    void update();
+    public abstract void update(Location location);
+
+    @Delete
+    public abstract void delete(Location location);
 }
