@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        String member_name = mainPageRowItems.get(position).getCountry_name();
-        Toast.makeText(getApplicationContext(), "" + member_name,
+        String country_name = mainPageRowItems.get(position).getCountry_name();
+        Toast.makeText(getApplicationContext(), "" + country_name,
                 Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, TripsActivity.class);

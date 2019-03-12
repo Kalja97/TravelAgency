@@ -12,7 +12,6 @@
         <activity android:name=".Activities.SettingsActivity" />
         <activity android:name=".Activities.TripsActivity" />
         <activity android:name=".Activities.CountryActivity"></activity>
-        <activity android:name=".Activities.TripsActivity" />
         <activity android:name=".Activities.addTripActivity" />
         <activity
             android:name=".Activities.StartActivity"
