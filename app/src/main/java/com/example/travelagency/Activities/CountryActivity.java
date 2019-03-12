@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -39,6 +42,14 @@ public class CountryActivity extends AppCompatActivity {
             R.drawable.switzerland,
             R.drawable.switzerland};
 
+    //Menü-Items auf der Actionbar anbringen
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+
+        inflater.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,5 +103,20 @@ public class CountryActivity extends AppCompatActivity {
     public void nextpage(View view){
         Intent intent = new Intent (this, TripsActivity.class);
         startActivity(intent);
+    }
+
+    //Actions für Actionbar
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_add:
+                Intent intentHome = new Intent(this, addLocationActivity.class);
+                startActivity(intentHome);
+                return true;
+            case R.id.action_settings:
+                Intent intentSettings = new Intent(this, SettingsActivity.class);
+                startActivity(intentSettings);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

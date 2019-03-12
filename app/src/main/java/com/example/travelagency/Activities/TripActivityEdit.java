@@ -95,6 +95,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                     }
                 });
 
+
                 break;
 
             case R.id.trip:
