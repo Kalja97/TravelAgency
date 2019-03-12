@@ -1,9 +1,8 @@
-package com.example.travelagency.Activities;
+package com.example.travelagency.ui.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 
 import com.example.travelagency.R;

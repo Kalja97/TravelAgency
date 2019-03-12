@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#030C12"
-    tools:context=".Activities.TripActivity">
+    tools:context=".ui.Activities.TripActivity">
 
 
 

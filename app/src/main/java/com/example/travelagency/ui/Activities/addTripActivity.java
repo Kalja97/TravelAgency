@@ -1,15 +1,15 @@
-package com.example.travelagency.Activities;
+package com.example.travelagency.ui.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.travelagency.R;
 
-public class addLocationActivity extends AppCompatActivity {
+public class addTripActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_location);
+        setContentView(R.layout.activity_add_trip);
     }
 }

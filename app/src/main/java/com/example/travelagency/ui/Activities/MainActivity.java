@@ -1,4 +1,4 @@
-package com.example.travelagency.Activities;
+package com.example.travelagency.ui.Activities;
 
 import android.content.Intent;
 import android.content.res.TypedArray;
