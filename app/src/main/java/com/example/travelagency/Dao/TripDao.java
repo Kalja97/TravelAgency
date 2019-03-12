@@ -30,4 +30,6 @@ public interface TripDao {
     @Update
     void update(Trip trip);
 
+    @Query("DELETE FROM trips")
+    void deleteAll();
 }

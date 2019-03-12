@@ -25,4 +25,7 @@ public abstract class LocationDao {
 
     @Delete
     public abstract void delete(Location location);
+
+    @Query("DELETE FROM locations")
+    public abstract void deleteAll();
 }
