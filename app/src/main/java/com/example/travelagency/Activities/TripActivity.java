@@ -41,6 +41,9 @@ public class TripActivity extends AppCompatActivity  {
                 Intent intent = new Intent(this, TripActivityEdit.class);
                 startActivity(intent);
                 return true;
+            case R.id.action_settings:
+                Intent intentSettings = new Intent(this, SettingsActivity.class);
+                startActivity(intentSettings);
             default:
                 return super.onOptionsItemSelected(item);
         }

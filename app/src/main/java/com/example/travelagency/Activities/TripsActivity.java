@@ -81,6 +81,9 @@ public class TripsActivity extends AppCompatActivity {
                 Intent intentHome = new Intent(this, addTripActivity.class);
                 startActivity(intentHome);
                 return true;
+            case R.id.action_settings:
+                Intent intentSettings = new Intent(this, SettingsActivity.class);
+                startActivity(intentSettings);
             default:
                 return super.onOptionsItemSelected(item);
         }
