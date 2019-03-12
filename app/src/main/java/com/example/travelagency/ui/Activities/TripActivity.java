@@ -29,9 +29,6 @@ public class TripActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
 
-
-
-
     }
 
     //Actions für Actionbar
