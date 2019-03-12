@@ -2,31 +2,38 @@ package com.example.travelagency.Entities;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
-@Entity
+@Entity(tableName = "locations", primaryKeys = {"countryName"})
 public class Location {
 
-    @PrimaryKey
+    @NonNull
     private String countryName;
 
-
-    private String inhabitants;
+    private int inhabitants;
     private String description;
     private String language;
+
+    public Location(@NonNull String countryName, int inhabitants, String description, String language){
+        this.countryName = countryName;
+        this.inhabitants = inhabitants;
+        this.description = description;
+        this.language = language;
+    }
 
     public String getCountryName() {
         return countryName;
     }
 
-    public void setCountryName(String countryName) {
+    public void setCountryName(@NonNull String countryName) {
         this.countryName = countryName;
     }
 
-    public String getInhabitants() {
+    public int getInhabitants() {
         return inhabitants;
     }
 
-    public void setInhabitants(String inhabitants) {
+    public void setInhabitants(int inhabitants) {
         this.inhabitants = inhabitants;
     }
 

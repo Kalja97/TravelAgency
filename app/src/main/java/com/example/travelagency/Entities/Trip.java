@@ -1,13 +1,28 @@
 package com.example.travelagency.Entities;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "trips",
+        foreignKeys =
+        @ForeignKey(
+            entity = Location.class,
+            parentColumns = "countryName",
+            childColumns = "location",
+            onDelete = ForeignKey.CASCADE
+        ),
+        indices = {
+        @Index(
+            value = {"tripname"}
+        )}
+)
+
 public class Trip {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private Long id;
 
     private String location;
     private String tripname;
@@ -16,11 +31,20 @@ public class Trip {
     private String price;
     private String description;
 
-    public int getId() {
+    public Trip(String location, String tripname, String duration, String date, String price, String description){
+        this.location = location;
+        this.tripname = tripname;
+        this. duration = duration;
+        this.date = date;
+        this.price = price;
+        this.description = description;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,5 +94,16 @@ public class Trip {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+
+    @Override
+
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (!(obj instanceof Trip)) return false;
+        Trip o = (Trip) obj;
+        return o.getId().equals(this.getId());
     }
 }
