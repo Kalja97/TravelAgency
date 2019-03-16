@@ -19,7 +19,7 @@ public interface TripDao {
     LiveData<List<Trip>> getAll();
 
     @Query("Select * FROM trips WHERE location = :countryName")
-    LiveData<Trip> trip(String countryName);
+    LiveData<Trip> getByLocation(String countryName);
 
     @Delete
     void delete(Trip trip);

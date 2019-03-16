@@ -2,12 +2,15 @@ package com.example.travelagency.Repository;
 
 
 import android.app.Application;
+import android.arch.lifecycle.LiveData;
 
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.async.CreateTrip;
 import com.example.travelagency.async.DeleteTrip;
 import com.example.travelagency.async.UpdateTrip;
 import com.example.travelagency.util.OnAsyncEventListener;
+
+import java.util.List;
 
 public class TripRepository {
     private static TripRepository instance;
@@ -26,6 +29,17 @@ public class TripRepository {
             }
         }
         return instance;
+    }
+
+
+    public LiveData<Trip> getTrip(final String countryName, Application application) {
+        //return ((BaseApp) application).getDatabase().accountDao().getByLocation(countryName);
+        return null;
+    }
+
+    public LiveData<List<Trip>> getTrips(Application application) {
+        //return ((BaseApp) application).getDatabase().accountDao().getAll();
+        return null;
     }
 
     public void insert(final Trip trip, OnAsyncEventListener callback,
