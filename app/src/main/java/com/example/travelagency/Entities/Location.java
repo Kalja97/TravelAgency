@@ -21,6 +21,10 @@ public class Location {
         this.language = language;
     }
 
+    public Location() {
+
+    }
+
     public String getCountryName() {
         return countryName;
     }
