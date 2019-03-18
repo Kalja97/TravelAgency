@@ -3,6 +3,7 @@ package com.example.travelagency.async;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import com.example.travelagency.BaseApp;
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.util.OnAsyncEventListener;
 
@@ -21,8 +22,8 @@ public class CreateTrip extends AsyncTask<Trip, Void, Void> {
     protected Void doInBackground(Trip... params) {
         try {
             for (Trip trip : params) {
-                //((BaseApp) application).getDatabase().tripDao()
-                //        .insert(trip);
+                ((BaseApp) application).getDatabase().tripDao()
+                        .insert(trip);
             }
         } catch (Exception e) {
             exception = e;
