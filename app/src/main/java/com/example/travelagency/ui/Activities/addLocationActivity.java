@@ -37,7 +37,7 @@ public class addLocationActivity extends AppCompatActivity {
         //int inhab = Integer.parseInt(inhabitant.getText().toString());
         //String desc = description.getText().toString();
 
-        //countryName.setText(R.string.user_greeting);
+
 
         appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,"Location").allowMainThreadQueries().build();
         Button add = findViewById(R.id.btnaddlocation);
@@ -56,10 +56,11 @@ public class addLocationActivity extends AppCompatActivity {
     private void createLocation(String countryName, String language,
                                 int inhabitant, String description) {
 
-        location = new Location(countryName, inhabitant, language, description);
+        //location = new Location(countryName, inhabitant, language, description);
+        location = new Location();
         location.setCountryName(countryName);
-        location.setLanguage(language);
         location.setInhabitants(inhabitant);
+        location.setLanguage(language);
         location.setDescription(description);
 
         viewModel.createLocation(location, new OnAsyncEventListener() {
