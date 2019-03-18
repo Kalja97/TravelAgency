@@ -8,6 +8,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
+import com.example.travelagency.BaseApp;
 import com.example.travelagency.Entities.Location;
 import com.example.travelagency.Repository.LocationRepository;
 import com.example.travelagency.util.OnAsyncEventListener;
@@ -21,7 +22,7 @@ public class LocationViewModel extends AndroidViewModel {
     private final MediatorLiveData<Location> observableLocation;
 
     public LocationViewModel(@NonNull Application application,
-                           final String clientId, LocationRepository locationRepository) {
+                           final String countryname, LocationRepository locationRepository) {
 
         super(application);
 
@@ -33,10 +34,10 @@ public class LocationViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableLocation.setValue(null);
 
-        //LiveData<ClientEntity> client = repository.getClient(clientId, application);
+        LiveData<Location> location = repository.getLocation(countryname, application);
 
-        // observe the changes of the client entity from the database and forward them
-        //observableLocation.addSource(client, observableLocation::setValue);
+        //observe the changes of the client entity from the database and forward them
+        observableLocation.addSource(location, observableLocation::setValue);
 
     }
 
@@ -48,29 +49,27 @@ public class LocationViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final String clientId;
+        private final String countryname;
 
         private final LocationRepository repository;
 
-        public Factory(@NonNull Application application, String clientId, LocationRepository repository) {
+        public Factory(@NonNull Application application, String countryname, LocationRepository repository) {
             this.application = application;
-            this.clientId = clientId;
-            //repository = ((BaseApp) application).getClientRepository();
-            this.repository = repository;
+            this.countryname = countryname;
+            this.repository = ((BaseApp) application).getLocationRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            //return (T) new TripViewModel(application, clientId, repository);
-            return null;
+            return (T) new LocationViewModel(application, countryname, repository);
         }
     }
 
     /**
      * Expose the LiveData ClientEntity query so the UI can observe it.
      */
-    public LiveData<Location> getClient() {
+    public LiveData<Location> getLocation() {
         return observableLocation;
     }
 

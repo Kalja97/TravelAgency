@@ -16,7 +16,7 @@ import java.util.List;
 public interface TripDao {
 
     @Query("SELECT * FROM trips")
-    LiveData<List<Trip>> getAll();
+    LiveData<List<Trip>> getAllTrips();
 
     @Query("Select * FROM trips WHERE location = :countryName")
     LiveData<Trip> getByLocation(String countryName);

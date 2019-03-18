@@ -14,8 +14,12 @@ import java.util.List;
 @Dao
 public abstract class LocationDao {
 
-    @Query("Select * From Locations")
-    public abstract LiveData<List<Location>> getAllLocation();
+    @Query("Select * FROM locations WHERE countryName = :countryName")
+    public abstract LiveData<Location> getByPK(String countryName);
+
+
+    @Query("Select * From locations")
+    public abstract LiveData<List<Location>> getAllLocations();
 
     @Insert
     public abstract long insert(Location location);

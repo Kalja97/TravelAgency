@@ -3,7 +3,6 @@ package com.example.travelagency.async;
 import android.app.Application;
 import android.os.AsyncTask;
 
-import com.example.travelagency.AppDatabase;
 import com.example.travelagency.BaseApp;
 import com.example.travelagency.Entities.Location;
 import com.example.travelagency.util.OnAsyncEventListener;
