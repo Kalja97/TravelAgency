@@ -9,8 +9,12 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
+import com.example.travelagency.util.OnAsyncEventListener;
+import com.example.travelagency.viewmodel.TripViewModel;
 
 public class TripActivityEdit extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,6 +28,9 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
     AlertDialog dialog;
     EditText editText;
     //------------------
+
+    private Trip trip;
+    private TripViewModel viewModel;
 
     //To put the symbols to the actionbar
     @Override
@@ -154,11 +161,43 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
 
                     public void onClick(DialogInterface dialogInterface, int i){
                         description.setText(editText.getText());
+
                     }
                 });
                 break;
 
 
         }
+
+        String countryName = (String) country.getText();
+        String trip = (String) city.getText();
+        String day = (String) days.getText();
+        String cost = (String) price.getText();
+        String datum = (String) date.getText();
+        String desc = (String) description.getText();
+
+        saveChanges(countryName,trip, day, cost, datum, desc);
+    }
+
+    private void saveChanges(String country, String city, String days, String price, String date, String description) {
+
+        trip.setCountryName(country);
+        trip.setTripname(city);
+        trip.setDuration(days);
+        trip.setPrice(price);
+        trip.setDate(date);
+        trip.setDescription(description);
+
+        viewModel.updateTrip(trip, new OnAsyncEventListener() {
+            @Override
+            public void onSuccess() {
+//                setResponse(true);
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+//                setResponse(false);
+            }
+        });
     }
 }
