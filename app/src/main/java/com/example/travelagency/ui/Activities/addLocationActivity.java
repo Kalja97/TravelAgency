@@ -1,5 +1,6 @@
 package com.example.travelagency.ui.Activities;
 
+import android.app.Application;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.example.travelagency.AppDatabase;
 import com.example.travelagency.Entities.Location;
 import com.example.travelagency.R;
+import com.example.travelagency.Repository.LocationRepository;
 import com.example.travelagency.util.OnAsyncEventListener;
 import com.example.travelagency.viewmodel.LocationViewModel;
 
@@ -51,6 +53,7 @@ public class addLocationActivity extends AppCompatActivity {
                 description = etdescription.getText().toString();
 
                 Location location = new Location(countryName, inhabitants, description, language);
+
                 appDatabase.locationDao().insert(location);
                 gotoCountryActivity(v);
             }
