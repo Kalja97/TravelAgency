@@ -1,22 +1,25 @@
 package com.example.travelagency.Entities;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-@Entity(tableName = "locations")
-public class Location {
+import java.util.Objects;
 
-    @PrimaryKey(autoGenerate = true)
-    private Long locationid;
+@Entity(tableName = "locations", primaryKeys = {"countryName"})
+public class Location implements Comparable {
 
+    /*@PrimaryKey(autoGenerate = true)
+    private Long locationid;*/
+    @NonNull
     private String countryName;
 
     private int inhabitants;
     private String description;
     private String language;
 
-    public Location(String countryName, int inhabitants, String description, String language){
+    public Location(@NonNull String countryName, int inhabitants, String description, String language){
 
         this.countryName = countryName;
         this.inhabitants = inhabitants;
@@ -24,18 +27,19 @@ public class Location {
         this.language = language;
     }
 
+    @Ignore
     public Location() {
 
     }
 
-    public Long getLocationid() {
+   /* public Long getLocationid() {
         return locationid;
     }
 
     public void setLocationid(Long locationid) {
         this.locationid = locationid;
     }
-
+*/
     public String getCountryName() {
         return countryName;
     }
@@ -66,5 +70,29 @@ public class Location {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (!(obj instanceof Location)) return false;
+        Location o = (Location) obj;
+        return o.getCountryName().equals(this.getCountryName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(countryName);
+    }
+
+    @Override
+    public String toString() {
+        return countryName;
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return toString().compareTo(o.toString());
     }
 }

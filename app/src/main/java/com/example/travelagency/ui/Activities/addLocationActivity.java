@@ -15,6 +15,7 @@ import com.example.travelagency.AppDatabase;
 import com.example.travelagency.Entities.Location;
 import com.example.travelagency.R;
 import com.example.travelagency.Repository.LocationRepository;
+import com.example.travelagency.async.CreateLocation;
 import com.example.travelagency.util.OnAsyncEventListener;
 import com.example.travelagency.viewmodel.LocationViewModel;
 
@@ -42,6 +43,9 @@ public class addLocationActivity extends AppCompatActivity {
         EditText etdescription = (EditText) findViewById(R.id.description);
         Button add = findViewById(R.id.btnaddlocation);
 
+        /*LocationViewModel.Factory factory = new LocationViewModel.Factory(getApplication(), clientEmail);
+        viewModel = ViewModelProviders.of(this, factory).get(LocationViewModel.class);*/
+
         appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,"travel_database").allowMainThreadQueries().build();
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -54,8 +58,35 @@ public class addLocationActivity extends AppCompatActivity {
 
                 Location location = new Location(countryName, inhabitants, description, language);
 
-                appDatabase.locationDao().insert(location);
-                gotoCountryActivity(v);
+               /* viewModel.createLocation(location, new OnAsyncEventListener() {
+                    @Override
+                    public void onSuccess() {
+                        Log.d(TAG, "createLocation: success");
+                        onBackPressed();
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        Log.d(TAG, "createLocation: failure", e);
+                    }
+                });*/
+//                appDatabase.locationDao().insert(location);
+                new CreateLocation(getApplication(), new OnAsyncEventListener() {
+
+                    @Override
+                    public void onSuccess() {
+                        Log.d(TAG, "createUserWithEmail: success");
+                        Intent intent = new Intent(addLocationActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        Log.d(TAG, "createUserWithEmail: failure", e);
+
+                    }
+                }).execute(location);
+//                gotoCountryActivity(v);
             }
         });
     }

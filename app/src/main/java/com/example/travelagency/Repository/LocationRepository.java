@@ -16,7 +16,7 @@ public class LocationRepository {
 
     private static LocationRepository instance;
 
-    private LocationRepository() {
+    public LocationRepository() {
 
     }
 

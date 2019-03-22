@@ -9,13 +9,13 @@ import android.arch.persistence.room.PrimaryKey;
         foreignKeys =
         @ForeignKey(
                 entity = Location.class,
-                parentColumns = "locationid",
-                childColumns = "fk",
+                parentColumns = "countryName",
+                childColumns = "countryName",
                 onDelete = ForeignKey.CASCADE
         ),
         indices = {
                 @Index(
-                        value = {"tripname"}
+                        value = {"countryName"}
                 )}
 )
 
@@ -24,16 +24,16 @@ public class Trip {
     @PrimaryKey(autoGenerate = true)
     private Long id;
 
-    private Long fk;
-    private String location;
+//    private Long fk;
+    private String countryName;
     private String tripname;
     private String duration;
     private String date;
     private String price;
     private String description;
 
-    public Trip(String location, String tripname, String duration, String date, String price, String description){
-        this.location = location;
+    public Trip(String countryName, String tripname, String duration, String date, String price, String description){
+        this.countryName = countryName;
         this.tripname = tripname;
         this. duration = duration;
         this.date = date;
@@ -49,20 +49,20 @@ public class Trip {
         this.id = id;
     }
 
-    public Long getFk() {
+/*    public Long getFk() {
         return fk;
     }
 
     public void setFk(Long fk) {
         this.fk = fk;
+    }*/
+
+    public String getCountryName() {
+        return countryName;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
     public String getTripname() {
@@ -114,5 +114,10 @@ public class Trip {
         if (!(obj instanceof Trip)) return false;
         Trip o = (Trip) obj;
         return o.getId().equals(this.getId());
+    }
+
+    @Override
+    public String toString() {
+        return countryName;
     }
 }
