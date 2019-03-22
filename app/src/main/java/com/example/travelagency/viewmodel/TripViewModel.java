@@ -23,18 +23,17 @@ public class TripViewModel  extends AndroidViewModel {
     private final MediatorLiveData<Trip> observableTrip;
 
         public TripViewModel(@NonNull Application application,
-                            final String countryname, TripRepository tripRepository) {
+                            final String tripname, TripRepository tripRepository) {
         super(application);
 
         this.application = application;
-
-        repository = tripRepository;
+        this.repository = tripRepository;
 
         observableTrip = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
         observableTrip.setValue(null);
 
-        LiveData<Trip> trip = repository.getTrip(countryname, application);
+        LiveData<Trip> trip = repository.getTrip(tripname, application);
 
         //observe the changes of the account entity from the database and forward them
         observableTrip.addSource(trip, observableTrip::setValue);
@@ -48,20 +47,20 @@ public class TripViewModel  extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final String countryname;
+        private final String tripname;
 
         private final TripRepository repository;
 
-        public Factory(@NonNull Application application, String countryname, TripRepository repository) {
+        public Factory(@NonNull Application application, String tripname) {
             this.application = application;
-            this.countryname = countryname;
-            this.repository = ((BaseApp) application).getTripRepository();
+            this.tripname = tripname;
+            repository = ((BaseApp) application).getTripRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new TripViewModel(application, countryname, repository);
+            return (T) new TripViewModel(application, tripname, repository);
         }
     }
 
