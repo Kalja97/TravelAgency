@@ -12,17 +12,15 @@
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
         <activity android:name=".ui.Activities.SettingsActivity" />
         <activity android:name=".ui.Activities.TripsActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.travelagency.ui.Activities.CountryActivity" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.travelagency.ui.Activities.CountryActivity" />
         </activity>
-        <activity android:name=".ui.Activities.CountryActivity"></activity>
+        <activity android:name=".ui.Activities.CountryActivity" />
         <activity android:name=".ui.Activities.addTripActivity" />
-
         <activity
             android:name=".ui.Activities.StartActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.Activities.addLocationActivity" />
-        <activity android:name=".ui.Activities.TripActivity" >
+        <activity android:name=".ui.Activities.TripActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.travelagency.ui.Activities.TripsActivity" />
@@ -38,10 +36,7 @@
         <activity android:name=".ui.Activities.MainActivity" />
         <activity
             android:name=".ui.Activities.TripActivityEdit"
-            android:theme="@style/Theme.AppCompat.NoActionBar" >
-
-        </activity>
-
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

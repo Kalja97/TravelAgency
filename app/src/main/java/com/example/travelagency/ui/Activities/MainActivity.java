@@ -1,32 +1,33 @@
 package com.example.travelagency.ui.Activities;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.travelagency.Adapters.MainPageAdapter;
-import com.example.travelagency.RowItems.MainPageRowItem;
+import com.example.travelagency.Entities.Location;
 import com.example.travelagency.R;
+import com.example.travelagency.RowItems.MainPageRowItem;
+import com.example.travelagency.viewmodel.LocationListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity  {
+    private ListView listview;
+    private List<Location> showList;
+    private LocationListViewModel viewModel;
 
-    String[] country_names;
-    TypedArray country_pics;
-    String[] action_title;
-
-    List<MainPageRowItem> mainPageRowItems;
-    ListView mylistview;
 
     //Menü-Items auf der Actionbar anbringen
     @Override
@@ -41,46 +42,43 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Locations");
 
-        mainPageRowItems = new ArrayList<MainPageRowItem>();
+        /*
+            listview = (ListView) findViewById(R.id.listview);
+            String[] shows = getResources().getStringArray(R.array.shows_array);
+            ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, shows);
+            listview.setAdapter(adapter);
+        */
 
-        country_names = getResources().getStringArray(R.array.country_names);
-
-        country_pics = getResources().obtainTypedArray(R.array.country_pics);
-
-        action_title = getResources().getStringArray(R.array.action_title);
-
-
-
-        for (int i = 0; i < country_names.length; i++) {
-            MainPageRowItem item = new MainPageRowItem(country_names[i],
-                    country_pics.getResourceId(i, -1), action_title[i]);
-            mainPageRowItems.add(item);
-        }
-
-        mylistview = (ListView) findViewById(R.id.list);
-        MainPageAdapter adapter = new MainPageAdapter(this, mainPageRowItems);
-        mylistview.setAdapter(adapter);
-
-        mylistview.setOnItemClickListener(this);
-
+        listview = findViewById(R.id.listview);
+        showList = new ArrayList<>();
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        LocationListViewModel.Factory factory = new LocationListViewModel.Factory(getApplication(), "CountryName");
+        viewModel = ViewModelProviders.of(this, factory).get(LocationListViewModel.class);
+        viewModel.getLocation().observe(this, showEntities -> {
+            if (showEntities != null) {
+                showList = (List<Location>) showEntities;
+                adapter.addAll(showList);
+            }
+        });
+        listview.setAdapter(adapter);
+        /*listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(view.getContext(), ShowDetails.class);
+        *//*
+                intent.setFlags(
+                        Intent.FLAG_ACTIVITY_NO_ANIMATION |
+                        Intent.FLAG_ACTIVITY_NO_HISTORY
+                );
+        *//*
+                intent.putExtra("showName", showList.get(position).getName());
+                startActivity(intent);
+            }
+        });*/
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        String country_name = mainPageRowItems.get(position).getCountry_name();
-        Toast.makeText(getApplicationContext(), "" + country_name,
-                Toast.LENGTH_SHORT).show();
-
-        Intent intent = new Intent(this, TripsActivity.class);
-        startActivity(intent);
-    }
-
-    public void addCountry (View view){
-        Intent intent = new Intent (this, addLocationActivity.class);
-        startActivity(intent);
-    }
 
     //Actions für Actionbar
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -97,7 +95,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+    }
 
 
-}
+
+
+
 
