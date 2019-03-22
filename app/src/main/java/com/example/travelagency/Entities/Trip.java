@@ -8,15 +8,15 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "trips",
         foreignKeys =
         @ForeignKey(
-            entity = Location.class,
-            parentColumns = "countryName",
-            childColumns = "location",
-            onDelete = ForeignKey.CASCADE
+                entity = Location.class,
+                parentColumns = "locationid",
+                childColumns = "fk",
+                onDelete = ForeignKey.CASCADE
         ),
         indices = {
-        @Index(
-            value = {"tripname"}
-        )}
+                @Index(
+                        value = {"tripname"}
+                )}
 )
 
 public class Trip {
@@ -24,6 +24,7 @@ public class Trip {
     @PrimaryKey(autoGenerate = true)
     private Long id;
 
+    private Long fk;
     private String location;
     private String tripname;
     private String duration;
@@ -46,6 +47,14 @@ public class Trip {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getFk() {
+        return fk;
+    }
+
+    public void setFk(Long fk) {
+        this.fk = fk;
     }
 
     public String getLocation() {

@@ -1,9 +1,11 @@
 package com.example.travelagency.ui.Activities;
 
 import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,6 +22,11 @@ public class addLocationActivity extends AppCompatActivity {
     private Location location;
     private LocationViewModel viewModel;
 
+    String countryName;
+    String language;
+    String description;
+    int inhabitants;
+
     AppDatabase appDatabase;
 
     @Override
@@ -27,56 +34,31 @@ public class addLocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
 
-         EditText countryName = (EditText) findViewById(R.id.countryname);
-         EditText language = (EditText) findViewById(R.id.language);
-         EditText inhabitant = (EditText) findViewById(R.id.inhabitant);
-         EditText description = (EditText) findViewById(R.id.description);
-
-        //String countryname = countryName.getText().toString();
-        //String lang = language.getText().toString();
-        //int inhab = Integer.parseInt(inhabitant.getText().toString());
-        //String desc = description.getText().toString();
-
-
-
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,"Location").allowMainThreadQueries().build();
+        EditText etcountryName = (EditText) findViewById(R.id.countryname);
+        EditText etlanguage = (EditText) findViewById(R.id.language);
+        EditText etinhabitant = (EditText) findViewById(R.id.inhabitant);
+        EditText etdescription = (EditText) findViewById(R.id.description);
         Button add = findViewById(R.id.btnaddlocation);
-        add.setOnClickListener(view ->{
-            createLocation(
-                    countryName.getText().toString(),
-                    language.getText().toString(),
-                    Integer.parseInt(inhabitant.getText().toString()),
-                    description.getText().toString()
-            );
-        });
 
+        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,"travel_database").allowMainThreadQueries().build();
 
-    }
+        add.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
-    private void createLocation(String countryName, String language,
-                                int inhabitant, String description) {
+                countryName = etcountryName.getText().toString();
+                language = etlanguage.getText().toString();
+                inhabitants = Integer.valueOf(etinhabitant.getText().toString());
+                description = etdescription.getText().toString();
 
-        //location = new Location(countryName, inhabitant, language, description);
-        location = new Location();
-        location.setCountryName(countryName);
-        location.setInhabitants(inhabitant);
-        location.setLanguage(language);
-        location.setDescription(description);
-
-        viewModel.createLocation(location, new OnAsyncEventListener() {
-            @Override
-            public void onSuccess() {
-                Log.d(TAG, "createLocation: success");
-                onBackPressed();
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                Log.d(TAG, "createLocation: failure", e);
+                Location location = new Location(countryName, inhabitants, description, language);
+                appDatabase.locationDao().insert(location);
+                gotoCountryActivity(v);
             }
         });
     }
 
-
-
+    public void gotoCountryActivity (View view){
+        Intent intent = new Intent (this, CountryActivity.class);
+        startActivity(intent);
+    }
 }

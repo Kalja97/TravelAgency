@@ -4,17 +4,20 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-@Entity(tableName = "locations", primaryKeys = {"countryName"})
+@Entity(tableName = "locations")
 public class Location {
 
-    @NonNull
+    @PrimaryKey(autoGenerate = true)
+    private Long locationid;
+
     private String countryName;
 
     private int inhabitants;
     private String description;
     private String language;
 
-    public Location(@NonNull String countryName, int inhabitants, String description, String language){
+    public Location(String countryName, int inhabitants, String description, String language){
+
         this.countryName = countryName;
         this.inhabitants = inhabitants;
         this.description = description;
@@ -25,11 +28,19 @@ public class Location {
 
     }
 
+    public Long getLocationid() {
+        return locationid;
+    }
+
+    public void setLocationid(Long locationid) {
+        this.locationid = locationid;
+    }
+
     public String getCountryName() {
         return countryName;
     }
 
-    public void setCountryName(@NonNull String countryName) {
+    public void setCountryName(String countryName) {
         this.countryName = countryName;
     }
 

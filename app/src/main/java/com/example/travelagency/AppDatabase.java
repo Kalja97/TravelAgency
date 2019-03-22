@@ -16,13 +16,12 @@ import com.example.travelagency.Entities.Location;
 import com.example.travelagency.Entities.Trip;
 
 import java.util.concurrent.Executors;
-
 @Database(entities = {Location.class, Trip.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String TAG = "AppDatabase";
     private static AppDatabase instance;
-    private static final String DATABASE_NAME = "travelagency-database";
+    private static final String DATABASE_NAME = "travel_database";
     public abstract LocationDao locationDao();
     public abstract TripDao tripDao();
     private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
