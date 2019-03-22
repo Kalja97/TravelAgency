@@ -6,7 +6,6 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
-import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.example.travelagency.BaseApp;
@@ -23,24 +22,23 @@ public class LocationListViewModel extends AndroidViewModel {
         private Application application;
 
         // MediatorLiveData can observe other LiveData objects and react on their emissions.
-        private final MediatorLiveData<Location> observableClient;
+        private final MediatorLiveData<List<Location>> observableLocations;
 
         public LocationListViewModel(@NonNull Application application,
-                               final String countryName, LocationRepository locationRepository) {
+                               LocationRepository locationRepository) {
             super(application);
 
             this.application = application;
+            this.repository = locationRepository;
 
-            repository = locationRepository;
-
-            observableClient = new MediatorLiveData<>();
+            observableLocations = new MediatorLiveData<>();
             // set by default null, until we get data from the database.
-            observableClient.setValue(null);
+            observableLocations.setValue(null);
 
-            LiveData<Location> location = repository.getLocation(countryName, application);
+            LiveData<List<Location>> locations = repository.getLocations(application);
 
             // observe the changes of the client entity from the database and forward them
-            observableClient.addSource(location, observableClient::setValue);
+            observableLocations.addSource(locations, observableLocations::setValue);
         }
 
         /**
@@ -51,40 +49,24 @@ public class LocationListViewModel extends AndroidViewModel {
             @NonNull
             private final Application application;
 
-            private final String countryName;
-
             private final LocationRepository repository;
 
-            public Factory(@NonNull Application application, String countryName) {
+            public Factory(@NonNull Application application) {
                 this.application = application;
-                this.countryName = countryName;
                 repository = ((BaseApp) application).getLocationRepository();
             }
 
             @Override
             public <T extends ViewModel> T create(Class<T> modelClass) {
                 //noinspection unchecked
-                return (T) new LocationListViewModel(application, countryName, repository);
+                return (T) new LocationListViewModel(application, repository);
             }
         }
 
         /**
          * Expose the LiveData ClientEntity query so the UI can observe it.
          */
-        public LiveData<Location> getLocation() {
-            return observableClient;
-        }
-
-        public void createClient(Location location, OnAsyncEventListener callback) {
-            repository.insert(location, callback, application);
-        }
-
-        public void updateClient(Location location, OnAsyncEventListener callback) {
-            repository.update(location, callback, application);
-        }
-
-        public void deleteClient(Location location, OnAsyncEventListener callback) {
-            repository.delete(location, callback, application);
-
+        public LiveData<List<Location>> getShows() {
+            return observableLocations;
         }
 }
