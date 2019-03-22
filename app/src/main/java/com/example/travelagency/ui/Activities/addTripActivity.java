@@ -58,15 +58,14 @@ public class addTripActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess() {
-                Log.d(TAG, "createUserWithEmail: success");
-                Intent intent = new Intent(addTripActivity.this, TripsActivity.class);
+                Log.d(TAG, "createTrip: success");
+                Intent intent = new Intent(addTripActivity.this, Trips2Activity.class);
                 startActivity(intent);
             }
 
             @Override
             public void onFailure(Exception e) {
-                Log.d(TAG, "createUserWithEmail: failure", e);
-
+                Log.d(TAG, "createTrip: failure", e);
             }
         }).execute(newTrip);
     }

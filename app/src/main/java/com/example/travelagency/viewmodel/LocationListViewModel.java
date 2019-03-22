@@ -66,7 +66,7 @@ public class LocationListViewModel extends AndroidViewModel {
         /**
          * Expose the LiveData ClientEntity query so the UI can observe it.
          */
-        public LiveData<List<Location>> getShows() {
+        public LiveData<List<Location>> getLocations() {
             return observableLocations;
         }
 }

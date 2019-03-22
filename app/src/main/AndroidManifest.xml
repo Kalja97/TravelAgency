@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
+        <activity android:name=".ui.Activities.Trips2Activity"></activity>
         <activity android:name=".ui.Activities.SettingsActivity" />
         <activity android:name=".ui.Activities.TripsActivity">
             <meta-data
@@ -36,7 +37,7 @@
         <activity android:name=".ui.Activities.MainActivity" />
         <activity
             android:name=".ui.Activities.TripActivityEdit"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

@@ -47,11 +47,11 @@ public class TripActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
 
-        String tname = "Barcelona";
+        String countryName = getIntent().getStringExtra("countryName");
 
         initiateView();
 
-        TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), tname);
+        TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), countryName);
         vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModel.class);
         vmTrip.getTrip().observe(this, tripEntity -> {
             if (tripEntity != null) {
@@ -73,7 +73,7 @@ public class TripActivity extends AppCompatActivity  {
 
     private void updateContent() {
         if (trip != null) {
-            tvCountryName.setText(trip.getTripname());
+            tvCountryName.setText(getIntent().getStringExtra("countryName"));
             tvTripName.setText(trip.getTripname());
             tvDuration.setText(trip.getDuration());
             tvDate.setText(trip.getDate());
