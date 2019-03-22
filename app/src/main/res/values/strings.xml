@@ -3,6 +3,10 @@
     <string name="action_settings">Settings</string>
     <string name="action_add">Add</string>
     <string name="action_edit">Edit</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+    <string name="delete_msg">Do you really want to delete this trip?</string>
+    <string name="btndelete"> Delete</string>
 
     <!-- Array mit Ländernamen-->
     <string-array name="country_names">

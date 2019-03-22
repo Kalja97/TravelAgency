@@ -2,15 +2,19 @@ package com.example.travelagency.ui.Activities;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
+import com.example.travelagency.util.OnAsyncEventListener;
 import com.example.travelagency.viewmodel.TripViewModel;
 
 
@@ -88,8 +92,36 @@ public class TripActivity extends AppCompatActivity  {
             case R.id.action_settings:
                 Intent intentSettings = new Intent(this, SettingsActivity.class);
                 startActivity(intentSettings);
+            case R.id.action_delete:
+                final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+                alertDialog.setTitle(getString(R.string.action_delete));
+                alertDialog.setCancelable(true);
+                alertDialog.setMessage(getString(R.string.delete_msg));
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.btndelete), (dialog, which) -> {
+                    vmTrip.deleteTrip(trip, new OnAsyncEventListener() {
+                        @Override
+                        public void onSuccess() {
+                            Log.d(TAG, "Delete trip: success");
+                            goToTripsActivity();
+                        }
+
+                        private void goToTripsActivity() {
+                            Intent intent = new Intent(TripActivity.this, TripsActivity.class);
+                            startActivity(intent);
+                        }
+
+                        @Override
+                        public void onFailure(Exception e) {}
+                    });
+                });
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.action_cancel), (dialog, which) -> alertDialog.dismiss());
+                alertDialog.show();
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
+
+
 }
