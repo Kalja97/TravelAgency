@@ -8,8 +8,8 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_add"
-        android:title="@string/action_add"
-        android:icon="@drawable/ic_add"
+        android:id="@+id/action_save"
+        android:title="Save"
+        android:icon="@drawable/ic_save"
         app:showAsAction="always"/>
 </menu>

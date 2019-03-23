@@ -2,12 +2,14 @@ package com.example.travelagency.ui.Activities;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -39,13 +41,27 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
     private Trip trip;
     private TripViewModel vmTrip;
 
-    //To put the symbols to the actionbar
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.menu_edit, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    //Actions für Actionbar
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_save:
+                Intent intentTrip = new Intent(this, TripActivity.class);
+                intentTrip.putExtra("countryName", countryName);
+                intentTrip.putExtra("tripName", tripName);
+                startActivity(intentTrip);
+                return true;
+            case R.id.action_settings:
+                Intent intentSettings = new Intent(this, SettingsActivity.class);
+                startActivity(intentSettings);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

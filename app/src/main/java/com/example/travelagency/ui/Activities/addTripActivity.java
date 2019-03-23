@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.travelagency.AppDatabase;
 import com.example.travelagency.Entities.Trip;
@@ -17,6 +18,7 @@ public class addTripActivity extends AppCompatActivity {
 
     private static final String TAG = "addTripActivity";
 
+    private Toast toast;
 
     private EditText ettripname;
     private EditText etduration;
@@ -25,12 +27,12 @@ public class addTripActivity extends AppCompatActivity {
     private EditText etdescription;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_trip);
         initializeForm();
+        toast = Toast.makeText(this, "new Trip in DataBase", Toast.LENGTH_LONG);
     }
 
     private void initializeForm() {
