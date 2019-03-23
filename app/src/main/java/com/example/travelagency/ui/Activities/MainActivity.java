@@ -42,33 +42,15 @@ public class MainActivity extends AppCompatActivity {
     private Location location;
     private LocationViewModel vmLocation;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_locations, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+    String countryName;
 
-    //Actions für Actionbar
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.action_add:
-                Intent intentHome = new Intent(this, addLocationActivity.class);
-                startActivity(intentHome);
-                return true;
-            case R.id.action_settings:
-                Intent intentSettings = new Intent(this, SettingsActivity.class);
-                startActivity(intentSettings);
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        countryName = getIntent().getStringExtra("countryName");
         /*
             listview = (ListView) findViewById(R.id.listview);
             String[] shows = getResources().getStringArray(R.array.shows_array);
@@ -154,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (index) {
                     case 0:
                         Log.d(TAG, "onMenuItemClick: clicked item" + index);
+                        goToEditLocation(position);
                         break;
                     case 1:
                         Log.d(TAG, "onMenuItemClick: clicked item" + index);
@@ -165,6 +148,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_locations, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //Actions für Actionbar
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_add:
+                Intent intentHome = new Intent(this, addLocationActivity.class);
+                startActivity(intentHome);
+                return true;
+            case R.id.action_settings:
+                Intent intentSettings = new Intent(this, SettingsActivity.class);
+                startActivity(intentSettings);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 // Delete location from DB
     private void delete(int position){
 
@@ -173,10 +178,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "Delete trip: success");
-                goToTripsActivity();
+                refresh();
             }
 
-            private void goToTripsActivity() {
+            private void refresh() {
 //                Refresh page
                 finish();
                 startActivity(getIntent());
@@ -185,6 +190,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Exception e) {}
         });
+    }
+
+    private void goToEditLocation(int position){
+        Intent intent = new Intent(this, EditLocation.class);
+        intent.putExtra("countryName", locationList.get(position).getCountryName());
+        startActivity(intent);
     }
 }
 

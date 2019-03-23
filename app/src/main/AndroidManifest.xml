@@ -41,6 +41,11 @@
         <activity
             android:name=".ui.Activities.TripActivityEdit"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+        <activity android:name=".ui.Activities.EditLocation">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.travelagency.ui.Activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
