@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.travelagency.Entities.Trip;
@@ -27,12 +26,13 @@ public class TripActivity extends AppCompatActivity  {
     private TextView tvTripName;
     private TextView tvDuration;
     private TextView tvDate;
-    private TextView tvprice;
+    private TextView tvPrice;
     private TextView tvDescription;
 
     private TripViewModel vmTrip;
 
     String countryName;
+    String tripName;
 
 
     //To put the symbols to the actionbar
@@ -49,7 +49,7 @@ public class TripActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
 
-        String tripName = getIntent().getStringExtra("tripName");
+        tripName = getIntent().getStringExtra("tripName");
         countryName = getIntent().getStringExtra("countryName");
 
         initiateView();
@@ -70,7 +70,7 @@ public class TripActivity extends AppCompatActivity  {
         tvTripName = findViewById(R.id.trip);
         tvDuration = findViewById(R.id.duration);
         tvDate = findViewById(R.id.date);
-        tvprice = findViewById(R.id.price);
+        tvPrice = findViewById(R.id.price);
         tvDescription = findViewById(R.id.description);
     }
 
@@ -80,7 +80,7 @@ public class TripActivity extends AppCompatActivity  {
             tvTripName.setText(trip.getTripname());
             tvDuration.setText(trip.getDuration());
             tvDate.setText(trip.getDate());
-            tvprice.setText(trip.getPrice());
+            tvPrice.setText(trip.getPrice());
             tvDescription.setText(trip.getDescription());
         }
     }
@@ -90,6 +90,8 @@ public class TripActivity extends AppCompatActivity  {
         switch(item.getItemId()) {
             case R.id.action_edit:
                 Intent intent = new Intent(this, TripActivityEdit.class);
+                intent.putExtra("tripName", tripName);
+                intent.putExtra("countryName", countryName);
                 startActivity(intent);
                 return true;
             case R.id.action_settings:

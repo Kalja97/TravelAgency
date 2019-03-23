@@ -56,7 +56,6 @@ public class Trips2Activity extends AppCompatActivity {
 
         countryName = getIntent().getStringExtra("countryName");
 
-
         /*
             listview = (ListView) findViewById(R.id.listview);
             String[] shows = getResources().getStringArray(R.array.shows_array);

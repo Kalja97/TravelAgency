@@ -1,15 +1,16 @@
 package com.example.travelagency.ui.Activities;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
@@ -18,32 +19,33 @@ import com.example.travelagency.viewmodel.TripViewModel;
 
 public class TripActivityEdit extends AppCompatActivity implements View.OnClickListener {
 
+    private static final String TAG = "TripActivityEdit";
+
+    private TextView tvCountryName;
+    private TextView tvTripName;
+    private TextView tvDuration;
+    private TextView tvDate;
+    private TextView tvPrice;
+    private TextView tvDescription;
+
+    String countryName;
+    String tripName;
+
     //-----------------
-    TextView country;
-    TextView city;
-    TextView days;
-    TextView price;
-    TextView date;
-    TextView description;
     AlertDialog dialog;
     EditText editText;
     //------------------
 
     private Trip trip;
-    private TripViewModel viewModel;
+    private TripViewModel vmTrip;
 
     //To put the symbols to the actionbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
 
-
         inflater.inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
-
-
-
-
     }
 
     @Override
@@ -51,13 +53,10 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_edit);
 
-        //--------------------
-        country = (TextView) findViewById(R.id.country);
-        city = (TextView) findViewById(R.id.trip);
-        days = (TextView) findViewById(R.id.duration);
-        price = (TextView) findViewById(R.id.price);
-        date = (TextView) findViewById(R.id.date);
-        description = (TextView) findViewById(R.id.description);
+        tripName = getIntent().getStringExtra("tripName");
+        countryName = getIntent().getStringExtra("countryName");
+
+        initiateView();
 
         dialog = new AlertDialog.Builder(this).create();
         editText = new EditText(this);
@@ -73,32 +72,55 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                 }
         });
 
+        tvCountryName.setOnClickListener(this);
+        tvTripName.setOnClickListener(this);
+        tvDuration.setOnClickListener(this);
+        tvDate.setOnClickListener(this);
+        tvPrice.setOnClickListener(this);
+        tvDescription.setOnClickListener(this);
 
-
-        country.setOnClickListener(this);
-        city.setOnClickListener(this);
-        days.setOnClickListener(this);
-        price.setOnClickListener(this);
-        date.setOnClickListener(this);
-        description.setOnClickListener(this);
-
-
-
+        TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), tripName);
+        vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModel.class);
+        vmTrip.getTrip().observe(this, tripEntity -> {
+            if (tripEntity != null) {
+                trip = tripEntity;
+                updateContent();
+            }
+        });
       }
 
+    private void initiateView() {
+        tvCountryName = findViewById(R.id.country);
+        tvTripName = findViewById(R.id.trip);
+        tvDuration = findViewById(R.id.duration);
+        tvDate = findViewById(R.id.date);
+        tvPrice = findViewById(R.id.price);
+        tvDescription = findViewById(R.id.description);
+    }
+
+    private void updateContent() {
+        if (trip != null) {
+            tvCountryName.setText(getIntent().getStringExtra("countryName"));
+            tvTripName.setText(trip.getTripname());
+            tvDuration.setText(trip.getDuration());
+            tvDate.setText(trip.getDate());
+            tvPrice.setText(trip.getPrice());
+            tvDescription.setText(trip.getDescription());
+        }
+    }
 
     //TextViews auswählen und dialogbox zum Text ändern anzeigen
     @Override
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.country:
-                editText.setText(country.getText());
+                editText.setText(tvCountryName.getText());
                 dialog.show();
 
                 dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialogInterface, int i){
-                        country.setText(editText.getText());
+                        tvCountryName.setText(editText.getText());
                     }
                 });
 
@@ -106,61 +128,61 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                 break;
 
             case R.id.trip:
-                editText.setText(city.getText());
+                editText.setText(tvTripName.getText());
                 dialog.show();
 
                 dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialogInterface, int i){
-                        city.setText(editText.getText());
+                        tvTripName.setText(editText.getText());
                     }
                 });
                 break;
 
             case R.id.duration:
-                editText.setText(days.getText());
+                editText.setText(tvDuration.getText());
                 dialog.show();
 
                 dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialogInterface, int i){
-                        days.setText(editText.getText());
+                        tvDuration.setText(editText.getText());
                     }
                 });
                 break;
 
             case R.id.price:
-                editText.setText(price.getText());
+                editText.setText(tvPrice.getText());
                 dialog.show();
 
                 dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialogInterface, int i){
-                        price.setText(editText.getText());
+                        tvPrice.setText(editText.getText());
                     }
                 });
                 break;
 
             case R.id.date:
-                editText.setText(date.getText());
+                editText.setText(tvDate.getText());
                 dialog.show();
 
                 dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialogInterface, int i){
-                        date.setText(editText.getText());
+                        tvDate.setText(editText.getText());
                     }
                 });
                 break;
 
             case R.id.description:
-                editText.setText(description.getText());
+                editText.setText(tvDescription.getText());
                 dialog.show();
 
                 dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialogInterface, int i){
-                        description.setText(editText.getText());
+                        tvDescription.setText(editText.getText());
 
                     }
                 });
@@ -169,12 +191,12 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
 
         }
 
-        String countryName = (String) country.getText();
-        String trip = (String) city.getText();
-        String day = (String) days.getText();
-        String cost = (String) price.getText();
-        String datum = (String) date.getText();
-        String desc = (String) description.getText();
+        String countryName = (String) tvCountryName.getText();
+        String trip = (String) tvTripName.getText();
+        String day = (String) tvDuration.getText();
+        String cost = (String) tvPrice.getText();
+        String datum = (String) tvDate.getText();
+        String desc = (String) tvDescription.getText();
 
         saveChanges(countryName,trip, day, cost, datum, desc);
     }
@@ -188,15 +210,15 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         trip.setDate(date);
         trip.setDescription(description);
 
-        viewModel.updateTrip(trip, new OnAsyncEventListener() {
+        vmTrip.updateTrip(trip, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
-//                setResponse(true);
+                Log.d(TAG, "updateTrip: success");
             }
 
             @Override
             public void onFailure(Exception e) {
-//                setResponse(false);
+                Log.d(TAG, "updateTrip: failure", e);
             }
         });
     }
