@@ -69,4 +69,8 @@ public class LocationListViewModel extends AndroidViewModel {
         public LiveData<List<Location>> getLocations() {
             return observableLocations;
         }
+
+    public void deleteLocation(Location location, OnAsyncEventListener callback) {
+        repository.delete(location, callback, application);
+    }
 }

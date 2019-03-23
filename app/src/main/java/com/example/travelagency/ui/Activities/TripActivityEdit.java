@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
@@ -30,8 +31,19 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
     private TextView tvPrice;
     private TextView tvDescription;
 
+    private Toast toast;
+
     String countryName;
     String tripName;
+
+//    ------
+    String name;
+    String city;
+    String day;
+    String cost;
+    String datum;
+    String desc;
+    //-------
 
     //-----------------
     AlertDialog dialog;
@@ -47,22 +59,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         return super.onCreateOptionsMenu(menu);
     }
 
-    //Actions für Actionbar
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.action_save:
-                Intent intentTrip = new Intent(this, TripActivity.class);
-                intentTrip.putExtra("countryName", countryName);
-                intentTrip.putExtra("tripName", tripName);
-                startActivity(intentTrip);
-                return true;
-            case R.id.action_settings:
-                Intent intentSettings = new Intent(this, SettingsActivity.class);
-                startActivity(intentSettings);
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +85,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                 }
         });
 
-        tvCountryName.setOnClickListener(this);
+//        tvCountryName.setOnClickListener(this);
         tvTripName.setOnClickListener(this);
         tvDuration.setOnClickListener(this);
         tvDate.setOnClickListener(this);
@@ -104,6 +101,150 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
             }
         });
       }
+
+    //TextViews auswählen und dialogbox zum Text ändern anzeigen
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+/*            case R.id.country:
+                editText.setText(tvCountryName.getText());
+                dialog.show();
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        tvCountryName.setText(editText.getText());
+                    }
+                });
+
+
+                break;*/
+
+            case R.id.trip:
+                editText.setText(tvTripName.getText());
+                dialog.show();
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        tvTripName.setText(editText.getText());
+                        saving();
+                    }
+                });
+                break;
+
+            case R.id.duration:
+                editText.setText(tvDuration.getText());
+                dialog.show();
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        tvDuration.setText(editText.getText());
+                        saving();
+                    }
+                });
+                break;
+
+            case R.id.price:
+                editText.setText(tvPrice.getText());
+                dialog.show();
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        tvPrice.setText(editText.getText());
+                        saving();
+                    }
+                });
+                break;
+
+            case R.id.date:
+                editText.setText(tvDate.getText());
+                dialog.show();
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        tvDate.setText(editText.getText());
+                        saving();
+                    }
+                });
+                break;
+
+            case R.id.description:
+                editText.setText(tvDescription.getText());
+                dialog.show();
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        tvDescription.setText(editText.getText());
+                        saving();
+
+                    }
+                });
+                break;
+
+
+        }
+
+
+
+    }
+
+    private void saving(){
+        name = (String) tvCountryName.getText();
+                        city = "" + tvTripName.getText();
+                        day = "" + tvDuration.getText();
+                        cost = "" + tvPrice.getText();
+                        datum = "" + tvDate.getText();
+                        desc = "" + tvDescription.getText();
+
+                        saveChanges(name,city, day, cost, datum, desc);
+    }
+
+    private void saveChanges(String country, String city, String days, String price, String date, String description) {
+
+        trip.setCountryName(country);
+        trip.setTripname(city);
+        trip.setDuration(days);
+        trip.setPrice(price);
+        trip.setDate(date);
+        trip.setDescription(description);
+
+        vmTrip.updateTrip(trip, new OnAsyncEventListener() {
+            @Override
+            public void onSuccess() {
+                Log.d(TAG, "updateTrip: success");
+
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.d(TAG, "updateTrip: failure", e);
+            }
+        });
+    }
+
+
+
+    //Actions für Actionbar
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_save:
+                Intent intentTrip = new Intent(this, Trips2Activity.class);
+                intentTrip.putExtra("countryName", countryName);
+                intentTrip.putExtra("tripName", tripName);
+                startActivity(intentTrip);
+                return true;
+            case R.id.action_settings:
+                Intent intentSettings = new Intent(this, SettingsActivity.class);
+                startActivity(intentSettings);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     private void initiateView() {
         tvCountryName = findViewById(R.id.country);
@@ -123,119 +264,5 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
             tvPrice.setText(trip.getPrice());
             tvDescription.setText(trip.getDescription());
         }
-    }
-
-    //TextViews auswählen und dialogbox zum Text ändern anzeigen
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.country:
-                editText.setText(tvCountryName.getText());
-                dialog.show();
-
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
-
-                    public void onClick(DialogInterface dialogInterface, int i){
-                        tvCountryName.setText(editText.getText());
-                    }
-                });
-
-
-                break;
-
-            case R.id.trip:
-                editText.setText(tvTripName.getText());
-                dialog.show();
-
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
-
-                    public void onClick(DialogInterface dialogInterface, int i){
-                        tvTripName.setText(editText.getText());
-                    }
-                });
-                break;
-
-            case R.id.duration:
-                editText.setText(tvDuration.getText());
-                dialog.show();
-
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
-
-                    public void onClick(DialogInterface dialogInterface, int i){
-                        tvDuration.setText(editText.getText());
-                    }
-                });
-                break;
-
-            case R.id.price:
-                editText.setText(tvPrice.getText());
-                dialog.show();
-
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
-
-                    public void onClick(DialogInterface dialogInterface, int i){
-                        tvPrice.setText(editText.getText());
-                    }
-                });
-                break;
-
-            case R.id.date:
-                editText.setText(tvDate.getText());
-                dialog.show();
-
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
-
-                    public void onClick(DialogInterface dialogInterface, int i){
-                        tvDate.setText(editText.getText());
-                    }
-                });
-                break;
-
-            case R.id.description:
-                editText.setText(tvDescription.getText());
-                dialog.show();
-
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
-
-                    public void onClick(DialogInterface dialogInterface, int i){
-                        tvDescription.setText(editText.getText());
-
-                    }
-                });
-                break;
-
-
-        }
-
-        String countryName = (String) tvCountryName.getText();
-        String trip = (String) tvTripName.getText();
-        String day = (String) tvDuration.getText();
-        String cost = (String) tvPrice.getText();
-        String datum = (String) tvDate.getText();
-        String desc = (String) tvDescription.getText();
-
-        saveChanges(countryName,trip, day, cost, datum, desc);
-    }
-
-    private void saveChanges(String country, String city, String days, String price, String date, String description) {
-
-        trip.setCountryName(country);
-        trip.setTripname(city);
-        trip.setDuration(days);
-        trip.setPrice(price);
-        trip.setDate(date);
-        trip.setDescription(description);
-
-        vmTrip.updateTrip(trip, new OnAsyncEventListener() {
-            @Override
-            public void onSuccess() {
-                Log.d(TAG, "updateTrip: success");
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                Log.d(TAG, "updateTrip: failure", e);
-            }
-        });
     }
 }

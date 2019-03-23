@@ -10,7 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
-        <activity android:name=".ui.Activities.Trips2Activity"></activity>
+        <activity android:name=".ui.Activities.Trips2Activity"
+            ><meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.travelagency.ui.Activities.MainActivity" /></activity>
         <activity android:name=".ui.Activities.SettingsActivity" />
         <activity android:name=".ui.Activities.TripsActivity">
             <meta-data
@@ -37,7 +40,7 @@
         <activity android:name=".ui.Activities.MainActivity" />
         <activity
             android:name=".ui.Activities.TripActivityEdit"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
     </application>
 
 </manifest>
