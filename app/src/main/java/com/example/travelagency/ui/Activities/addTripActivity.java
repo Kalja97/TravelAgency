@@ -52,7 +52,8 @@ public class addTripActivity extends AppCompatActivity {
 
     private void saveChanges(String tripname, String duration, String date, String price, String description) {
 
-        Trip newTrip = new Trip("Deutschland", tripname, duration, date, price, description);
+        String countryName = getIntent().getStringExtra("countryName");
+        Trip newTrip = new Trip(countryName, tripname, duration, date, price, description);
 
         new CreateTrip(getApplication(), new OnAsyncEventListener() {
 
@@ -60,6 +61,7 @@ public class addTripActivity extends AppCompatActivity {
             public void onSuccess() {
                 Log.d(TAG, "createTrip: success");
                 Intent intent = new Intent(addTripActivity.this, Trips2Activity.class);
+                intent.putExtra("countryName", countryName);
                 startActivity(intent);
             }
 

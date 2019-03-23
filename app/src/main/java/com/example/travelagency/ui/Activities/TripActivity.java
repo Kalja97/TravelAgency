@@ -32,6 +32,8 @@ public class TripActivity extends AppCompatActivity  {
 
     private TripViewModel vmTrip;
 
+    String countryName;
+
 
     //To put the symbols to the actionbar
     @Override
@@ -47,11 +49,12 @@ public class TripActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip);
 
-        String countryName = getIntent().getStringExtra("countryName");
+        String tripName = getIntent().getStringExtra("tripName");
+        countryName = getIntent().getStringExtra("countryName");
 
         initiateView();
 
-        TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), countryName);
+        TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), tripName);
         vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModel.class);
         vmTrip.getTrip().observe(this, tripEntity -> {
             if (tripEntity != null) {
@@ -106,7 +109,8 @@ public class TripActivity extends AppCompatActivity  {
                         }
 
                         private void goToTripsActivity() {
-                            Intent intent = new Intent(TripActivity.this, TripsActivity.class);
+                            Intent intent = new Intent(TripActivity.this, Trips2Activity.class);
+                            intent.putExtra("countryName", countryName);
                             startActivity(intent);
                         }
 

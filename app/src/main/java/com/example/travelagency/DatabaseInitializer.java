@@ -38,7 +38,7 @@ public class DatabaseInitializer {
                 "Scotland", 10000000, "Besuchen Sie Schottland", "English"
         );
         addLocation(db,
-                "Spanien", 30000000, "Besuchen Sie Spanien", "Spanish"
+                "Spain", 30000000, "Besuchen Sie Spanien", "Spanish"
         );
 
 
@@ -53,10 +53,10 @@ public class DatabaseInitializer {
                 "Spain", "Barcelona", "4 Nächte","29.06.2019 bis 05.07.2019" , "CHF 520.-" , "Testdescription blablabla"
         );
         addTrip(db,
-                "Spain", "Barcelona", "4 Nächte","29.06.2019 bis 05.07.2019" , "CHF 520.-" , "Testdescription blablabla"
+                "Spain", "Madrid", "5 Nächte","29.06.2019 bis 05.07.2019" , "CHF 520.-" , "Testdescription blablabla"
         );
         addTrip(db,
-                "Spain", "Barcelona", "4 Nächte","29.06.2019 bis 05.07.2019" , "CHF 520.-" , "Testdescription blablabla"
+                "Switzerland", "Zermatt", "3 Nächte","29.06.2019 bis 05.07.2019" , "CHF 520.-" , "Testdescription blablabla"
         );
 
     }

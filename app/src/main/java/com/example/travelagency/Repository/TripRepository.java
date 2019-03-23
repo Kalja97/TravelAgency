@@ -37,8 +37,8 @@ public class TripRepository {
         return ((BaseApp) application).getDatabase().tripDao().getByLocation(countryName);
     }
 
-    public LiveData<List<Trip>> getTrips(Application application) {
-        return ((BaseApp) application).getDatabase().tripDao().getAllTrips();
+    public LiveData<List<Trip>> getTrips(final String countryName, Application application) {
+        return ((BaseApp) application).getDatabase().tripDao().getAllTrips(countryName);
     }
 
     public void insert(final Trip trip, OnAsyncEventListener callback,

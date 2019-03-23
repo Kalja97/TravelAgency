@@ -24,7 +24,7 @@ public class TripListViewModel extends AndroidViewModel {
     private final MediatorLiveData<List<Trip>> observableLocations;
 
     public TripListViewModel(@NonNull Application application,
-                                 TripRepository tripRepository) {
+                                 TripRepository tripRepository, String countryName) {
         super(application);
 
         this.application = application;
@@ -34,7 +34,7 @@ public class TripListViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableLocations.setValue(null);
 
-        LiveData<List<Trip>> trips = repository.getTrips(application);
+        LiveData<List<Trip>> trips = repository.getTrips(countryName, application);
 
         // observe the changes of the client entity from the database and forward them
         observableLocations.addSource(trips, observableLocations::setValue);
@@ -47,18 +47,19 @@ public class TripListViewModel extends AndroidViewModel {
 
         @NonNull
         private final Application application;
-
+        private final String countryName;
         private final TripRepository repository;
 
-        public Factory(@NonNull Application application) {
+        public Factory(@NonNull Application application, String countryName) {
             this.application = application;
+            this.countryName = countryName;
             repository = ((BaseApp) application).getTripRepository();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new TripListViewModel(application, repository);
+            return (T) new TripListViewModel(application, repository, countryName);
         }
     }
 

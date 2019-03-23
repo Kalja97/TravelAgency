@@ -24,6 +24,7 @@ public class Trips2Activity extends AppCompatActivity {
     private ListView listview;
     private List<Trip> tripList;
     private TripListViewModel viewModel;
+    private String countryName;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -37,6 +38,7 @@ public class Trips2Activity extends AppCompatActivity {
         switch(item.getItemId()) {
             case R.id.action_add:
                 Intent intentHome = new Intent(this, addTripActivity.class);
+                intentHome.putExtra("countryName", countryName);
                 startActivity(intentHome);
                 return true;
             case R.id.action_settings:
@@ -52,7 +54,7 @@ public class Trips2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String countryName = getIntent().getStringExtra("countryName");
+        countryName = getIntent().getStringExtra("countryName");
 
 
         /*
@@ -65,7 +67,7 @@ public class Trips2Activity extends AppCompatActivity {
         listview = findViewById(R.id.listview);
         tripList = new ArrayList<>();
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        TripListViewModel.Factory factory = new TripListViewModel.Factory(getApplication());
+        TripListViewModel.Factory factory = new TripListViewModel.Factory(getApplication(), countryName);
 
         viewModel = ViewModelProviders.of(this, factory).get(TripListViewModel.class);
         viewModel.getTrips().observe(this, showEntities -> {
@@ -87,6 +89,7 @@ public class Trips2Activity extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_NO_HISTORY
                 );
         */
+                intent.putExtra("tripName", tripList.get(position).getTripname());
                 intent.putExtra("countryName", tripList.get(position).getCountryName());
                 startActivity(intent);
             }
