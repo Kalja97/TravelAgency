@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
 import com.example.travelagency.util.OnAsyncEventListener;
@@ -61,8 +63,21 @@ public class TripActivity extends AppCompatActivity  {
                 trip = tripEntity;
                 updateContent();
             }
-
         });
+    }
+
+    private void setImage(){
+
+        Log.d(TAG, "setImage: setting te image and name to widgets.");
+
+        String imageUrl = trip.getImageUrl();
+
+        ImageView image = findViewById(R.id.imageView);
+
+        Glide.with(this)
+                .asBitmap()
+                .load(imageUrl)
+                .into(image);
     }
 
     private void initiateView() {
@@ -76,6 +91,7 @@ public class TripActivity extends AppCompatActivity  {
 
     private void updateContent() {
         if (trip != null) {
+            setImage();
             tvCountryName.setText(getIntent().getStringExtra("countryName"));
             tvTripName.setText(trip.getTripname());
             tvDuration.setText(trip.getDuration());
@@ -126,8 +142,4 @@ public class TripActivity extends AppCompatActivity  {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
-
-
 }

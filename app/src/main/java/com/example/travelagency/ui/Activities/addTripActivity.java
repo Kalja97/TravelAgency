@@ -25,6 +25,7 @@ public class addTripActivity extends AppCompatActivity {
     private EditText etdate;
     private EditText etprice;
     private EditText etdescription;
+    private EditText etImageUrl;
 
 
     @Override
@@ -42,20 +43,22 @@ public class addTripActivity extends AppCompatActivity {
         etdate = findViewById(R.id.date);
         etprice = findViewById(R.id.price);
         etdescription = findViewById(R.id.description);
+        etImageUrl = findViewById(R.id.imageUrl);
         Button saveBtn = findViewById(R.id.btnaddtrip);
         saveBtn.setOnClickListener(view -> saveChanges(
                 ettripname.getText().toString(),
                 etduration.getText().toString(),
                 etdate.getText().toString(),
                 etprice.getText().toString(),
-                etdescription.getText().toString()
+                etdescription.getText().toString(),
+                etImageUrl.getText().toString()
         ));
     }
 
-    private void saveChanges(String tripname, String duration, String date, String price, String description) {
+    private void saveChanges(String tripname, String duration, String date, String price, String description, String imageUrl) {
 
         String countryName = getIntent().getStringExtra("countryName");
-        Trip newTrip = new Trip(countryName, tripname, duration, date, price, description);
+        Trip newTrip = new Trip(countryName, tripname, duration, date, price, description, imageUrl);
 
         new CreateTrip(getApplication(), new OnAsyncEventListener() {
 
@@ -73,6 +76,4 @@ public class addTripActivity extends AppCompatActivity {
             }
         }).execute(newTrip);
     }
-
-
 }

@@ -12,9 +12,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
 import com.example.travelagency.util.OnAsyncEventListener;
@@ -30,6 +32,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
     private TextView tvDate;
     private TextView tvPrice;
     private TextView tvDescription;
+    private TextView tvImageUrl;
 
     private Toast toast;
 
@@ -43,6 +46,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
     String cost;
     String datum;
     String desc;
+    String imageUrl;
     //-------
 
     //-----------------
@@ -91,6 +95,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         tvDate.setOnClickListener(this);
         tvPrice.setOnClickListener(this);
         tvDescription.setOnClickListener(this);
+        tvImageUrl.setOnClickListener(this);
 
         TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), tripName);
         vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModel.class);
@@ -172,6 +177,19 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                 });
                 break;
 
+            case R.id.imageUrl:
+                editText.setText(tvImageUrl.getText());
+                dialog.show();
+
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+
+                    public void onClick(DialogInterface dialogInterface, int i){
+                        tvImageUrl.setText(editText.getText());
+                        saving();
+                    }
+                });
+                break;
+
             case R.id.description:
                 editText.setText(tvDescription.getText());
                 dialog.show();
@@ -181,16 +199,10 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                     public void onClick(DialogInterface dialogInterface, int i){
                         tvDescription.setText(editText.getText());
                         saving();
-
                     }
                 });
                 break;
-
-
         }
-
-
-
     }
 
     private void saving(){
@@ -200,11 +212,12 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                         cost = "" + tvPrice.getText();
                         datum = "" + tvDate.getText();
                         desc = "" + tvDescription.getText();
+                        imageUrl = "" + tvImageUrl.getText();
 
-                        saveChanges(name,city, day, cost, datum, desc);
+                        saveChanges(name,city, day, cost, datum, desc, imageUrl);
     }
 
-    private void saveChanges(String country, String city, String days, String price, String date, String description) {
+    private void saveChanges(String country, String city, String days, String price, String date, String description, String imageUrl) {
 
         trip.setCountryName(country);
         trip.setTripname(city);
@@ -212,12 +225,12 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         trip.setPrice(price);
         trip.setDate(date);
         trip.setDescription(description);
+        trip.setImageUrl(imageUrl);
 
         vmTrip.updateTrip(trip, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "updateTrip: success");
-
             }
 
             @Override
@@ -226,7 +239,6 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
             }
         });
     }
-
 
 
     //Actions für Actionbar
@@ -246,6 +258,20 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    private void setImage(){
+
+        Log.d(TAG, "setImage: setting te image and name to widgets.");
+
+        String imageUrl = trip.getImageUrl();
+
+        ImageView image = findViewById(R.id.imageView);
+
+        Glide.with(this)
+                .asBitmap()
+                .load(imageUrl)
+                .into(image);
+    }
+
     private void initiateView() {
         tvCountryName = findViewById(R.id.country);
         tvTripName = findViewById(R.id.trip);
@@ -253,16 +279,19 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         tvDate = findViewById(R.id.date);
         tvPrice = findViewById(R.id.price);
         tvDescription = findViewById(R.id.description);
+        tvImageUrl = findViewById(R.id.imageUrl);
     }
 
     private void updateContent() {
         if (trip != null) {
+            setImage();
             tvCountryName.setText(getIntent().getStringExtra("countryName"));
             tvTripName.setText(trip.getTripname());
             tvDuration.setText(trip.getDuration());
             tvDate.setText(trip.getDate());
             tvPrice.setText(trip.getPrice());
             tvDescription.setText(trip.getDescription());
+            tvImageUrl.setText(trip.getImageUrl());
         }
     }
 }

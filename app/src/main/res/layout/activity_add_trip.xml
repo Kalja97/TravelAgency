@@ -104,6 +104,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/price" />
 
+        <EditText
+            android:id="@+id/imageUrl"
+            android:layout_width="288dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bginput"
+            android:hint="Image url (xxx.jpg)"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColorHint="#87ffffff"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
+
 
         <Button
             android:id="@+id/btnaddtrip"
@@ -117,7 +132,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description" />
+            app:layout_constraintTop_toBottomOf="@+id/imageUrl" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

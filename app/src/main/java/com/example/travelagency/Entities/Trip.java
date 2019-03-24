@@ -31,14 +31,16 @@ public class Trip {
     private String date;
     private String price;
     private String description;
+    private String imageUrl;
 
-    public Trip(String countryName, String tripname, String duration, String date, String price, String description){
+    public Trip(String countryName, String tripname, String duration, String date, String price, String description, String imageUrl){
         this.countryName = countryName;
         this.tripname = tripname;
         this. duration = duration;
         this.date = date;
         this.price = price;
         this.description = description;
+        this.imageUrl = imageUrl;
     }
 
     public Long getId() {
@@ -48,14 +50,6 @@ public class Trip {
     public void setId(Long id) {
         this.id = id;
     }
-
-/*    public Long getFk() {
-        return fk;
-    }
-
-    public void setFk(Long fk) {
-        this.fk = fk;
-    }*/
 
     public String getCountryName() {
         return countryName;
@@ -105,6 +99,13 @@ public class Trip {
         this.description = description;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     @Override
 
