@@ -19,7 +19,6 @@
         android:scaleType="centerCrop"
         android:id="@+id/imageView"
         android:contentDescription="@string/app_name"
-        android:background="@drawable/barcelonaview"
         android:layout_width="0dp"
         android:layout_height="315dp"
         app:layout_constraintEnd_toEndOf="parent"

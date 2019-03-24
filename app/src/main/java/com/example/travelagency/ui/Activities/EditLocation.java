@@ -23,11 +23,13 @@ public class EditLocation extends AppCompatActivity {
     private EditText etLanguage;
     private EditText etInhabitants;
     private EditText etDescription;
+    private EditText etCountryname;
 
     private LocationViewModel viewModel;
     private Location location;
     private LocationRepository repository;
 
+    private String countryname;
     private String language;
     private String description;
     private String  inhabitant;
@@ -55,16 +57,17 @@ public class EditLocation extends AppCompatActivity {
     }
 
     private void saving(){
+        countryname = "" + etCountryname.getText();
         inhabitant = "" + etInhabitants.getText();
         language = "" + etLanguage.getText();
         description = "" + etDescription.getText();
         inhabitants = Integer.parseInt(inhabitant);
 
-        saveChanges(inhabitants,language, description);
+        saveChanges(countryname, inhabitants, language, description);
     }
 
-    private void saveChanges(int inhabitants, String language, String description) {
-
+    private void saveChanges(String countryname, int inhabitants, String language, String description) {
+        location.setCountryName(countryname);
         location.setInhabitants(inhabitants);
         location.setLanguage(language);
         location.setDescription(description);
@@ -107,6 +110,7 @@ public class EditLocation extends AppCompatActivity {
     }
 
     private void initiateView() {
+        etCountryname = findViewById(R.id.change_countryname);
         etLanguage = findViewById(R.id.change_language);
         etInhabitants = findViewById(R.id.change_inhabitants);
         etDescription = findViewById(R.id.change_description);
@@ -114,6 +118,7 @@ public class EditLocation extends AppCompatActivity {
 
     private void updateContent() {
         if (location != null) {
+            etCountryname.setText(location.getCountryName());
             etLanguage.setText(location.getLanguage());
             etInhabitants.setText(String.valueOf(location.getInhabitants()));
             etDescription.setText(location.getDescription());
