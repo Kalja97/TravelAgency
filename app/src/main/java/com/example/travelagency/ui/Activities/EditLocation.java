@@ -77,7 +77,7 @@ public class EditLocation extends AppCompatActivity {
     private void updateContent() {
         if (location != null) {
             etLanguage.setText(location.getLanguage());
-            etInhabitants.setText(location.getInhabitants());
+            etInhabitants.setText(String.valueOf(location.getInhabitants()));
             etDescription.setText(location.getDescription());
         }
     }
