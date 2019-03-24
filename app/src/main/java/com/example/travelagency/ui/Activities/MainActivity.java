@@ -165,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_settings:
                 Intent intentSettings = new Intent(this, SettingsActivity.class);
                 startActivity(intentSettings);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

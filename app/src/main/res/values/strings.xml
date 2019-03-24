@@ -29,12 +29,23 @@
         <item>Entdecken Sie die schottische Natur...</item>
         <item>Entdecken Sie die schweizer Berge...</item>
     </string-array>
-    <string name="title_activity_settings">SettingsActivity</string>
 
     <string-array name="Template">
         <item>DarkWhite</item>
         <item>WhiteDark</item>
 
     </string-array>
+
+    <string name="app_version_title">App Version</string>
+    <string name="app_version_summary">Current Version: 1.0</string>
+
+    <string name="general_title">General</string>
+    <string name="general_summars">Manage general Settings of App</string>
+
+    <string name="about_us">About</string>
+    <string name="about_us_summary">App version, privacy policy</string>
+
+    <string name="privacy_policy_title">Privacy Policy</string>
+    <string name="privacy_policy_summary">Read our privacy policy and terms</string>
 
 </resources>

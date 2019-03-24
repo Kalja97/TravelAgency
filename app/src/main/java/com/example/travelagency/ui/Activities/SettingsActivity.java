@@ -1,37 +1,32 @@
 package com.example.travelagency.ui.Activities;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.preference.PreferenceActivity;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 
-import com.example.travelagency.Fragment.PrefFragment;
+import com.example.travelagency.Fragment.SettingsFragment;
 import com.example.travelagency.R;
 
-public class SettingsActivity extends AppCompatActivity {
+import java.util.List;
+
+public class SettingsActivity extends PreferenceActivity {
+
+
+   
+    @Override
+    public void onBuildHeaders(List<Header> target) {
+
+        loadHeadersFromResource(R.xml.header_preference, target);
+
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-
-       /* Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-        PrefFragment prefFragment = new PrefFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(android.R.id.content, prefFragment);
-        fragmentTransaction.commit();
+    protected boolean isValidFragment(String fragmentName) {
+        return SettingsFragment.class.getName().equals(fragmentName);
     }
+
 
 }

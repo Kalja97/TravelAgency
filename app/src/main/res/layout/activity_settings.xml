@@ -6,4 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.Activities.SettingsActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.Toolbar>
+
 </RelativeLayout>
