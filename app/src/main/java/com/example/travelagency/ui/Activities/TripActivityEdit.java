@@ -85,7 +85,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                 }
         });
 
-//        tvCountryName.setOnClickListener(this);
+//      tvCountryName.setOnClickListener(this);
         tvTripName.setOnClickListener(this);
         tvDuration.setOnClickListener(this);
         tvDate.setOnClickListener(this);
