@@ -41,15 +41,37 @@ public class addLocationActivity extends AppCompatActivity {
         EditText etlanguage = (EditText) findViewById(R.id.language);
         EditText etinhabitant = (EditText) findViewById(R.id.inhabitant);
         EditText etdescription = (EditText) findViewById(R.id.description);
+
         Button add = findViewById(R.id.btnaddlocation);
 
-        /*LocationViewModel.Factory factory = new LocationViewModel.Factory(getApplication(), clientEmail);
-        viewModel = ViewModelProviders.of(this, factory).get(LocationViewModel.class);*/
+        Button cancel = findViewById(R.id.btncancel);
+
+
+        //cancel inputs and go back to the mainpage
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentCancel = new Intent(addLocationActivity.this, MainActivity.class);
+                startActivity(intentCancel);
+            }
+        });
 
         appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,"travel_database").allowMainThreadQueries().build();
 
+        //Add location to the database
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+                //Check if inhabitant input is a number
+                String regexStr = "^[0-9]*$";
+
+                if(!etinhabitant.getText().toString().trim().matches(regexStr))
+                {
+                    etinhabitant.setError(getString(R.string.error_invalid_inhabitant));
+                    etinhabitant.requestFocus();
+                    return;
+                }
+
 
                 countryName = etcountryName.getText().toString();
                 language = etlanguage.getText().toString();

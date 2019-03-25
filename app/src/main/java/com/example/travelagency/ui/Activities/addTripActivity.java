@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,12 +28,29 @@ public class addTripActivity extends AppCompatActivity {
     private EditText etdescription;
     private EditText etImageUrl;
 
+    private String countryName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_trip);
         initializeForm();
+
+        Button cancel = findViewById(R.id.btncancel);
+
+        countryName = getIntent().getStringExtra("countryName");
+
+        //cancel inputs and go back to the tripsActivity page
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentCancel = new Intent(addTripActivity.this, Trips2Activity.class);
+                intentCancel.putExtra("countryName", countryName);
+                startActivity(intentCancel);
+            }
+        });
+
         toast = Toast.makeText(this, "new Trip in DataBase", Toast.LENGTH_LONG);
     }
 
@@ -57,7 +75,6 @@ public class addTripActivity extends AppCompatActivity {
 
     private void saveChanges(String tripname, String duration, String date, String price, String description, String imageUrl) {
 
-        String countryName = getIntent().getStringExtra("countryName");
         Trip newTrip = new Trip(countryName, tripname, duration, date, price, description, imageUrl);
 
         new CreateTrip(getApplication(), new OnAsyncEventListener() {
