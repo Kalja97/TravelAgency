@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         listview = (SwipeMenuListView) findViewById(R.id.listview);
         locationList = new ArrayList<>();
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
         LocationListViewModel.Factory factory = new LocationListViewModel.Factory(getApplication());
 
         viewModel = ViewModelProviders.of(this, factory).get(LocationListViewModel.class);
