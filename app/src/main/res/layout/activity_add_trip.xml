@@ -18,7 +18,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="36dp"
             android:lineSpacingExtra="6dp"
-            android:text="Add new trip"
+            android:text="Add trip"
             android:textColor="#FFF"
             android:textSize="42sp"
             app:layout_constraintStart_toStartOf="parent"
