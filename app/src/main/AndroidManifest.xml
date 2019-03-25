@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.travelagency">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    //Allow InternetAccess
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    //Allow GalleryAccess
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".BaseApp"
@@ -12,10 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
-        <activity android:name=".ui.Activities.Trips2Activity"
-            ><meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.example.travelagency.ui.Activities.MainActivity" /></activity>
+        <activity android:name=".ui.Activities.Trips2Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.travelagency.ui.Activities.MainActivity" />
+        </activity>
         <activity android:name=".ui.Activities.SettingsActivity" />
         <activity android:name=".ui.Activities.TripsActivity">
             <meta-data

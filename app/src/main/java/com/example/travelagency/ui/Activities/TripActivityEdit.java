@@ -82,12 +82,16 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         dialog.setView(editText);
 
 
-        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener(){
 
             public void onClick(DialogInterface dialogInterface, int i){
 
                 }
         });
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", (dialog, which) -> dialog.dismiss());
+
+
+        ;
 
 //      tvCountryName.setOnClickListener(this);
         tvTripName.setOnClickListener(this);
@@ -111,29 +115,15 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-/*            case R.id.country:
-                editText.setText(tvCountryName.getText());
-                dialog.show();
-
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
-
-                    public void onClick(DialogInterface dialogInterface, int i){
-                        tvCountryName.setText(editText.getText());
-                    }
-                });
-
-
-                break;*/
 
             case R.id.trip:
                 editText.setText(tvTripName.getText());
                 dialog.show();
 
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialogInterface, int i){
                         tvTripName.setText(editText.getText());
-                        saving();
                     }
                 });
                 break;
@@ -142,24 +132,23 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                 editText.setText(tvDuration.getText());
                 dialog.show();
 
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialogInterface, int i){
                         tvDuration.setText(editText.getText());
-                        saving();
                     }
                 });
+
                 break;
 
             case R.id.price:
                 editText.setText(tvPrice.getText());
                 dialog.show();
 
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialogInterface, int i){
                         tvPrice.setText(editText.getText());
-                        saving();
                     }
                 });
                 break;
@@ -168,11 +157,10 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                 editText.setText(tvDate.getText());
                 dialog.show();
 
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialogInterface, int i){
                         tvDate.setText(editText.getText());
-                        saving();
                     }
                 });
                 break;
@@ -181,11 +169,10 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                 editText.setText(tvImageUrl.getText());
                 dialog.show();
 
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialogInterface, int i){
                         tvImageUrl.setText(editText.getText());
-                        saving();
                     }
                 });
                 break;
@@ -194,11 +181,10 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                 editText.setText(tvDescription.getText());
                 dialog.show();
 
-                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "Save", new DialogInterface.OnClickListener(){
+                dialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialogInterface, int i){
                         tvDescription.setText(editText.getText());
-                        saving();
                     }
                 });
                 break;
@@ -245,6 +231,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.action_save:
+                saving();
                 Intent intentTrip = new Intent(this, Trips2Activity.class);
                 intentTrip.putExtra("countryName", countryName);
                 intentTrip.putExtra("tripName", tripName);
