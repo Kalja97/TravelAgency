@@ -20,6 +20,11 @@
                 android:value="com.example.travelagency.ui.Activities.MainActivity" />
         </activity>
         <activity android:name=".ui.Activities.SettingsActivity" />
+        <activity android:name=".ui.Activities.InfoLocation" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.travelagency.ui.Activities.MainActivity" />
+        </activity>
         <activity android:name=".ui.Activities.TripsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

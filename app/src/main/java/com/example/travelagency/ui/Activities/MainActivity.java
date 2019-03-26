@@ -98,18 +98,18 @@ public class MainActivity extends AppCompatActivity {
                 // add to menu
                 menu.addMenuItem(openItem);
 
-                /*// create "delete" item
+                // create "delete" item
                 SwipeMenuItem deleteItem = new SwipeMenuItem(
                         getApplicationContext());
                 // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(255, 255,
+                        255)));
                 // set item width
                 deleteItem.setWidth(170);
                 // set a icon
-                deleteItem.setIcon(R.drawable.ic_delete);
+                deleteItem.setIcon(R.drawable.ic_info);
                 // add to menu
-                menu.addMenuItem(deleteItem);*/
+                menu.addMenuItem(deleteItem);
             }
         };
 
@@ -140,6 +140,11 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         Log.d(TAG, "onMenuItemClick: clicked item" + index);
                         goToEditLocation(position);
+                        break;
+
+                    case 1:
+                        Log.d(TAG, "onMenuItemClick: clicked item" + index);
+                        goToInfoLocation(position);
                         break;
                 }
                 // false : close the menu; true : not close the menu
@@ -174,6 +179,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToEditLocation(int position){
         Intent intent = new Intent(this, EditLocation.class);
+        intent.putExtra("countryName", locationList.get(position).getCountryName());
+        startActivity(intent);
+    }
+
+    private void goToInfoLocation(int position){
+        Intent intent = new Intent(this, InfoLocation.class);
         intent.putExtra("countryName", locationList.get(position).getCountryName());
         startActivity(intent);
     }

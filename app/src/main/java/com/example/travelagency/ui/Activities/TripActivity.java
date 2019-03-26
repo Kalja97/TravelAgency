@@ -115,6 +115,7 @@ public class TripActivity extends AppCompatActivity  {
             case R.id.action_settings:
                 Intent intentSettings = new Intent(this, SettingsActivity.class);
                 startActivity(intentSettings);
+                return true;
             case R.id.action_delete:
                 final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                 alertDialog.setTitle(getString(R.string.action_delete));
