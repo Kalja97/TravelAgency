@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getLocations().observe(this, showEntities -> {
             if (showEntities != null) {
                 locationList = showEntities;
+                adapter.clear();
                 adapter.addAll(locationList);
             }
         });

@@ -72,6 +72,7 @@ public class Trips2Activity extends AppCompatActivity {
         viewModel.getTrips().observe(this, showEntities -> {
             if (showEntities != null) {
                 tripList = showEntities;
+                adapter.clear();
                 adapter.addAll(tripList);
             }
         });
