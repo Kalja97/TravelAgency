@@ -3,6 +3,7 @@ package com.example.travelagency.ui.Activities;
 import android.app.Application;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -107,7 +108,12 @@ public class addLocationActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Exception e) {
                         Log.d(TAG, "create location: failure", e);
-
+                        final AlertDialog alertDialog = new AlertDialog.Builder(addLocationActivity.this).create();
+                        alertDialog.setTitle("Can not save");
+                        alertDialog.setCancelable(true);
+                        alertDialog.setMessage("This Countryname is already in the Database");
+                        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "ok", (dialog, which) -> alertDialog.dismiss());
+                        alertDialog.show();
                     }
                 }).execute(location);
 //                gotoCountryActivity(v);

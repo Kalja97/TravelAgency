@@ -119,6 +119,6 @@ public class Trip {
 
     @Override
     public String toString() {
-        return countryName;
+        return tripname + "  (" + duration + ")";
     }
 }
