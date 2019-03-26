@@ -54,6 +54,8 @@ public class Trips2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTitle("Trips");
+
         countryName = getIntent().getStringExtra("countryName");
 
         /*

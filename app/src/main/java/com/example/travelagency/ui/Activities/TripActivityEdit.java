@@ -70,6 +70,8 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_edit);
 
+        setTitle("Edit trip");
+
         tripName = getIntent().getStringExtra("tripName");
         countryName = getIntent().getStringExtra("countryName");
 

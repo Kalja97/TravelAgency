@@ -37,6 +37,8 @@ public class addLocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
 
+        setTitle("Add country");
+
         EditText etcountryName = (EditText) findViewById(R.id.countryname);
         EditText etlanguage = (EditText) findViewById(R.id.language);
         EditText etinhabitant = (EditText) findViewById(R.id.inhabitant);

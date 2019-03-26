@@ -85,6 +85,20 @@ public class EditLocation extends AppCompatActivity {
         });
     }
 
+    //Delete location
+    private void delete(){
+        viewModel.deleteLocation(location, new OnAsyncEventListener() {
+            @Override
+            public void onSuccess() {
+                Log.d(TAG, "Delete trip: success");
+                backToMain();
+            }
+
+            @Override
+            public void onFailure(Exception e) {}
+        });
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -97,10 +111,13 @@ public class EditLocation extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.action_save:
-                saving();;
-                Intent intentTrip = new Intent(this, MainActivity.class);
-                startActivity(intentTrip);
+                saving();
+                backToMain();
                 return true;
+            case R.id.action_delete:
+                delete();
+                return true;
+
             case R.id.action_settings:
                 Intent intentSettings = new Intent(this, SettingsActivity.class);
                 startActivity(intentSettings);
@@ -109,11 +126,18 @@ public class EditLocation extends AppCompatActivity {
         }
     }
 
+    public void backToMain(){
+        Intent intentTrip = new Intent(this, MainActivity.class);
+        startActivity(intentTrip);
+    }
+
     private void initiateView() {
         etCountryname = findViewById(R.id.change_countryname);
         etLanguage = findViewById(R.id.change_language);
         etInhabitants = findViewById(R.id.change_inhabitants);
         etDescription = findViewById(R.id.change_description);
+
+        etCountryname.setEnabled(false);
     }
 
     private void updateContent() {

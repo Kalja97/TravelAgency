@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTitle("Countries");
+
         countryName = getIntent().getStringExtra("countryName");
         /*
             listview = (ListView) findViewById(R.id.listview);
@@ -96,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 // add to menu
                 menu.addMenuItem(openItem);
 
-                // create "delete" item
+                /*// create "delete" item
                 SwipeMenuItem deleteItem = new SwipeMenuItem(
                         getApplicationContext());
                 // set item background
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 // set a icon
                 deleteItem.setIcon(R.drawable.ic_delete);
                 // add to menu
-                menu.addMenuItem(deleteItem);
+                menu.addMenuItem(deleteItem);*/
             }
         };
 
@@ -139,9 +141,6 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "onMenuItemClick: clicked item" + index);
                         goToEditLocation(position);
                         break;
-                    case 1:
-                        Log.d(TAG, "onMenuItemClick: clicked item" + index);
-                        delete(position);
                 }
                 // false : close the menu; true : not close the menu
                 return false;
@@ -172,27 +171,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-// Delete location from DB
-    private void delete(int position){
-
-        location = locationList.get(position);
-        viewModel.deleteLocation(location, new OnAsyncEventListener() {
-            @Override
-            public void onSuccess() {
-                Log.d(TAG, "Delete trip: success");
-                refresh();
-            }
-
-            private void refresh() {
-//                Refresh page
-                finish();
-                startActivity(getIntent());
-            }
-
-            @Override
-            public void onFailure(Exception e) {}
-        });
-    }
 
     private void goToEditLocation(int position){
         Intent intent = new Intent(this, EditLocation.class);
