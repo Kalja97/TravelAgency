@@ -99,14 +99,14 @@ public class addLocationActivity extends AppCompatActivity {
 
                     @Override
                     public void onSuccess() {
-                        Log.d(TAG, "createUserWithEmail: success");
+                        Log.d(TAG, "create location: success");
                         Intent intent = new Intent(addLocationActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
 
                     @Override
                     public void onFailure(Exception e) {
-                        Log.d(TAG, "createUserWithEmail: failure", e);
+                        Log.d(TAG, "create location: failure", e);
 
                     }
                 }).execute(location);
@@ -115,8 +115,8 @@ public class addLocationActivity extends AppCompatActivity {
         });
     }
 
-    public void gotoCountryActivity (View view){
+/*    public void gotoCountryActivity (View view){
         Intent intent = new Intent (this, CountryActivity.class);
         startActivity(intent);
-    }
+    }*/
 }
