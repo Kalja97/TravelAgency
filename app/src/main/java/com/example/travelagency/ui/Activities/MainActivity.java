@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -62,19 +63,46 @@ public class MainActivity extends AppCompatActivity {
 
         listview = (SwipeMenuListView) findViewById(R.id.listview);
         locationList = new ArrayList<>();
-        ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+        //ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
         LocationListViewModel.Factory factory = new LocationListViewModel.Factory(getApplication());
 
         viewModel = ViewModelProviders.of(this, factory).get(LocationListViewModel.class);
         viewModel.getLocations().observe(this, showEntities -> {
             if (showEntities != null) {
                 locationList = showEntities;
-                adapter.clear();
-                adapter.addAll(locationList);
+                //adapter.clear();
+                //adapter.addAll(locationList);
+                ArrayAdapter adapter = new ArrayAdapter<Location>(this,android.R.layout.simple_list_item_1, locationList) {
+                    @Override
+                    public View getView(int position, View convertView, ViewGroup parent){
+                        // Get the current item from ListView
+                        View view = super.getView(position,convertView,parent);
+                        switch (position){
+                            case 0:
+                                view.setBackgroundColor(Color.MAGENTA);
+                                break;
+                            case 1:
+                                view.setBackgroundColor(Color.GRAY);
+                                break;
+                            case 2:
+                                view.setBackgroundColor(Color.BLUE);
+                                break;
+                            case 3:
+                                view.setBackgroundColor(Color.CYAN);
+                                break;
+                            case 4:
+                                view.setBackgroundColor(Color.GREEN);
+                                break;
+                        }
+                        return view;
+                    }
+
+                };
+                listview.setAdapter(adapter);
             }
         });
 
-        listview.setAdapter(adapter);
+        //listview.setAdapter(adapter);
 
 //       Retrieved from: https://github.com/baoyongzhang/SwipeMenuListView
         SwipeMenuCreator creator = new SwipeMenuCreator() {

@@ -9,12 +9,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
+import com.example.travelagency.TripsMapsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
 import com.example.travelagency.viewmodel.TripViewModel;
 
@@ -64,6 +67,21 @@ public class TripActivity extends AppCompatActivity  {
             if (tripEntity != null) {
                 trip = tripEntity;
                 updateContent();
+            }
+        });
+
+        Button map = findViewById(R.id.btnmap);
+
+
+        //cancel inputs and go back to the mainpage
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentMap = new Intent(TripActivity.this, TripsMapsActivity.class);
+                intentMap.putExtra("x", -34);
+                intentMap.putExtra("y", 151);
+                intentMap.putExtra("tripName", tripName);
+                startActivity(intentMap);
             }
         });
     }

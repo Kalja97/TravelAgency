@@ -51,5 +51,6 @@
 
     <string name="developers_title">Developers</string>
     <string name="developers_summary">Damian Wasmer, Jannis Kalbermatten</string>
+    <string name="title_activity_trips_maps">Map</string>
 
 </resources>
