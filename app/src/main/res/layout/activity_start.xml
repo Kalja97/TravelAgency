@@ -7,11 +7,11 @@
     tools:context=".ui.Activities.StartActivity">
 
     <ImageView
-        android:id="@+id/bgone"
+        android:id="@+id/bgstart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/hintergrund"
+        android:src="@drawable/nwj"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
         android:textColor="#FFF"
         android:textSize="42sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bgone" />
+        app:layout_constraintTop_toTopOf="@+id/bgstart" />
 
     <TextView
         android:id="@+id/textView"
