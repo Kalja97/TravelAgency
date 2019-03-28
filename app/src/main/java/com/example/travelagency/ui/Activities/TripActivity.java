@@ -1,7 +1,10 @@
 package com.example.travelagency.ui.Activities;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +23,9 @@ import com.example.travelagency.R;
 import com.example.travelagency.TripsMapsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
 import com.example.travelagency.viewmodel.TripViewModel;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.List;
 
 
 public class TripActivity extends AppCompatActivity  {
@@ -73,17 +79,46 @@ public class TripActivity extends AppCompatActivity  {
         Button map = findViewById(R.id.btnmap);
 
 
-        //cancel inputs and go back to the mainpage
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentMap = new Intent(TripActivity.this, TripsMapsActivity.class);
-                intentMap.putExtra("x", -34);
-                intentMap.putExtra("y", 151);
-                intentMap.putExtra("tripName", tripName);
-                startActivity(intentMap);
+                LatLng maplocation = getLocationFromAddress(TripActivity.this, tripName);
+                if (maplocation == null){
+                    final AlertDialog alertDialog = new AlertDialog.Builder(TripActivity.this).create();
+                    alertDialog.setTitle("No Location found");
+                    alertDialog.setCancelable(true);
+                    alertDialog.setMessage("Use another Tripname or make sure you are connected to the Internet");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "ok", (dialog, which) -> alertDialog.dismiss());
+                    alertDialog.show();
+                } else{
+                    Intent intentMap = new Intent(TripActivity.this, TripsMapsActivity.class);
+                    intentMap.putExtra("tripName", tripName);
+                    startActivity(intentMap);
+                }
             }
         });
+    }
+
+    public LatLng getLocationFromAddress(Context context, String strAddress) {
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        LatLng p1 = null;
+
+        try {
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+            Address location = address.get(0);
+
+            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return p1;
     }
 
     private void setImage(){
