@@ -77,26 +77,11 @@ public class MainActivity extends AppCompatActivity {
                     public View getView(int position, View convertView, ViewGroup parent){
                         // Get the current item from ListView
                         View view = super.getView(position,convertView,parent);
-                        switch (position){
-                            case 0:
-                                view.setBackgroundColor(Color.MAGENTA);
-                                break;
-                            case 1:
-                                view.setBackgroundColor(Color.GRAY);
-                                break;
-                            case 2:
-                                view.setBackgroundColor(Color.BLUE);
-                                break;
-                            case 3:
-                                view.setBackgroundColor(Color.CYAN);
-                                break;
-                            case 4:
-                                view.setBackgroundColor(Color.GREEN);
-                                break;
+                        if(position % 2 == 1){
+                            view.setBackgroundColor(Color.GRAY);
                         }
                         return view;
                     }
-
                 };
                 listview.setAdapter(adapter);
             }

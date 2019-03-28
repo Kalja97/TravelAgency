@@ -12,6 +12,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
@@ -21,8 +22,7 @@ public class TripsMapsActivity extends FragmentActivity implements OnMapReadyCal
     private GoogleMap mMap;
 
     String tripName;
-    double latitude;
-    double longitude;
+    String countryName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class TripsMapsActivity extends FragmentActivity implements OnMapReadyCal
         setContentView(R.layout.activity_trips_maps);
 
         tripName = getIntent().getStringExtra("tripName");
+        countryName = getIntent().getStringExtra("countryName");
 
         setTitle("Map " + tripName);
 
@@ -78,7 +79,8 @@ public class TripsMapsActivity extends FragmentActivity implements OnMapReadyCal
 
         // Add a marker in Sydney and move the camera
         LatLng triplocation = getLocationFromAddress(TripsMapsActivity.this, tripName);
-        mMap.addMarker(new MarkerOptions().position(triplocation).title("Marker in " + tripName).draggable(true));
+        Marker location = mMap.addMarker(new MarkerOptions().position(triplocation).title("Marker in " + tripName).draggable(true).snippet(countryName));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(triplocation));
+        location.showInfoWindow();
     }
 }

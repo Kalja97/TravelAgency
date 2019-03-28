@@ -93,6 +93,7 @@ public class TripActivity extends AppCompatActivity  {
                 } else{
                     Intent intentMap = new Intent(TripActivity.this, TripsMapsActivity.class);
                     intentMap.putExtra("tripName", tripName);
+                    intentMap.putExtra("countryName", countryName);
                     startActivity(intentMap);
                 }
             }
