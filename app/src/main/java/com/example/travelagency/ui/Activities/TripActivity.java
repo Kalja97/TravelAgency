@@ -129,14 +129,23 @@ public class TripActivity extends AppCompatActivity  {
 
         Log.d(TAG, "setImage: setting te image and name to widgets.");
 
-        String imageUrl = trip.getImageUrl();
+        try {
+            String imageUrl = trip.getImageUrl();
 
-        ImageView image = findViewById(R.id.imageView);
+            ImageView image = findViewById(R.id.imageView);
 
-        Glide.with(this)
-                .asBitmap()
-                .load(imageUrl)
-                .into(image);
+            Glide.with(this)
+                    .asBitmap()
+                    .load(imageUrl)
+                    .into(image);
+        } catch (Exception ex) {
+            final AlertDialog alertDialog = new AlertDialog.Builder(TripActivity.this).create();
+            alertDialog.setTitle("No Image found");
+            alertDialog.setCancelable(true);
+            alertDialog.setMessage("The image could not be loaded.");
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "ok", (dialog, which) -> alertDialog.dismiss());
+            alertDialog.show();
+        }
     }
 
     private void initiateView() {

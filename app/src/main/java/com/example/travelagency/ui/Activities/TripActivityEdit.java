@@ -208,7 +208,6 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                         imageUrl = "" + tvImageUrl.getText();
                         rating = rbratingBar.getRating();
 
-
                         saveChanges(name,city, day, cost, datum, desc, imageUrl, rating);
     }
 

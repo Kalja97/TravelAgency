@@ -31,6 +31,7 @@ public class addTripActivity extends AppCompatActivity {
     private RatingBar rbratingbar;
 
     private String countryName;
+    private String imageUrl;
 
 
     @Override
@@ -65,6 +66,13 @@ public class addTripActivity extends AppCompatActivity {
         etdescription = findViewById(R.id.description);
         etImageUrl = findViewById(R.id.imageUrl);
         rbratingbar = findViewById(R.id.ratingBar);
+
+        if(etImageUrl.getText().toString().equalsIgnoreCase("")){
+            imageUrl = "https://img.buzzfeed.com/buzzfeed-static/static/2014-11/20/2/campaign_images/webdr04/the-22-stages-of-going-on-a-road-trip-in-australia-2-18049-1416470126-1_dblbig.jpg";
+        } else {
+            imageUrl = etImageUrl.getText().toString();
+        }
+
         Button saveBtn = findViewById(R.id.btnaddtrip);
         saveBtn.setOnClickListener(view -> saveChanges(
                 ettripname.getText().toString(),
@@ -72,7 +80,7 @@ public class addTripActivity extends AppCompatActivity {
                 etdate.getText().toString(),
                 etprice.getText().toString(),
                 etdescription.getText().toString(),
-                etImageUrl.getText().toString(),
+                imageUrl,
                 rbratingbar.getRating()
         ));
     }
