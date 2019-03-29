@@ -3,6 +3,7 @@ package com.example.travelagency.ui.Activities.location;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -64,6 +65,23 @@ public class EditLocationActivity extends AppCompatActivity {
 
     //call method saveChanges for saving changes in the DB
     private void saving(){
+
+        //Get text from inputs
+        language = etLanguage.getText().toString().trim();
+        inhabitant = etInhabitants.getText().toString().trim();
+        description = etDescription.getText().toString().trim();
+
+        //Check if all filed are filled in
+        if(language.isEmpty() || inhabitant.isEmpty() || description.isEmpty()){
+            final AlertDialog alertDialog = new AlertDialog.Builder(EditLocationActivity.this).create();
+            alertDialog.setTitle("Not all fields filled in");
+            alertDialog.setCancelable(true);
+            alertDialog.setMessage("Please fill in all fields first");
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "ok", (dialog, which) -> alertDialog.dismiss());
+            alertDialog.show();
+            return;
+        }
+
         //Check if inhabitant input is a number
         //if not set error
         String regexStr = "^[0-9]*$";
@@ -75,14 +93,11 @@ public class EditLocationActivity extends AppCompatActivity {
             return;
         }
 
-        countryname = "" + etCountryname.getText();
-        inhabitant = "" + etInhabitants.getText();
-        language = "" + etLanguage.getText();
-        description = "" + etDescription.getText();
         inhabitants = Integer.parseInt(inhabitant);
 
         //call method saveChanges
         saveChanges(countryname, inhabitants, language, description);
+
     }
 
     //Saving changes into database
@@ -103,6 +118,7 @@ public class EditLocationActivity extends AppCompatActivity {
                 Log.d(TAG, "updateLocation: failure", e);
             }
         });
+        backToMain();
     }
 
     //Delete location
@@ -132,7 +148,6 @@ public class EditLocationActivity extends AppCompatActivity {
         switch(item.getItemId()) {
             case R.id.action_save:
                 saving();
-                backToMain();
                 return true;
             case R.id.action_delete:
                 delete();

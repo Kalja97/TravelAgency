@@ -1,5 +1,6 @@
 package com.example.travelagency.ui.Activities.trip;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,7 +29,15 @@ public class AddTripActivity extends AppCompatActivity {
     private EditText etImageUrl;
     private RatingBar rbratingbar;
 
+    //Intent infos
     private String countryName;
+
+    //Strings
+    private String tripName;
+    private String duration;
+    private String date;
+    private String price;
+    private String description;
     private String imageUrl;
 
 
@@ -66,21 +75,40 @@ public class AddTripActivity extends AppCompatActivity {
         etImageUrl = findViewById(R.id.imageUrl);
         rbratingbar = findViewById(R.id.ratingBar);
 
+        //Get text from inputs
+        countryName = ettripname.getText().toString().trim();
+        duration = etduration.getText().toString().trim();
+        date = etdate.getText().toString().trim();
+        price = etprice.getText().toString().trim();
+        description = etdescription.getText().toString().trim();
+        imageUrl = etImageUrl.getText().toString().trim();
+
+        //Check if all filed are filled in
+        if(countryName.isEmpty() || duration.isEmpty() || date.isEmpty() || price.isEmpty() || description.isEmpty()){
+            final AlertDialog alertDialog = new AlertDialog.Builder(AddTripActivity.this).create();
+            alertDialog.setTitle("Not all fields filled in");
+            alertDialog.setCancelable(true);
+            alertDialog.setMessage("Please fill in all fields first");
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "ok", (dialog, which) -> alertDialog.dismiss());
+            alertDialog.show();
+            return;
+        }
+
         //check if url is empty or not, if empty set default url
-        if(etImageUrl.getText().toString().equalsIgnoreCase("")){
+        if(imageUrl.isEmpty()){
             imageUrl = "https://img.buzzfeed.com/buzzfeed-static/static/2014-11/20/2/campaign_images/webdr04/the-22-stages-of-going-on-a-road-trip-in-australia-2-18049-1416470126-1_dblbig.jpg";
         } else {
-            imageUrl = etImageUrl.getText().toString();
+            imageUrl = etImageUrl.getText().toString().trim();
         }
 
         //Button add and call mathod save
         Button saveBtn = findViewById(R.id.btnaddtrip);
         saveBtn.setOnClickListener(view -> saveChanges(
-                ettripname.getText().toString(),
-                etduration.getText().toString(),
-                etdate.getText().toString(),
-                etprice.getText().toString(),
-                etdescription.getText().toString(),
+                tripName,
+                duration,
+                date,
+                price,
+                description,
                 imageUrl,
                 rbratingbar.getRating()
         ));

@@ -73,9 +73,9 @@ public class TripsActivity extends AppCompatActivity {
 
         //get data from database
         viewModel = ViewModelProviders.of(this, factory).get(TripListViewModel.class);
-        viewModel.getTrips().observe(this, showEntities -> {
-            if (showEntities != null) {
-                tripList = showEntities;
+        viewModel.getTrips().observe(this, tripEntities -> {
+            if (tripEntities != null) {
+                tripList = tripEntities;
                 adapter.clear();
                 adapter.addAll(tripList);
             }

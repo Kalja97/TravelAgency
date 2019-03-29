@@ -14,6 +14,7 @@ import com.example.travelagency.AppDatabase;
 import com.example.travelagency.Entities.Location;
 import com.example.travelagency.R;
 import com.example.travelagency.async.Location.CreateLocation;
+import com.example.travelagency.ui.Activities.trip.DetailsTripActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
 
 public class AddLocationActivity extends AppCompatActivity {
@@ -25,6 +26,7 @@ public class AddLocationActivity extends AppCompatActivity {
     String language;
     String description;
     int inhabitants;
+    String inhabitant;
 
     AppDatabase appDatabase;
 
@@ -63,6 +65,23 @@ public class AddLocationActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                //Get text from inputs
+                countryName = etcountryName.getText().toString().trim();
+                language = etlanguage.getText().toString().trim();
+                inhabitant = etinhabitant.getText().toString().trim();
+                description = etdescription.getText().toString().trim();
+
+                //Check if all filed are filled in
+                if(countryName.isEmpty() || language.isEmpty() || inhabitant.isEmpty() || description.isEmpty()){
+                    final AlertDialog alertDialog = new AlertDialog.Builder(AddLocationActivity.this).create();
+                    alertDialog.setTitle("Not all fields filled in");
+                    alertDialog.setCancelable(true);
+                    alertDialog.setMessage("Please fill in all fields first");
+                    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "ok", (dialog, which) -> alertDialog.dismiss());
+                    alertDialog.show();
+                    return;
+                }
+
                 //Check if inhabitant input is a number
                 //if not set error
                 String regexStr = "^[0-9]*$";
@@ -74,11 +93,8 @@ public class AddLocationActivity extends AppCompatActivity {
                     return;
                 }
 
-                //Get text from inputs
-                countryName = etcountryName.getText().toString();
-                language = etlanguage.getText().toString();
-                inhabitants = Integer.valueOf(etinhabitant.getText().toString());
-                description = etdescription.getText().toString();
+                //cast String in int
+                inhabitants = Integer.valueOf(etinhabitant.getText().toString().trim());
 
                 //create new location object
                 Location location = new Location(countryName, inhabitants, description, language);

@@ -60,9 +60,9 @@ public class LocationsActivity extends AppCompatActivity {
 
         //get data from database
         viewModel = ViewModelProviders.of(this, factory).get(LocationListViewModel.class);
-        viewModel.getLocations().observe(this, showEntities -> {
-            if (showEntities != null) {
-                locationList = showEntities;
+        viewModel.getLocations().observe(this, locatiomEntities -> {
+            if (locatiomEntities != null) {
+                locationList = locatiomEntities;
                 adapter.clear();
                 adapter.addAll(locationList);
             }
