@@ -1,4 +1,4 @@
-package com.example.travelagency.viewmodel;
+package com.example.travelagency.viewmodel.location;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;

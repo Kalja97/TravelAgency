@@ -1,29 +1,30 @@
-package com.example.travelagency.async;
+package com.example.travelagency.async.Location;
 
 import android.app.Application;
 import android.os.AsyncTask;
 
 import com.example.travelagency.BaseApp;
-import com.example.travelagency.Entities.Trip;
+import com.example.travelagency.Entities.Location;
 import com.example.travelagency.util.OnAsyncEventListener;
 
-public class CreateTrip extends AsyncTask<Trip, Void, Void> {
+public class CreateLocation extends AsyncTask<Location, Void, Void> {
 
     private Application application;
     private OnAsyncEventListener callback;
     private Exception exception;
 
-    public CreateTrip(Application application, OnAsyncEventListener callback) {
+    public CreateLocation(Application application, OnAsyncEventListener callback) {
         this.application = application;
         this.callback = callback;
     }
 
     @Override
-    protected Void doInBackground(Trip... params) {
+    protected Void doInBackground(Location... params) {
         try {
-            for (Trip trip : params) {
-                ((BaseApp) application).getDatabase().tripDao()
-                        .insert(trip);
+            for (Location location : params) {
+                //Create Method
+                ((BaseApp) application).getDatabase().locationDao()
+                        .insert(location);
             }
         } catch (Exception e) {
             exception = e;

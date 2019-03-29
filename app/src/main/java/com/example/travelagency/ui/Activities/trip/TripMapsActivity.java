@@ -1,4 +1,4 @@
-package com.example.travelagency.ui.Activities;
+package com.example.travelagency.ui.Activities.trip;
 
 import android.content.Context;
 import android.location.Address;
@@ -17,7 +17,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
-public class TripsMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class TripMapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
@@ -27,7 +27,7 @@ public class TripsMapsActivity extends FragmentActivity implements OnMapReadyCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trips_maps);
+        setContentView(R.layout.activity_trip_maps);
 
         tripName = getIntent().getStringExtra("tripName");
         countryName = getIntent().getStringExtra("countryName");
@@ -78,7 +78,7 @@ public class TripsMapsActivity extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng triplocation = getLocationFromAddress(TripsMapsActivity.this, tripName);
+        LatLng triplocation = getLocationFromAddress(TripMapsActivity.this, tripName);
         Marker location = mMap.addMarker(new MarkerOptions().position(triplocation).title("Marker in " + tripName).draggable(true).snippet(countryName));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(triplocation));
         location.showInfoWindow();

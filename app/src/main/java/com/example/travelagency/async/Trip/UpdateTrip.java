@@ -1,4 +1,4 @@
-package com.example.travelagency.async;
+package com.example.travelagency.async.Trip;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -7,13 +7,13 @@ import com.example.travelagency.BaseApp;
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.util.OnAsyncEventListener;
 
-public class DeleteTrip extends AsyncTask<Trip, Void, Void> {
+public class UpdateTrip extends AsyncTask<Trip, Void, Void> {
 
     private Application application;
     private OnAsyncEventListener callback;
     private Exception exception;
 
-    public DeleteTrip(Application application, OnAsyncEventListener callback) {
+    public UpdateTrip(Application application, OnAsyncEventListener callback) {
         this.application = application;
         this.callback = callback;
     }
@@ -23,10 +23,10 @@ public class DeleteTrip extends AsyncTask<Trip, Void, Void> {
         try {
             for (Trip trip : params) {
                 ((BaseApp) application).getDatabase().tripDao()
-                        .delete(trip);
+                        .update(trip);
             }
         } catch (Exception e) {
-            exception = e;
+            this.exception = e;
         }
         return null;
     }

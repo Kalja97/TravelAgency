@@ -1,4 +1,4 @@
-package com.example.travelagency.async;
+package com.example.travelagency.async.Location;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -7,24 +7,25 @@ import com.example.travelagency.BaseApp;
 import com.example.travelagency.Entities.Location;
 import com.example.travelagency.util.OnAsyncEventListener;
 
-public class CreateLocation extends AsyncTask<Location, Void, Void> {
+public class UpdateLocation extends AsyncTask<Location, Void, Void> {
 
     private Application application;
-    private OnAsyncEventListener callback;
+    private OnAsyncEventListener calback;
     private Exception exception;
 
-    public CreateLocation(Application application, OnAsyncEventListener callback) {
+
+
+    public UpdateLocation(Application application, OnAsyncEventListener callback) {
         this.application = application;
-        this.callback = callback;
+        calback = callback;
     }
 
     @Override
     protected Void doInBackground(Location... params) {
         try {
             for (Location location : params) {
-                //Create Method
                 ((BaseApp) application).getDatabase().locationDao()
-                        .insert(location);
+                        .update(location);
             }
         } catch (Exception e) {
             exception = e;
@@ -34,11 +35,11 @@ public class CreateLocation extends AsyncTask<Location, Void, Void> {
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        if (callback != null) {
+        if (calback != null) {
             if (exception == null) {
-                callback.onSuccess();
+                calback.onSuccess();
             } else {
-                callback.onFailure(exception);
+                calback.onFailure(exception);
             }
         }
     }

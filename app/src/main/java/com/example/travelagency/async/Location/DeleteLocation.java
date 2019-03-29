@@ -1,32 +1,34 @@
-package com.example.travelagency.async;
+package com.example.travelagency.async.Location;
+
 
 import android.app.Application;
 import android.os.AsyncTask;
 
 import com.example.travelagency.BaseApp;
-import com.example.travelagency.Entities.Trip;
+import com.example.travelagency.Entities.Location;
 import com.example.travelagency.util.OnAsyncEventListener;
 
-public class UpdateTrip extends AsyncTask<Trip, Void, Void> {
+public class DeleteLocation extends AsyncTask<Location, Void, Void> {
 
     private Application application;
     private OnAsyncEventListener callback;
     private Exception exception;
 
-    public UpdateTrip(Application application, OnAsyncEventListener callback) {
+
+    public DeleteLocation(Application application, OnAsyncEventListener callback) {
         this.application = application;
         this.callback = callback;
     }
 
     @Override
-    protected Void doInBackground(Trip... params) {
+    protected Void doInBackground(Location... params) {
         try {
-            for (Trip trip : params) {
-                ((BaseApp) application).getDatabase().tripDao()
-                        .update(trip);
+            for (Location location : params) {
+                ((BaseApp) application).getDatabase().locationDao()
+                       .delete(location);
             }
         } catch (Exception e) {
-            this.exception = e;
+            exception = e;
         }
         return null;
     }

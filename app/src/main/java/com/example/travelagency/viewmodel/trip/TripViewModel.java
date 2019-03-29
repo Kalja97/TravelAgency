@@ -1,4 +1,4 @@
-package com.example.travelagency.viewmodel;
+package com.example.travelagency.viewmodel.trip;
 
 
 import android.app.Application;

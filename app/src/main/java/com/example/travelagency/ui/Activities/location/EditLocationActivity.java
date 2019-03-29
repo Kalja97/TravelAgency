@@ -1,4 +1,4 @@
-package com.example.travelagency.ui.Activities;
+package com.example.travelagency.ui.Activities.location;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -13,37 +13,42 @@ import android.widget.EditText;
 import com.example.travelagency.Entities.Location;
 import com.example.travelagency.R;
 import com.example.travelagency.Repository.LocationRepository;
+import com.example.travelagency.ui.Activities.SettingsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
-import com.example.travelagency.viewmodel.LocationViewModel;
+import com.example.travelagency.viewmodel.location.LocationViewModel;
 
-public class EditLocation extends AppCompatActivity {
+public class EditLocationActivity extends AppCompatActivity {
 
-    private static final String TAG = "EditLocation";
+    private static final String TAG = "EditLocationActivity";
 
+    //Edit texts of the layout
     private EditText etLanguage;
     private EditText etInhabitants;
     private EditText etDescription;
     private EditText etCountryname;
 
-    private LocationViewModel viewModel;
-    private Location location;
-    private LocationRepository repository;
-
+    //location attributes
     private String countryname;
     private String language;
     private String description;
     private String  inhabitant;
     private int inhabitants;
 
+    private LocationViewModel viewModel;
+    private Location location;
+    private LocationRepository repository;
+
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_location);
+        setContentView(R.layout.activity_edit_location);
 
         String loc = getIntent().getStringExtra("countryName");
 
         initiateView();
 
+        //initialize repositoty
         repository = new LocationRepository();
 
         //Get data from database
@@ -57,7 +62,7 @@ public class EditLocation extends AppCompatActivity {
         });
     }
 
-    //call method saveChanges for saving changes
+    //call method saveChanges for saving changes in the DB
     private void saving(){
         countryname = "" + etCountryname.getText();
         inhabitant = "" + etInhabitants.getText();
@@ -65,6 +70,7 @@ public class EditLocation extends AppCompatActivity {
         description = "" + etDescription.getText();
         inhabitants = Integer.parseInt(inhabitant);
 
+        //call method saveChanges
         saveChanges(countryname, inhabitants, language, description);
     }
 
@@ -102,7 +108,7 @@ public class EditLocation extends AppCompatActivity {
         });
     }
 
-
+    //create options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -110,7 +116,7 @@ public class EditLocation extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    //Actions für Actionbar
+    //Actions for actionbar
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.action_save:
@@ -120,7 +126,6 @@ public class EditLocation extends AppCompatActivity {
             case R.id.action_delete:
                 delete();
                 return true;
-
             case R.id.action_settings:
                 Intent intentSettings = new Intent(this, SettingsActivity.class);
                 startActivity(intentSettings);
@@ -129,11 +134,13 @@ public class EditLocation extends AppCompatActivity {
         }
     }
 
+    //to start the intent -> back to main
     public void backToMain(){
-        Intent intentTrip = new Intent(this, MainActivity.class);
+        Intent intentTrip = new Intent(this, LocationsActivity.class);
         startActivity(intentTrip);
     }
 
+    //initialize the edit texts
     private void initiateView() {
         etCountryname = findViewById(R.id.change_countryname);
         etLanguage = findViewById(R.id.change_language);
@@ -143,6 +150,7 @@ public class EditLocation extends AppCompatActivity {
         etCountryname.setEnabled(false);
     }
 
+    //update text in the view
     private void updateContent() {
         if (location != null) {
             etCountryname.setText(location.getCountryName());

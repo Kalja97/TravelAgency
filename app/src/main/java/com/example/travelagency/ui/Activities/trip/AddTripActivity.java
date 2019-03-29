@@ -1,4 +1,4 @@
-package com.example.travelagency.ui.Activities;
+package com.example.travelagency.ui.Activities.trip;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,15 +10,14 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-import com.example.travelagency.AppDatabase;
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
-import com.example.travelagency.async.CreateTrip;
+import com.example.travelagency.async.Trip.CreateTrip;
 import com.example.travelagency.util.OnAsyncEventListener;
 
-public class addTripActivity extends AppCompatActivity {
+public class AddTripActivity extends AppCompatActivity {
 
-    private static final String TAG = "addTripActivity";
+    private static final String TAG = "AddTripActivity";
 
     private Toast toast;
 
@@ -50,7 +49,7 @@ public class addTripActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentCancel = new Intent(addTripActivity.this, Trips2Activity.class);
+                Intent intentCancel = new Intent(AddTripActivity.this, TripsActivity.class);
                 intentCancel.putExtra("countryName", countryName);
                 startActivity(intentCancel);
             }
@@ -100,7 +99,7 @@ public class addTripActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 Log.d(TAG, "createTrip: success");
-                Intent intent = new Intent(addTripActivity.this, Trips2Activity.class);
+                Intent intent = new Intent(AddTripActivity.this, TripsActivity.class);
                 intent.putExtra("countryName", countryName);
                 startActivity(intent);
             }

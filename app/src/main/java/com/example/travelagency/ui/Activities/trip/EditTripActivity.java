@@ -1,4 +1,4 @@
-package com.example.travelagency.ui.Activities;
+package com.example.travelagency.ui.Activities.trip;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
@@ -20,12 +20,13 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
+import com.example.travelagency.ui.Activities.SettingsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
-import com.example.travelagency.viewmodel.TripViewModel;
+import com.example.travelagency.viewmodel.trip.TripViewModel;
 
-public class TripActivityEdit extends AppCompatActivity implements View.OnClickListener {
+public class EditTripActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = "TripActivityEdit";
+    private static final String TAG = "EditTripActivity";
 
     //Textviews
     private TextView tvCountryName;
@@ -72,7 +73,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trip_edit);
+        setContentView(R.layout.activity_edit_trip);
 
         setTitle("Edit trip");
 
@@ -248,7 +249,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         switch(item.getItemId()) {
             case R.id.action_save:
                 saving();
-                Intent intentTrip = new Intent(this, Trips2Activity.class);
+                Intent intentTrip = new Intent(this, TripsActivity.class);
                 intentTrip.putExtra("countryName", countryName);
                 intentTrip.putExtra("tripName", tripName);
                 startActivity(intentTrip);

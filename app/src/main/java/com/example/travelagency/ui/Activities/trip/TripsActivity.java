@@ -1,4 +1,4 @@
-package com.example.travelagency.ui.Activities;
+package com.example.travelagency.ui.Activities.trip;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -14,12 +14,13 @@ import android.widget.ListView;
 
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
-import com.example.travelagency.viewmodel.TripListViewModel;
+import com.example.travelagency.ui.Activities.SettingsActivity;
+import com.example.travelagency.viewmodel.trip.TripListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Trips2Activity extends AppCompatActivity {
+public class TripsActivity extends AppCompatActivity {
 
     private ListView listview;
     private List<Trip> tripList;
@@ -37,7 +38,7 @@ public class Trips2Activity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.action_add:
-                Intent intentHome = new Intent(this, addTripActivity.class);
+                Intent intentHome = new Intent(this, AddTripActivity.class);
                 intentHome.putExtra("countryName", countryName);
                 startActivity(intentHome);
                 return true;
@@ -83,7 +84,7 @@ public class Trips2Activity extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(view.getContext(), TripActivity.class);
+                Intent intent = new Intent(view.getContext(), DetailsTripActivity.class);
 
                 intent.putExtra("tripName", tripList.get(position).getTripname());
                 intent.putExtra("countryName", tripList.get(position).getCountryName());

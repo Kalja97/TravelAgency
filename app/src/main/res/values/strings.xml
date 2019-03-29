@@ -10,31 +10,9 @@
     <string name="trip_edited"> Updated trip</string>
     <string name="error_invalid_inhabitant">Input needs to be a number</string>
 
-    <!-- Array mit Ländernamen-->
-    <string-array name="country_names">
-        <item>Spain</item>
-        <item>Scotland</item>
-        <item>Switzerland</item>
-    </string-array>
-
-    <!-- Array mit Bilder-->
-    <array name="country_pics">
-        <item>@drawable/spain</item>
-        <item>@drawable/scotland</item>
-        <item>@drawable/switzerland</item>
-    </array>
-
-    <!-- Array mit Texten-->
-    <string-array name="action_title">
-        <item>Entdecken Sie die spanische Kultur...</item>
-        <item>Entdecken Sie die schottische Natur...</item>
-        <item>Entdecken Sie die schweizer Berge...</item>
-    </string-array>
-
     <string-array name="Template">
         <item>DarkWhite</item>
         <item>WhiteDark</item>
-
     </string-array>
 
     <string name="app_version_title">App Version</string>

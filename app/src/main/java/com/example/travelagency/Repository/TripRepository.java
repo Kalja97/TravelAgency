@@ -6,9 +6,9 @@ import android.arch.lifecycle.LiveData;
 
 import com.example.travelagency.BaseApp;
 import com.example.travelagency.Entities.Trip;
-import com.example.travelagency.async.CreateTrip;
-import com.example.travelagency.async.DeleteTrip;
-import com.example.travelagency.async.UpdateTrip;
+import com.example.travelagency.async.Trip.CreateTrip;
+import com.example.travelagency.async.Trip.DeleteTrip;
+import com.example.travelagency.async.Trip.UpdateTrip;
 import com.example.travelagency.util.OnAsyncEventListener;
 
 import java.util.List;

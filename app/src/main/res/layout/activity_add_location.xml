@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bgadd"
-    tools:context=".ui.Activities.addLocationActivity">
+    tools:context=".ui.Activities.location.AddLocationActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"

@@ -1,22 +1,18 @@
-package com.example.travelagency.ui.Activities;
+package com.example.travelagency.ui.Activities.location;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -24,17 +20,16 @@ import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.example.travelagency.Entities.Location;
 import com.example.travelagency.R;
-import com.example.travelagency.util.OnAsyncEventListener;
-import com.example.travelagency.viewmodel.LocationListViewModel;
-import com.example.travelagency.viewmodel.LocationViewModel;
+import com.example.travelagency.ui.Activities.SettingsActivity;
+import com.example.travelagency.ui.Activities.trip.TripsActivity;
+import com.example.travelagency.viewmodel.location.LocationListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class LocationsActivity extends AppCompatActivity {
 
-
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "LocationsActivity";
 
     private SwipeMenuListView listview;
     private List<Location> locationList;
@@ -47,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //set title in the actionbar
         setTitle("Countries");
 
         countryName = getIntent().getStringExtra("countryName");
@@ -70,9 +66,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-         listview.setAdapter(adapter);
+        //adapter to the listview
+        listview.setAdapter(adapter);
 
-//       Retrieved from: https://github.com/baoyongzhang/SwipeMenuListView
+        //Retrieved from: https://github.com/baoyongzhang/SwipeMenuListView
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
             @Override
@@ -112,18 +109,18 @@ public class MainActivity extends AppCompatActivity {
         // set creator
         listview.setMenuCreator(creator);
 
-//        ItemClickListener for AdapterView
+        //ItemClickListener for AdapterView
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(view.getContext(), Trips2Activity.class);
+                Intent intent = new Intent(view.getContext(), TripsActivity.class);
 
                 intent.putExtra("countryName", locationList.get(position).getCountryName());
                 startActivity(intent);
             }
         });
 
-//        MenuItemClickListener for SwipeMenuList
+        //MenuItemClickListener for SwipeMenuList
         listview.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
@@ -155,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.action_add:
-                Intent intentHome = new Intent(this, addLocationActivity.class);
+                Intent intentHome = new Intent(this, AddLocationActivity.class);
                 startActivity(intentHome);
                 return true;
             case R.id.action_settings:
@@ -167,15 +164,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+    //start intent fpr the edit view
     private void goToEditLocation(int position){
-        Intent intent = new Intent(this, EditLocation.class);
+        Intent intent = new Intent(this, EditLocationActivity.class);
         intent.putExtra("countryName", locationList.get(position).getCountryName());
         startActivity(intent);
     }
 
+    //start the intent for the info view
     private void goToInfoLocation(int position){
-        Intent intent = new Intent(this, InfoLocation.class);
+        Intent intent = new Intent(this, DetailsLocationActivity.class);
         intent.putExtra("countryName", locationList.get(position).getCountryName());
         startActivity(intent);
     }

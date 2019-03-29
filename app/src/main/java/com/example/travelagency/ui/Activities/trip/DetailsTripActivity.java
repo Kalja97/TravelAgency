@@ -1,4 +1,4 @@
-package com.example.travelagency.ui.Activities;
+package com.example.travelagency.ui.Activities.trip;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -21,14 +21,15 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
+import com.example.travelagency.ui.Activities.SettingsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
-import com.example.travelagency.viewmodel.TripViewModel;
+import com.example.travelagency.viewmodel.trip.TripViewModel;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
 
 
-public class TripActivity extends AppCompatActivity  {
+public class DetailsTripActivity extends AppCompatActivity  {
 
     private static final String TAG = "TripActivitys";
 
@@ -59,7 +60,7 @@ public class TripActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trip);
+        setContentView(R.layout.activity_details_trip);
 
         setTitle("Trip");
 
@@ -89,18 +90,18 @@ public class TripActivity extends AppCompatActivity  {
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LatLng maplocation = getLocationFromAddress(TripActivity.this, tripName);
+                LatLng maplocation = getLocationFromAddress(DetailsTripActivity.this, tripName);
 
                 //handle what happens when no location can be shown on the google map
                 if (maplocation == null){
-                    final AlertDialog alertDialog = new AlertDialog.Builder(TripActivity.this).create();
+                    final AlertDialog alertDialog = new AlertDialog.Builder(DetailsTripActivity.this).create();
                     alertDialog.setTitle("No Location found");
                     alertDialog.setCancelable(true);
                     alertDialog.setMessage("Use another Tripname or make sure you are connected to the Internet");
                     alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "ok", (dialog, which) -> alertDialog.dismiss());
                     alertDialog.show();
                 } else{
-                    Intent intentMap = new Intent(TripActivity.this, TripsMapsActivity.class);
+                    Intent intentMap = new Intent(DetailsTripActivity.this, TripMapsActivity.class);
                     intentMap.putExtra("tripName", tripName);
                     intentMap.putExtra("countryName", countryName);
                     startActivity(intentMap);
@@ -147,7 +148,7 @@ public class TripActivity extends AppCompatActivity  {
                     .load(imageUrl)
                     .into(image);
         } catch (Exception ex) {
-            final AlertDialog alertDialog = new AlertDialog.Builder(TripActivity.this).create();
+            final AlertDialog alertDialog = new AlertDialog.Builder(DetailsTripActivity.this).create();
             alertDialog.setTitle("No Image found");
             alertDialog.setCancelable(true);
             alertDialog.setMessage("The image could not be loaded.");
@@ -183,7 +184,7 @@ public class TripActivity extends AppCompatActivity  {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
             case R.id.action_edit:
-                Intent intent = new Intent(this, TripActivityEdit.class);
+                Intent intent = new Intent(this, EditTripActivity.class);
                 intent.putExtra("tripName", tripName);
                 intent.putExtra("countryName", countryName);
                 startActivity(intent);
@@ -208,7 +209,7 @@ public class TripActivity extends AppCompatActivity  {
                         }
 
                         private void goToTripsActivity() {
-                            Intent intent = new Intent(TripActivity.this, Trips2Activity.class);
+                            Intent intent = new Intent(DetailsTripActivity.this, TripsActivity.class);
                             intent.putExtra("countryName", countryName);
                             startActivity(intent);
                         }
