@@ -41,6 +41,7 @@ public class TripsMapsActivity extends FragmentActivity implements OnMapReadyCal
         mapFragment.getMapAsync(this);
     }
 
+    //Get coordinates of location
     public LatLng getLocationFromAddress(Context context, String strAddress) {
 
         Geocoder coder = new Geocoder(context);
@@ -77,7 +78,6 @@ public class TripsMapsActivity extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
         LatLng triplocation = getLocationFromAddress(TripsMapsActivity.this, tripName);
         Marker location = mMap.addMarker(new MarkerOptions().position(triplocation).title("Marker in " + tripName).draggable(true).snippet(countryName));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(triplocation));

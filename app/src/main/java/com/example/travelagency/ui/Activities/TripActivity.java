@@ -68,6 +68,7 @@ public class TripActivity extends AppCompatActivity  {
 
         initiateView();
 
+        //To show data
         TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), tripName);
         vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModel.class);
         vmTrip.getTrip().observe(this, tripEntity -> {
@@ -77,15 +78,20 @@ public class TripActivity extends AppCompatActivity  {
             }
         });
 
+        //Buttons
         Button map = findViewById(R.id.btnmap);
 
+        //Rating bar
         rbratingBar.setRating(3.5f);
         rbratingBar.setEnabled(false);
 
+//        clicklistener for the map button
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LatLng maplocation = getLocationFromAddress(TripActivity.this, tripName);
+
+                //handle what happens when no location can be shown on the google map
                 if (maplocation == null){
                     final AlertDialog alertDialog = new AlertDialog.Builder(TripActivity.this).create();
                     alertDialog.setTitle("No Location found");
@@ -103,6 +109,7 @@ public class TripActivity extends AppCompatActivity  {
         });
     }
 
+    //get coordinates
     public LatLng getLocationFromAddress(Context context, String strAddress) {
 
         Geocoder coder = new Geocoder(context);
@@ -125,6 +132,7 @@ public class TripActivity extends AppCompatActivity  {
         return p1;
     }
 
+//    Get the image based on the url
     private void setImage(){
 
         Log.d(TAG, "setImage: setting te image and name to widgets.");
@@ -180,10 +188,12 @@ public class TripActivity extends AppCompatActivity  {
                 intent.putExtra("countryName", countryName);
                 startActivity(intent);
                 return true;
+
             case R.id.action_settings:
                 Intent intentSettings = new Intent(this, SettingsActivity.class);
                 startActivity(intentSettings);
                 return true;
+
             case R.id.action_delete:
                 final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
                 alertDialog.setTitle(getString(R.string.action_delete));

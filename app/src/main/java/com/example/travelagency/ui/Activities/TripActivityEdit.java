@@ -27,6 +27,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
 
     private static final String TAG = "TripActivityEdit";
 
+    //Textviews
     private TextView tvCountryName;
     private TextView tvTripName;
     private TextView tvDuration;
@@ -36,12 +37,15 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
     private TextView tvImageUrl;
     private RatingBar rbratingBar;
 
+    //Toast
     private Toast toast;
 
+    //get intent
     String countryName;
     String tripName;
 
-//    ------
+
+    //Strings for saving
     String name;
     String city;
     String day;
@@ -50,12 +54,9 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
     String desc;
     String imageUrl;
     float rating;
-    //-------
 
-    //-----------------
     AlertDialog dialog;
     EditText editText;
-    //------------------
 
     private Trip trip;
     private TripViewModel vmTrip;
@@ -80,15 +81,18 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
 
         initiateView();
 
+        //Dialog for choosing textview to change
         dialog = new AlertDialog.Builder(this).create();
         editText = new EditText(this);
 
         dialog.setTitle("Edit");
         dialog.setView(editText);
 
+        //Rating bar
         RatingBar mBar = (RatingBar) findViewById(R.id.ratingBar);
         mBar.setRating((float) 3.5);
 
+        //Handling for click on button
         dialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener(){
 
             public void onClick(DialogInterface dialogInterface, int i){
@@ -100,7 +104,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
 
         ;
 
-//      tvCountryName.setOnClickListener(this);
+        //Set onclicklisteners for textviews
         tvTripName.setOnClickListener(this);
         tvDuration.setOnClickListener(this);
         tvDate.setOnClickListener(this);
@@ -108,6 +112,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         tvDescription.setOnClickListener(this);
         tvImageUrl.setOnClickListener(this);
 
+        //Get data from database
         TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), tripName);
         vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModel.class);
         vmTrip.getTrip().observe(this, tripEntity -> {
@@ -198,6 +203,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    //Method for saving which calls method save changes
     private void saving(){
         name = (String) tvCountryName.getText();
                         city = "" + tvTripName.getText();
@@ -211,6 +217,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                         saveChanges(name,city, day, cost, datum, desc, imageUrl, rating);
     }
 
+    //save the changes into the database
     private void saveChanges(String country, String city, String days, String price, String date, String description, String imageUrl, float rating) {
 
         trip.setCountryName(country);
@@ -254,6 +261,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    //Set image from url
     private void setImage(){
 
         Log.d(TAG, "setImage: setting te image and name to widgets.");

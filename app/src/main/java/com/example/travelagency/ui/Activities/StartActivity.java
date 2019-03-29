@@ -17,8 +17,8 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+//        zooming picture
         bgstart = (ImageView) findViewById(R.id.bgstart);
-
         bgstart.animate().scaleX(1.5f).scaleY(1.5f).setDuration(6000).start();
     }
 

@@ -46,12 +46,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.travelagency.ui.Activities.MainActivity" />
         </activity>
-        <activity android:name=".ui.Activities.TripsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.travelagency.ui.Activities.CountryActivity" />
-        </activity>
-        <activity android:name=".ui.Activities.CountryActivity" />
         <activity android:name=".ui.Activities.addTripActivity" />
         <activity
             android:name=".ui.Activities.StartActivity"

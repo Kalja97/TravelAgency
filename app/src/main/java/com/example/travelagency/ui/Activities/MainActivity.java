@@ -33,19 +33,14 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    //----
+
     private static final String TAG = "MainActivity";
-    //----
-   // private ListView listview;
+
     private SwipeMenuListView listview;
     private List<Location> locationList;
     private LocationListViewModel viewModel;
 
-    private Location location;
-    private LocationViewModel vmLocation;
-
     String countryName;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,19 +50,17 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Countries");
 
         countryName = getIntent().getStringExtra("countryName");
-        /*
-            listview = (ListView) findViewById(R.id.listview);
-            String[] shows = getResources().getStringArray(R.array.shows_array);
-            ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, shows);
-            listview.setAdapter(adapter);
-        */
 
+        //Adapter array
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+
+        //listview
         listview = (SwipeMenuListView) findViewById(R.id.listview);
         locationList = new ArrayList<>();
-        //ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+
         LocationListViewModel.Factory factory = new LocationListViewModel.Factory(getApplication());
 
+        //get data from database
         viewModel = ViewModelProviders.of(this, factory).get(LocationListViewModel.class);
         viewModel.getLocations().observe(this, showEntities -> {
             if (showEntities != null) {
@@ -124,12 +117,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(view.getContext(), Trips2Activity.class);
-        /*
-                intent.setFlags(
-                        Intent.FLAG_ACTIVITY_NO_ANIMATION |
-                        Intent.FLAG_ACTIVITY_NO_HISTORY
-                );
-        */
+
                 intent.putExtra("countryName", locationList.get(position).getCountryName());
                 startActivity(intent);
             }

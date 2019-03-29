@@ -23,8 +23,6 @@ import com.example.travelagency.viewmodel.LocationViewModel;
 public class addLocationActivity extends AppCompatActivity {
 
     private static final String TAG = "LocationDetails";
-    private Location location;
-    private LocationViewModel viewModel;
 
     String countryName;
     String language;
@@ -38,15 +36,17 @@ public class addLocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
 
+        //change title in actionbar
         setTitle("Add country");
 
+        //Initialize editText for input
         EditText etcountryName = (EditText) findViewById(R.id.countryname);
         EditText etlanguage = (EditText) findViewById(R.id.language);
         EditText etinhabitant = (EditText) findViewById(R.id.inhabitant);
         EditText etdescription = (EditText) findViewById(R.id.description);
 
+        //Buttons
         Button add = findViewById(R.id.btnaddlocation);
-
         Button cancel = findViewById(R.id.btncancel);
 
 
@@ -59,6 +59,7 @@ public class addLocationActivity extends AppCompatActivity {
             }
         });
 
+        //Database builder
         appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,"travel_database").allowMainThreadQueries().build();
 
         //Add location to the database
@@ -66,6 +67,7 @@ public class addLocationActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Check if inhabitant input is a number
+                //if not set error
                 String regexStr = "^[0-9]*$";
 
                 if(!etinhabitant.getText().toString().trim().matches(regexStr))
@@ -75,7 +77,7 @@ public class addLocationActivity extends AppCompatActivity {
                     return;
                 }
 
-
+                //Get text from inputs
                 countryName = etcountryName.getText().toString();
                 language = etlanguage.getText().toString();
                 inhabitants = Integer.valueOf(etinhabitant.getText().toString());
@@ -83,19 +85,7 @@ public class addLocationActivity extends AppCompatActivity {
 
                 Location location = new Location(countryName, inhabitants, description, language);
 
-               /* viewModel.createLocation(location, new OnAsyncEventListener() {
-                    @Override
-                    public void onSuccess() {
-                        Log.d(TAG, "createLocation: success");
-                        onBackPressed();
-                    }
-
-                    @Override
-                    public void onFailure(Exception e) {
-                        Log.d(TAG, "createLocation: failure", e);
-                    }
-                });*/
-//                appDatabase.locationDao().insert(location);
+                //Create location
                 new CreateLocation(getApplication(), new OnAsyncEventListener() {
 
                     @Override
@@ -105,6 +95,7 @@ public class addLocationActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
 
+                    //Deal with errors
                     @Override
                     public void onFailure(Exception e) {
                         Log.d(TAG, "create location: failure", e);
@@ -116,13 +107,8 @@ public class addLocationActivity extends AppCompatActivity {
                         alertDialog.show();
                     }
                 }).execute(location);
-//                gotoCountryActivity(v);
             }
         });
     }
 
-/*    public void gotoCountryActivity (View view){
-        Intent intent = new Intent (this, CountryActivity.class);
-        startActivity(intent);
-    }*/
 }

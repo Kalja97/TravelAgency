@@ -38,8 +38,10 @@ public class addTripActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_trip);
+
         initializeForm();
 
+        //Buttons
         Button cancel = findViewById(R.id.btncancel);
 
         countryName = getIntent().getStringExtra("countryName");
@@ -54,6 +56,7 @@ public class addTripActivity extends AppCompatActivity {
             }
         });
 
+        //Show toast
         toast = Toast.makeText(this, "new Trip in DataBase", Toast.LENGTH_LONG);
     }
 
@@ -66,6 +69,8 @@ public class addTripActivity extends AppCompatActivity {
         etdescription = findViewById(R.id.description);
         etImageUrl = findViewById(R.id.imageUrl);
         rbratingbar = findViewById(R.id.ratingBar);
+
+        //Save button and onclicklistener
 
         if(etImageUrl.getText().toString().equalsIgnoreCase("")){
             imageUrl = "https://img.buzzfeed.com/buzzfeed-static/static/2014-11/20/2/campaign_images/webdr04/the-22-stages-of-going-on-a-road-trip-in-australia-2-18049-1416470126-1_dblbig.jpg";
@@ -85,6 +90,7 @@ public class addTripActivity extends AppCompatActivity {
         ));
     }
 
+    //Method for saving
     private void saveChanges(String tripname, String duration, String date, String price, String description, String imageUrl, float rating) {
 
         Trip newTrip = new Trip(countryName, tripname, duration, date, price, description, imageUrl, rating);

@@ -33,6 +33,7 @@ public class InfoLocation extends AppCompatActivity {
 
         repository = new LocationRepository();
 
+        //Get data from database
         LocationViewModel.Factory factory = new LocationViewModel.Factory(getApplication(), loc, repository);
         viewModel = ViewModelProviders.of(this, factory).get(LocationViewModel.class);
         viewModel.getLocation().observe(this, locationEntity -> {

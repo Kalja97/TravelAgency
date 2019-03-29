@@ -41,6 +41,7 @@ public class Trips2Activity extends AppCompatActivity {
                 intentHome.putExtra("countryName", countryName);
                 startActivity(intentHome);
                 return true;
+
             case R.id.action_settings:
                 Intent intentSettings = new Intent(this, SettingsActivity.class);
                 startActivity(intentSettings);
@@ -58,18 +59,15 @@ public class Trips2Activity extends AppCompatActivity {
 
         countryName = getIntent().getStringExtra("countryName");
 
-        /*
-            listview = (ListView) findViewById(R.id.listview);
-            String[] shows = getResources().getStringArray(R.array.shows_array);
-            ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, shows);
-            listview.setAdapter(adapter);
-        */
-
+        //Create listview
         listview = findViewById(R.id.listview);
         tripList = new ArrayList<>();
+
+        //Array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         TripListViewModel.Factory factory = new TripListViewModel.Factory(getApplication(), countryName);
 
+        //get data from database
         viewModel = ViewModelProviders.of(this, factory).get(TripListViewModel.class);
         viewModel.getTrips().observe(this, showEntities -> {
             if (showEntities != null) {
@@ -81,16 +79,12 @@ public class Trips2Activity extends AppCompatActivity {
 
         listview.setAdapter(adapter);
 
+        //onclicklistener for listview
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(view.getContext(), TripActivity.class);
-        /*
-                intent.setFlags(
-                        Intent.FLAG_ACTIVITY_NO_ANIMATION |
-                        Intent.FLAG_ACTIVITY_NO_HISTORY
-                );
-        */
+
                 intent.putExtra("tripName", tripList.get(position).getTripname());
                 intent.putExtra("countryName", tripList.get(position).getCountryName());
                 startActivity(intent);

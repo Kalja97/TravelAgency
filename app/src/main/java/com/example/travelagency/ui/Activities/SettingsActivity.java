@@ -15,7 +15,7 @@ import java.util.List;
 public class SettingsActivity extends PreferenceActivity {
 
 
-   
+//   Build headers (menu) for settings
     @Override
     public void onBuildHeaders(List<Header> target) {
 
@@ -23,6 +23,7 @@ public class SettingsActivity extends PreferenceActivity {
 
     }
 
+//    For intent to chosen setting
     @Override
     protected boolean isValidFragment(String fragmentName) {
         return SettingsFragment.class.getName().equals(fragmentName);

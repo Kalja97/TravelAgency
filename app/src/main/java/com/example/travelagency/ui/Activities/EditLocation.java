@@ -46,6 +46,7 @@ public class EditLocation extends AppCompatActivity {
 
         repository = new LocationRepository();
 
+        //Get data from database
         LocationViewModel.Factory factory = new LocationViewModel.Factory(getApplication(),loc, repository);
         viewModel = ViewModelProviders.of(this, factory).get(LocationViewModel.class);
         viewModel.getLocation().observe(this, locationEntity -> {
@@ -56,6 +57,7 @@ public class EditLocation extends AppCompatActivity {
         });
     }
 
+    //call method saveChanges for saving changes
     private void saving(){
         countryname = "" + etCountryname.getText();
         inhabitant = "" + etInhabitants.getText();
@@ -66,6 +68,7 @@ public class EditLocation extends AppCompatActivity {
         saveChanges(countryname, inhabitants, language, description);
     }
 
+    //Saving changes into database
     private void saveChanges(String countryname, int inhabitants, String language, String description) {
         location.setCountryName(countryname);
         location.setInhabitants(inhabitants);
