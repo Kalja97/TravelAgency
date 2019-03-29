@@ -111,6 +111,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:textColor="#FFF"
+        android:inputType="textMultiLine"
         android:lineSpacingExtra="4dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

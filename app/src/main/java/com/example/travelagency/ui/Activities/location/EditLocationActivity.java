@@ -64,6 +64,17 @@ public class EditLocationActivity extends AppCompatActivity {
 
     //call method saveChanges for saving changes in the DB
     private void saving(){
+        //Check if inhabitant input is a number
+        //if not set error
+        String regexStr = "^[0-9]*$";
+
+        if(!etInhabitants.getText().toString().trim().matches(regexStr))
+        {
+            etInhabitants.setError(getString(R.string.error_invalid_inhabitant));
+            etInhabitants.requestFocus();
+            return;
+        }
+
         countryname = "" + etCountryname.getText();
         inhabitant = "" + etInhabitants.getText();
         language = "" + etLanguage.getText();
