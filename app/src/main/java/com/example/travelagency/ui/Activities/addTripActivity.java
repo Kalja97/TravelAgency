@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.example.travelagency.AppDatabase;
@@ -27,6 +28,7 @@ public class addTripActivity extends AppCompatActivity {
     private EditText etprice;
     private EditText etdescription;
     private EditText etImageUrl;
+    private RatingBar rbratingbar;
 
     private String countryName;
 
@@ -62,6 +64,7 @@ public class addTripActivity extends AppCompatActivity {
         etprice = findViewById(R.id.price);
         etdescription = findViewById(R.id.description);
         etImageUrl = findViewById(R.id.imageUrl);
+        rbratingbar = findViewById(R.id.ratingBar);
         Button saveBtn = findViewById(R.id.btnaddtrip);
         saveBtn.setOnClickListener(view -> saveChanges(
                 ettripname.getText().toString(),
@@ -69,13 +72,14 @@ public class addTripActivity extends AppCompatActivity {
                 etdate.getText().toString(),
                 etprice.getText().toString(),
                 etdescription.getText().toString(),
-                etImageUrl.getText().toString()
+                etImageUrl.getText().toString(),
+                rbratingbar.getRating()
         ));
     }
 
-    private void saveChanges(String tripname, String duration, String date, String price, String description, String imageUrl) {
+    private void saveChanges(String tripname, String duration, String date, String price, String description, String imageUrl, float rating) {
 
-        Trip newTrip = new Trip(countryName, tripname, duration, date, price, description, imageUrl, 3.5f);
+        Trip newTrip = new Trip(countryName, tripname, duration, date, price, description, imageUrl, rating);
 
         new CreateTrip(getApplication(), new OnAsyncEventListener() {
 
