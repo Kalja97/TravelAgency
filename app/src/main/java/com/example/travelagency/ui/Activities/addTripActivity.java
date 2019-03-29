@@ -75,7 +75,7 @@ public class addTripActivity extends AppCompatActivity {
 
     private void saveChanges(String tripname, String duration, String date, String price, String description, String imageUrl) {
 
-        Trip newTrip = new Trip(countryName, tripname, duration, date, price, description, imageUrl);
+        Trip newTrip = new Trip(countryName, tripname, duration, date, price, description, imageUrl, 3.5f);
 
         new CreateTrip(getApplication(), new OnAsyncEventListener() {
 

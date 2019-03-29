@@ -23,8 +23,8 @@ public class DatabaseInitializer {
     }
 
     private static void addTrip(final AppDatabase db, final String location, final String tripName, final String duration,
-                                final String date, final String price, final String description, String imageUrl) {
-        Trip trip = new Trip(location, tripName, duration, date, price, description, imageUrl);
+                                final String date, final String price, final String description, String imageUrl, float rating) {
+        Trip trip = new Trip(location, tripName, duration, date, price, description, imageUrl, rating);
         db.tripDao().insert(trip);
     }
 
@@ -50,15 +50,14 @@ public class DatabaseInitializer {
         }
 
         addTrip(db,
-                "Spain", "Barcelona", "4 Nächte","29.06.2019 bis 05.07.2019" , "CHF 520.-" , "Testdescription blablabla","https://ob9a8415roh4djoj110c31a1-wpengine.netdna-ssl.com/wp-content/uploads/2013/02/barcelona-aerial-view.jpg"
+                "Spain", "Barcelona", "4 Nächte","29.06.2019 bis 05.07.2019" , "CHF 520.-" , "Testdescription blablabla","https://ob9a8415roh4djoj110c31a1-wpengine.netdna-ssl.com/wp-content/uploads/2013/02/barcelona-aerial-view.jpg", 3.5f
         );
         addTrip(db,
-                "Spain", "Madrid", "5 Nächte","29.06.2019 bis 05.07.2019" , "CHF 520.-" , "Testdescription blablabla", "https://room-matehotels.com/images/img/general/hotel-madrid.jpg"
+                "Spain", "Madrid", "5 Nächte","29.06.2019 bis 05.07.2019" , "CHF 520.-" , "Testdescription blablabla", "https://room-matehotels.com/images/img/general/hotel-madrid.jpg", 4f
         );
         addTrip(db,
-                "Switzerland", "Zermatt", "3 Nächte","29.06.2019 bis 05.07.2019" , "CHF 520.-" , "Testdescription blablabla", "https://eightforestlane.com/wp-content/uploads/2018/02/Zermatt19-web.jpg"
+                "Switzerland", "Zermatt", "3 Nächte","29.06.2019 bis 05.07.2019" , "CHF 520.-" , "Testdescription blablabla", "https://eightforestlane.com/wp-content/uploads/2018/02/Zermatt19-web.jpg", 2f
         );
-
     }
 
 

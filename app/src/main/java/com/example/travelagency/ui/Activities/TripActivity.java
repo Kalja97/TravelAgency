@@ -15,12 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
-import com.example.travelagency.TripsMapsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
 import com.example.travelagency.viewmodel.TripViewModel;
 import com.google.android.gms.maps.model.LatLng;
@@ -39,6 +39,7 @@ public class TripActivity extends AppCompatActivity  {
     private TextView tvDate;
     private TextView tvPrice;
     private TextView tvDescription;
+    private RatingBar rbratingBar;
 
     private TripViewModel vmTrip;
 
@@ -78,6 +79,8 @@ public class TripActivity extends AppCompatActivity  {
 
         Button map = findViewById(R.id.btnmap);
 
+        rbratingBar.setRating(3.5f);
+        rbratingBar.setEnabled(false);
 
         map.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,6 +146,7 @@ public class TripActivity extends AppCompatActivity  {
         tvDate = findViewById(R.id.date);
         tvPrice = findViewById(R.id.price);
         tvDescription = findViewById(R.id.description);
+        rbratingBar = findViewById(R.id.ratingBar);
     }
 
     private void updateContent() {
@@ -154,6 +158,7 @@ public class TripActivity extends AppCompatActivity  {
             tvDate.setText(trip.getDate());
             tvPrice.setText(trip.getPrice());
             tvDescription.setText(trip.getDescription());
+            rbratingBar.setRating(trip.getRating());
         }
     }
 

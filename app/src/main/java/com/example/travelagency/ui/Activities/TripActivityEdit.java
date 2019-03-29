@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
     private TextView tvPrice;
     private TextView tvDescription;
     private TextView tvImageUrl;
+    private RatingBar rbratingBar;
 
     private Toast toast;
 
@@ -47,6 +49,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
     String datum;
     String desc;
     String imageUrl;
+    float rating;
     //-------
 
     //-----------------
@@ -83,6 +86,8 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         dialog.setTitle("Edit");
         dialog.setView(editText);
 
+        RatingBar mBar = (RatingBar) findViewById(R.id.ratingBar);
+        mBar.setRating((float) 3.5);
 
         dialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener(){
 
@@ -201,11 +206,13 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
                         datum = "" + tvDate.getText();
                         desc = "" + tvDescription.getText();
                         imageUrl = "" + tvImageUrl.getText();
+                        rating = rbratingBar.getRating();
 
-                        saveChanges(name,city, day, cost, datum, desc, imageUrl);
+
+                        saveChanges(name,city, day, cost, datum, desc, imageUrl, rating);
     }
 
-    private void saveChanges(String country, String city, String days, String price, String date, String description, String imageUrl) {
+    private void saveChanges(String country, String city, String days, String price, String date, String description, String imageUrl, float rating) {
 
         trip.setCountryName(country);
         trip.setTripname(city);
@@ -214,6 +221,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         trip.setDate(date);
         trip.setDescription(description);
         trip.setImageUrl(imageUrl);
+        trip.setRating(rating);
 
         vmTrip.updateTrip(trip, new OnAsyncEventListener() {
             @Override
@@ -269,6 +277,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
         tvPrice = findViewById(R.id.price);
         tvDescription = findViewById(R.id.description);
         tvImageUrl = findViewById(R.id.imageUrl);
+        rbratingBar = findViewById(R.id.ratingBar);
     }
 
     private void updateContent() {
@@ -281,6 +290,7 @@ public class TripActivityEdit extends AppCompatActivity implements View.OnClickL
             tvPrice.setText(trip.getPrice());
             tvDescription.setText(trip.getDescription());
             tvImageUrl.setText(trip.getImageUrl());
+            rbratingBar.setRating(trip.getRating());
         }
     }
 }

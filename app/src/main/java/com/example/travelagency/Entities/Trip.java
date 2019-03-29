@@ -32,8 +32,9 @@ public class Trip {
     private String price;
     private String description;
     private String imageUrl;
+    private float rating;
 
-    public Trip(String countryName, String tripname, String duration, String date, String price, String description, String imageUrl){
+    public Trip(String countryName, String tripname, String duration, String date, String price, String description, String imageUrl, float rating){
         this.countryName = countryName;
         this.tripname = tripname;
         this. duration = duration;
@@ -41,6 +42,7 @@ public class Trip {
         this.price = price;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.rating = rating;
     }
 
     public Long getId() {
@@ -105,6 +107,14 @@ public class Trip {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 
     @Override

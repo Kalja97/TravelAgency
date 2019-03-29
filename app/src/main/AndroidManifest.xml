@@ -33,7 +33,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".TripsMapsActivity"
+            android:name=".ui.Activities.TripsMapsActivity"
             android:label="@string/title_activity_trips_maps"></activity>
         <activity android:name=".ui.Activities.Trips2Activity">
             <meta-data

@@ -3,4 +3,6 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="starfull">#FFC400</color>
+    <color name="starempty">#FFFFFF</color>
 </resources>
