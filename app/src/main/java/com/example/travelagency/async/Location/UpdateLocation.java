@@ -13,8 +13,7 @@ public class UpdateLocation extends AsyncTask<Location, Void, Void> {
     private OnAsyncEventListener calback;
     private Exception exception;
 
-
-
+    //constructor
     public UpdateLocation(Application application, OnAsyncEventListener callback) {
         this.application = application;
         calback = callback;
@@ -24,6 +23,7 @@ public class UpdateLocation extends AsyncTask<Location, Void, Void> {
     protected Void doInBackground(Location... params) {
         try {
             for (Location location : params) {
+                //update location
                 ((BaseApp) application).getDatabase().locationDao()
                         .update(location);
             }

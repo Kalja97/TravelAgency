@@ -22,11 +22,13 @@ import java.util.List;
 
 public class TripsActivity extends AppCompatActivity {
 
+    //Attributs
     private ListView listview;
     private List<Trip> tripList;
     private TripListViewModel viewModel;
     private String countryName;
 
+    //create options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -51,6 +53,7 @@ public class TripsActivity extends AppCompatActivity {
         }
     }
 
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -24,6 +24,7 @@ public class TripMapsActivity extends FragmentActivity implements OnMapReadyCall
     String tripName;
     String countryName;
 
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,14 +35,13 @@ public class TripMapsActivity extends FragmentActivity implements OnMapReadyCall
 
         setTitle("Map " + tripName);
 
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
-    //Get coordinates of location
+    //Get coordinates of trip
     public LatLng getLocationFromAddress(Context context, String strAddress) {
 
         Geocoder coder = new Geocoder(context);
@@ -64,21 +64,15 @@ public class TripMapsActivity extends FragmentActivity implements OnMapReadyCall
         return p1;
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+    //Method to set a marker on the map
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        //get location of trip
         LatLng triplocation = getLocationFromAddress(TripMapsActivity.this, tripName);
+
+        //set marker on the map
         Marker location = mMap.addMarker(new MarkerOptions().position(triplocation).title("Marker in " + tripName).draggable(true).snippet(countryName));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(triplocation));
         location.showInfoWindow();

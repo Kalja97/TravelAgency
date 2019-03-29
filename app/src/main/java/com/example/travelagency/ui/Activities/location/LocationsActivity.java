@@ -31,12 +31,14 @@ public class LocationsActivity extends AppCompatActivity {
 
     private static final String TAG = "LocationsActivity";
 
+    //Attributs
     private SwipeMenuListView listview;
     private List<Location> locationList;
     private LocationListViewModel viewModel;
 
     String countryName;
 
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,6 +143,7 @@ public class LocationsActivity extends AppCompatActivity {
         });
     }
 
+    //create options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

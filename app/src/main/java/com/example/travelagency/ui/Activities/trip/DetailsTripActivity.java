@@ -33,7 +33,7 @@ public class DetailsTripActivity extends AppCompatActivity  {
 
     private static final String TAG = "TripActivitys";
 
-    private Trip trip;
+    //Text views of the layout
     private TextView tvCountryName;
     private TextView tvTripName;
     private TextView tvDuration;
@@ -42,8 +42,11 @@ public class DetailsTripActivity extends AppCompatActivity  {
     private TextView tvDescription;
     private RatingBar rbratingBar;
 
+    //other attributs
     private TripViewModel vmTrip;
+    private Trip trip;
 
+    //intent infos
     String countryName;
     String tripName;
 
@@ -57,6 +60,7 @@ public class DetailsTripActivity extends AppCompatActivity  {
         return super.onCreateOptionsMenu(menu);
     }
 
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,14 +83,13 @@ public class DetailsTripActivity extends AppCompatActivity  {
             }
         });
 
-        //Buttons
+        //Button
         Button map = findViewById(R.id.btnmap);
 
-        //Rating bar
-        rbratingBar.setRating(3.5f);
+        //Rating bar, no changes possible, only editmode
         rbratingBar.setEnabled(false);
 
-//        clicklistener for the map button
+        //clicklistener for the map button
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +113,7 @@ public class DetailsTripActivity extends AppCompatActivity  {
         });
     }
 
-    //get coordinates
+    //get coordinates of a trip
     public LatLng getLocationFromAddress(Context context, String strAddress) {
 
         Geocoder coder = new Geocoder(context);
@@ -133,7 +136,7 @@ public class DetailsTripActivity extends AppCompatActivity  {
         return p1;
     }
 
-//    Get the image based on the url
+    //Get the image based on the url and method to set the image
     private void setImage(){
 
         Log.d(TAG, "setImage: setting te image and name to widgets.");
@@ -157,6 +160,7 @@ public class DetailsTripActivity extends AppCompatActivity  {
         }
     }
 
+    //initialize the text views
     private void initiateView() {
         tvCountryName = findViewById(R.id.country);
         tvTripName = findViewById(R.id.trip);
@@ -167,6 +171,7 @@ public class DetailsTripActivity extends AppCompatActivity  {
         rbratingBar = findViewById(R.id.ratingBar);
     }
 
+    //update text in the view
     private void updateContent() {
         if (trip != null) {
             setImage();

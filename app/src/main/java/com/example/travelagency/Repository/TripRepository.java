@@ -16,10 +16,12 @@ import java.util.List;
 public class TripRepository {
     private static TripRepository instance;
 
+    //constructor
     private TripRepository() {
 
     }
 
+    //create instance
     public static TripRepository getInstance() {
 
         if (instance == null) {
@@ -32,7 +34,7 @@ public class TripRepository {
         return instance;
     }
 
-
+    //call all query methods
     public LiveData<Trip> getTrip(final String countryName, Application application) {
         return ((BaseApp) application).getDatabase().tripDao().getByLocation(countryName);
     }
@@ -55,5 +57,4 @@ public class TripRepository {
                        Application application) {
         new DeleteTrip(application, callback).execute(trip);
     }
-
 }

@@ -45,7 +45,6 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
     String countryName;
     String tripName;
 
-
     //Strings for saving
     String name;
     String city;
@@ -62,14 +61,14 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
     private Trip trip;
     private TripViewModel vmTrip;
 
+    //create options menu
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_edit, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
-
-
+    //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +90,6 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
 
         //Rating bar
         RatingBar mBar = (RatingBar) findViewById(R.id.ratingBar);
-        mBar.setRating((float) 3.5);
 
         //Handling for click on button
         dialog.setButton(DialogInterface.BUTTON_POSITIVE, "ok", new DialogInterface.OnClickListener(){
@@ -100,10 +98,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
 
                 }
         });
-        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", (dialog, which) -> dialog.dismiss());
-
-
-        ;
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", (dialog, which) -> dialog.dismiss());;
 
         //Set onclicklisteners for textviews
         tvTripName.setOnClickListener(this);
@@ -277,6 +272,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
                 .into(image);
     }
 
+    //initialize the edit texts
     private void initiateView() {
         tvCountryName = findViewById(R.id.country);
         tvTripName = findViewById(R.id.trip);
@@ -288,6 +284,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
         rbratingBar = findViewById(R.id.ratingBar);
     }
 
+    //update text in the view
     private void updateContent() {
         if (trip != null) {
             setImage();

@@ -16,10 +16,12 @@ public class LocationRepository {
 
     private static LocationRepository instance;
 
+    //constructor
     public LocationRepository() {
 
     }
 
+    //create instance
     public static LocationRepository getInstance() {
 
         if (instance == null) {
@@ -32,6 +34,7 @@ public class LocationRepository {
         return instance;
     }
 
+    //Call all query methods
     public LiveData<Location> getLocation(final String countryName, Application application) {
         return ((BaseApp) application).getDatabase().locationDao().getByPK(countryName);
     }

@@ -14,7 +14,7 @@ public class DeleteLocation extends AsyncTask<Location, Void, Void> {
     private OnAsyncEventListener callback;
     private Exception exception;
 
-
+    //constructor
     public DeleteLocation(Application application, OnAsyncEventListener callback) {
         this.application = application;
         this.callback = callback;
@@ -24,6 +24,7 @@ public class DeleteLocation extends AsyncTask<Location, Void, Void> {
     protected Void doInBackground(Location... params) {
         try {
             for (Location location : params) {
+                //Delete location
                 ((BaseApp) application).getDatabase().locationDao()
                        .delete(location);
             }

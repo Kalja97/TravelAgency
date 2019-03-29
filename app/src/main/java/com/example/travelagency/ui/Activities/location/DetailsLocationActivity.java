@@ -18,7 +18,7 @@ public class DetailsLocationActivity extends AppCompatActivity {
     private TextView tvInhabitant;
     private TextView tvDescription;
 
-    //other attribut
+    //other attributs
     private Location location;
     private LocationRepository repository;
     private LocationViewModel viewModel;

@@ -18,7 +18,6 @@ public abstract class LocationDao {
     @Query("Select * FROM locations WHERE countryName = :countryName")
     public abstract LiveData<Location> getByPK(String countryName);
 
-
     @Query("Select * From locations")
     public abstract LiveData<List<Location>> getAllLocations();
 

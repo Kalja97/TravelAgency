@@ -13,6 +13,7 @@ public class DeleteTrip extends AsyncTask<Trip, Void, Void> {
     private OnAsyncEventListener callback;
     private Exception exception;
 
+    //constructor
     public DeleteTrip(Application application, OnAsyncEventListener callback) {
         this.application = application;
         this.callback = callback;
@@ -22,6 +23,7 @@ public class DeleteTrip extends AsyncTask<Trip, Void, Void> {
     protected Void doInBackground(Trip... params) {
         try {
             for (Trip trip : params) {
+                //delete trip
                 ((BaseApp) application).getDatabase().tripDao()
                         .delete(trip);
             }

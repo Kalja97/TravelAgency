@@ -13,6 +13,7 @@ public class CreateTrip extends AsyncTask<Trip, Void, Void> {
     private OnAsyncEventListener callback;
     private Exception exception;
 
+    //constructor
     public CreateTrip(Application application, OnAsyncEventListener callback) {
         this.application = application;
         this.callback = callback;
@@ -22,6 +23,7 @@ public class CreateTrip extends AsyncTask<Trip, Void, Void> {
     protected Void doInBackground(Trip... params) {
         try {
             for (Trip trip : params) {
+                //create trip
                 ((BaseApp) application).getDatabase().tripDao()
                         .insert(trip);
             }

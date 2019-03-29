@@ -20,7 +20,7 @@ public class AddLocationActivity extends AppCompatActivity {
 
     private static final String TAG = "LocationDetails";
 
-    //Attribut
+    //Attributs
     String countryName;
     String language;
     String description;

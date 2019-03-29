@@ -13,6 +13,7 @@ public class UpdateTrip extends AsyncTask<Trip, Void, Void> {
     private OnAsyncEventListener callback;
     private Exception exception;
 
+    //constructor
     public UpdateTrip(Application application, OnAsyncEventListener callback) {
         this.application = application;
         this.callback = callback;
@@ -22,6 +23,7 @@ public class UpdateTrip extends AsyncTask<Trip, Void, Void> {
     protected Void doInBackground(Trip... params) {
         try {
             for (Trip trip : params) {
+                //update trip
                 ((BaseApp) application).getDatabase().tripDao()
                         .update(trip);
             }

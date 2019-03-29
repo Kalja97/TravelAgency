@@ -13,6 +13,7 @@ public class CreateLocation extends AsyncTask<Location, Void, Void> {
     private OnAsyncEventListener callback;
     private Exception exception;
 
+    //constructor
     public CreateLocation(Application application, OnAsyncEventListener callback) {
         this.application = application;
         this.callback = callback;
@@ -22,7 +23,7 @@ public class CreateLocation extends AsyncTask<Location, Void, Void> {
     protected Void doInBackground(Location... params) {
         try {
             for (Location location : params) {
-                //Create Method
+                //Create location
                 ((BaseApp) application).getDatabase().locationDao()
                         .insert(location);
             }
