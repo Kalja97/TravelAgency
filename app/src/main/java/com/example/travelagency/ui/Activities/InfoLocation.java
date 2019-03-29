@@ -13,11 +13,10 @@ import com.example.travelagency.viewmodel.LocationViewModel;
 
 public class InfoLocation extends AppCompatActivity {
 
+    private TextView tvCountryName;
     private TextView tvLanguage;
     private TextView tvInhabitant;
-    private EditText tvDescription;
-
-
+    private TextView tvDescription;
 
     private Location location;
     private LocationRepository repository;
@@ -45,15 +44,15 @@ public class InfoLocation extends AppCompatActivity {
     }
 
     private void initiateView() {
-        tvLanguage = findViewById(R.id.languages);
-        tvInhabitant = findViewById(R.id.inhabitant);
-        tvDescription = findViewById(R.id.text_field);
-
-
+        tvCountryName = findViewById(R.id.countryname);
+        tvLanguage = findViewById(R.id.language);
+        tvInhabitant = findViewById(R.id.inhabitants);
+        tvDescription = findViewById(R.id.description);
     }
 
     private void updateContent() {
         if (location != null) {
+            tvCountryName.setText(location.getCountryName());
             tvLanguage.setText(location.getLanguage());
             tvInhabitant.setText(String.valueOf(location.getInhabitants()));
             tvDescription.setText(location.getDescription());

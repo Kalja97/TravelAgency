@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             listview.setAdapter(adapter);
         */
 
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         listview = (SwipeMenuListView) findViewById(R.id.listview);
         locationList = new ArrayList<>();
         //ArrayAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
@@ -70,24 +72,12 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getLocations().observe(this, showEntities -> {
             if (showEntities != null) {
                 locationList = showEntities;
-                //adapter.clear();
-                //adapter.addAll(locationList);
-                ArrayAdapter adapter = new ArrayAdapter<Location>(this,android.R.layout.simple_list_item_1, locationList) {
-                    @Override
-                    public View getView(int position, View convertView, ViewGroup parent){
-                        // Get the current item from ListView
-                        View view = super.getView(position,convertView,parent);
-                        if(position % 2 == 1){
-                            view.setBackgroundColor(Color.GRAY);
-                        }
-                        return view;
-                    }
-                };
-                listview.setAdapter(adapter);
+                adapter.clear();
+                adapter.addAll(locationList);
             }
         });
 
-        //listview.setAdapter(adapter);
+         listview.setAdapter(adapter);
 
 //       Retrieved from: https://github.com/baoyongzhang/SwipeMenuListView
         SwipeMenuCreator creator = new SwipeMenuCreator() {

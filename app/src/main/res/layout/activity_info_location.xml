@@ -1,87 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:orientation="vertical"
     tools:context=".ui.Activities.InfoLocation">
 
-
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:id="@+id/languages"
-            android:layout_width="283dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="26dp"
-            android:lineSpacingExtra="4dp"
-            android:textColor="#000"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="96dp" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/inhabitant"
-            android:layout_width="283dp"
-            android:layout_height="18dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="26dp"
-            android:lineSpacingExtra="4dp"
-            android:textColor="#000"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/languages" />
-
-        <TextView
-            android:id="@+id/lb_language"
-            android:layout_width="wrap_content"
+            android:id="@+id/labelCountryname"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Language(s):"
-            tools:layout_editor_absoluteX="7dp"
-            tools:layout_editor_absoluteY="96dp"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/lb_inhabitant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Inhabitants:"
-            tools:layout_editor_absoluteX="7dp"
-            tools:layout_editor_absoluteY="133dp"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/lb_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description:"
-            tools:layout_editor_absoluteX="6dp"
-            tools:layout_editor_absoluteY="172dp"
-            tools:ignore="MissingConstraints" />
+            android:text="Countryname:" />
 
         <EditText
-            android:id="@+id/text_field"
-            android:layout_width="283dp"
-            android:layout_height="89dp"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            app:layout_constraintTop_toBottomOf="@+id/inhabitant"
-            tools:layout_editor_absoluteX="102dp"
-            tools:ignore="MissingConstraints" />
+            android:id="@+id/countryname"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    </android.support.constraint.ConstraintLayout>
-</ScrollView>
+        <TextView
+            android:id="@+id/labelLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Language:" />
+
+        <EditText
+            android:id="@+id/language"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/labelInhabitants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inhabitants:" />
+
+        <EditText
+            android:id="@+id/inhabitants"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/labelDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description:" />
+
+        <EditText
+            android:id="@+id/description"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</LinearLayout>
