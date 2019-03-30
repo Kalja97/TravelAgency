@@ -201,7 +201,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
 
     //Method for saving which calls method save changes
     private void saving(){
-        name = (String) tvCountryName.getText();
+        name = tvCountryName.getText().toString().trim();
                         city = "" + tvTripName.getText();
                         day = "" + tvDuration.getText();
                         cost = "" + tvPrice.getText();

@@ -2,6 +2,7 @@ package com.example.travelagency.ui.Activities.trip;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
