@@ -22,5 +22,7 @@ public class SettingsFragment extends PreferenceFragment {
         else if(settings.equals("about")){
             addPreferencesFromResource(R.xml.about_settings_preference);
         }
+
+
     }
 }

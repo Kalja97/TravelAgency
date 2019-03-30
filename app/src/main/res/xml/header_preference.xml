@@ -2,6 +2,16 @@
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
 
     <header
+        android:fragment="com.example.travelagency.Fragment.SettingsFragment"
+        android:title="@string/about_us"
+        android:summary="@string/about_us_summary"
+        android:icon="@drawable/ic_info">
+        <extra
+            android:name="settings"
+            android:value="about"/>
+    </header>
+
+    <header
     android:fragment="com.example.travelagency.Fragment.SettingsFragment"
     android:title="@string/general_title"
     android:summary="@string/general_summars"
@@ -13,14 +23,6 @@
     </header>
 
 
-    <header
-        android:fragment="com.example.travelagency.Fragment.SettingsFragment"
-        android:title="@string/about_us"
-        android:summary="@string/about_us_summary"
-        android:icon="@drawable/ic_info">
-        <extra
-            android:name="settings"
-            android:value="about"/>
-    </header>
+
 
 </preference-headers>
