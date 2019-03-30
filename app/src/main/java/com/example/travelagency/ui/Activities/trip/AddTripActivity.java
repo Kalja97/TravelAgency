@@ -20,7 +20,7 @@ public class AddTripActivity extends AppCompatActivity {
 
     private static final String TAG = "AddTripActivity";
 
-       //Attributs
+    //Attributs
     private EditText ettripname;
     private EditText etduration;
     private EditText etdate;
@@ -93,7 +93,6 @@ public class AddTripActivity extends AppCompatActivity {
     }
 
     private void initializeForm() {
-
         //Initialize editText for input
         ettripname = findViewById(R.id.tripname);
         etduration = findViewById(R.id.duration);

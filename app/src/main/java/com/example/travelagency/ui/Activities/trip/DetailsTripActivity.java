@@ -139,7 +139,7 @@ public class DetailsTripActivity extends AppCompatActivity  {
     //Get the image based on the url and method to set the image
     private void setImage(){
 
-        Log.d(TAG, "setImage: setting te image and name to widgets.");
+        Log.d(TAG, "setImage: setting the image and name to widgets.");
 
         try {
             String imageUrl = trip.getImageUrl();

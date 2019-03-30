@@ -80,8 +80,8 @@ public class LocationsActivity extends AppCompatActivity {
                 SwipeMenuItem openItem = new SwipeMenuItem(
                         getApplicationContext());
                 // set item background
-                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                        0xCE)));
+                openItem.setBackground(new ColorDrawable(Color.rgb(81, 216,
+                        199)));
                 // set item width
                 openItem.setWidth(170);
                 // set item title
@@ -94,17 +94,21 @@ public class LocationsActivity extends AppCompatActivity {
                 menu.addMenuItem(openItem);
 
                 // create "delete" item
-                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                SwipeMenuItem infoItem = new SwipeMenuItem(
                         getApplicationContext());
                 // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(255, 255,
-                        255)));
+                infoItem.setBackground(new ColorDrawable(Color.rgb(116, 0,
+                        249)));
                 // set item width
-                deleteItem.setWidth(170);
-                // set a icon
-                deleteItem.setIcon(R.drawable.ic_info);
+                infoItem.setWidth(170);
+                //set text
+                infoItem.setTitle("Info");
+                // set item title fontsize
+                infoItem.setTitleSize(18);
+                // set item title font color
+                infoItem.setTitleColor(Color.WHITE);
                 // add to menu
-                menu.addMenuItem(deleteItem);
+                menu.addMenuItem(infoItem);
             }
         };
 
