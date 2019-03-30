@@ -112,6 +112,7 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="28dp"
             android:textColor="#fff"
+            android:inputType="textMultiLine"
             android:hint="Image url (https://xxx.jpg)"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
