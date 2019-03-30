@@ -47,9 +47,7 @@
         </activity>
         <activity android:name=".ui.Activities.location.AddLocationActivity" />
         <activity android:name=".ui.Activities.trip.DetailsTripActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.travelagency.ui.Activities.trip.TripsActivity" />
+            
         </activity>
         <activity android:name=".ui.Activities.location.LocationsActivity" />
         <activity

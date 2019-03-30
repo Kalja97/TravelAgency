@@ -51,7 +51,35 @@ public class AddTripActivity extends AppCompatActivity {
         //Button cancel
         Button cancel = findViewById(R.id.btncancel);
 
+        //Button add and call mathod save
+        Button saveBtn = findViewById(R.id.btnaddtrip);
+
         countryName = getIntent().getStringExtra("countryName");
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Get text from inputs
+                tripName = ettripname.getText().toString().trim();
+                duration = etduration.getText().toString().trim();
+                date = etdate.getText().toString().trim();
+                price = etprice.getText().toString().trim();
+                description = etdescription.getText().toString().trim();
+                imageUrl = etImageUrl.getText().toString().trim();
+
+                //call method for checking if required fields are filled
+                if(checkInputField(tripName, duration,date,price,description)){
+                    //Call method for setting default picture, if field for image-url is empty
+                    setDefaultPicture();
+
+                    //call method for saving trip
+                    saveChanges(tripName, duration,date,price,description,imageUrl,rbratingbar.getRating());
+                }
+                return;
+
+            }
+        });
 
         //cancel inputs and go back to the tripsActivity page
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -75,44 +103,32 @@ public class AddTripActivity extends AppCompatActivity {
         etImageUrl = findViewById(R.id.imageUrl);
         rbratingbar = findViewById(R.id.ratingBar);
 
-        //Get text from inputs
-        countryName = ettripname.getText().toString().trim();
-        duration = etduration.getText().toString().trim();
-        date = etdate.getText().toString().trim();
-        price = etprice.getText().toString().trim();
-        description = etdescription.getText().toString().trim();
-        imageUrl = etImageUrl.getText().toString().trim();
+    }
 
-        //Check if all filed are filled in
-        if(countryName.isEmpty() || duration.isEmpty() || date.isEmpty() || price.isEmpty() || description.isEmpty()){
-            final AlertDialog alertDialog = new AlertDialog.Builder(AddTripActivity.this).create();
-            alertDialog.setTitle("Not all fields filled in");
-            alertDialog.setCancelable(true);
-            alertDialog.setMessage("Please fill in all fields first");
-            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "ok", (dialog, which) -> alertDialog.dismiss());
-            alertDialog.show();
-            return;
-        }
-
+    private void setDefaultPicture(){
         //check if url is empty or not, if empty set default url
         if(imageUrl.isEmpty()){
             imageUrl = "https://img.buzzfeed.com/buzzfeed-static/static/2014-11/20/2/campaign_images/webdr04/the-22-stages-of-going-on-a-road-trip-in-australia-2-18049-1416470126-1_dblbig.jpg";
         } else {
             imageUrl = etImageUrl.getText().toString().trim();
         }
-
-        //Button add and call mathod save
-        Button saveBtn = findViewById(R.id.btnaddtrip);
-        saveBtn.setOnClickListener(view -> saveChanges(
-                tripName,
-                duration,
-                date,
-                price,
-                description,
-                imageUrl,
-                rbratingbar.getRating()
-        ));
     }
+
+    private boolean checkInputField(String tripName, String duration, String date, String price, String description){
+        //Check if all filed are filled in
+        if(tripName.isEmpty() || duration.isEmpty() || date.isEmpty() || price.isEmpty() || description.isEmpty()){
+            final AlertDialog alertDialog = new AlertDialog.Builder(AddTripActivity.this).create();
+            alertDialog.setTitle("Not all fields filled in");
+            alertDialog.setCancelable(true);
+            alertDialog.setMessage("Please fill in all fields first");
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "ok", (dialog, which) -> alertDialog.dismiss());
+            alertDialog.show();
+            return false;
+        }
+        return true;
+    }
+
+
 
     //Method for saving
     private void saveChanges(String tripname, String duration, String date, String price, String description, String imageUrl, float rating) {
