@@ -143,7 +143,6 @@ public class DetailsTripActivity extends AppCompatActivity  {
 
         try {
             String imageUrl = trip.getImageUrl();
-
             ImageView image = findViewById(R.id.imageView);
 
             Glide.with(this)
@@ -151,12 +150,7 @@ public class DetailsTripActivity extends AppCompatActivity  {
                     .load(imageUrl)
                     .into(image);
         } catch (Exception ex) {
-            final AlertDialog alertDialog = new AlertDialog.Builder(DetailsTripActivity.this).create();
-            alertDialog.setTitle("No Image found");
-            alertDialog.setCancelable(true);
-            alertDialog.setMessage("The image could not be loaded.");
-            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "ok", (dialog, which) -> alertDialog.dismiss());
-            alertDialog.show();
+
         }
     }
 
