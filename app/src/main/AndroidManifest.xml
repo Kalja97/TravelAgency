@@ -35,7 +35,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.travelagency.ui.Activities.location.LocationsActivity" />
         </activity>
-        <activity android:name=".ui.Activities.trip.AddTripActivity" />
+        <activity android:name=".ui.Activities.trip.AddTripActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity
             android:name=".ui.Activities.StartActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -45,7 +46,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Activities.location.AddLocationActivity" />
+        <activity android:name=".ui.Activities.location.AddLocationActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".ui.Activities.trip.DetailsTripActivity">
             
         </activity>

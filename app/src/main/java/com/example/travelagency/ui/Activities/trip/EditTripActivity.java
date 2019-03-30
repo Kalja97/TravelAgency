@@ -210,8 +210,10 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
                         imageUrl = "" + tvImageUrl.getText();
                         rating = rbratingBar.getRating();
 
-                        saveChanges(name,city, day, cost, datum, desc, imageUrl, rating);
+        //Call method to save changes
+        saveChanges(name,city, day, cost, datum, desc, imageUrl, rating);
     }
+
 
     //save the changes into the database
     private void saveChanges(String country, String city, String days, String price, String date, String description, String imageUrl, float rating) {
@@ -244,11 +246,13 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
         switch(item.getItemId()) {
             case R.id.action_save:
                 saving();
+
                 Intent intentTrip = new Intent(this, TripsActivity.class);
                 intentTrip.putExtra("countryName", countryName);
                 intentTrip.putExtra("tripName", tripName);
                 startActivity(intentTrip);
                 return true;
+
             case R.id.action_settings:
                 Intent intentSettings = new Intent(this, SettingsActivity.class);
                 startActivity(intentSettings);

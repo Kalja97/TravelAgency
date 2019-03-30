@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgadd"
+    android:background="#000"
     tools:context=".ui.Activities.trip.AddTripActivity">
 
     <android.support.constraint.ConstraintLayout
@@ -19,7 +19,7 @@
             android:layout_marginTop="36dp"
             android:lineSpacingExtra="6dp"
             android:text="Add trip"
-            android:textColor="#FFF"
+            android:textColor="#51d8c7"
             android:textSize="42sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -31,13 +31,12 @@
             android:layout_height="50dp"
             android:layout_marginStart="48dp"
             android:layout_marginTop="56dp"
-            android:background="@drawable/bginput"
             android:textColor="#fff"
             android:hint="Tripname"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:textColorHint="#87ffffff"
+            android:textColorHint="#fff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titel" />
 
@@ -49,12 +48,11 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="28dp"
             android:textColor="#fff"
-            android:background="@drawable/bginput"
             android:hint="Duration(e.g. 4 nights)"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:textColorHint="#87ffffff"
+            android:textColorHint="#fff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tripname" />
 
@@ -66,12 +64,11 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="28dp"
             android:textColor="#fff"
-            android:background="@drawable/bginput"
             android:hint="Date (e.g. 21.05.2019 - 25.05.2019)"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:textColorHint="#87ffffff"
+            android:textColorHint="#fff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/duration" />
 
@@ -82,13 +79,12 @@
             android:layout_height="50dp"
             android:layout_marginStart="48dp"
             android:layout_marginTop="28dp"
-            android:background="@drawable/bginput"
             android:textColor="#fff"
             android:hint="Price (e.g. CHF 570.-)"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:textColorHint="#87ffffff"
+            android:textColorHint="#fff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/date" />
 
@@ -99,14 +95,13 @@
             android:layout_height="100dp"
             android:layout_marginStart="48dp"
             android:layout_marginTop="28dp"
-            android:background="@drawable/bginput"
             android:textColor="#fff"
             android:inputType="textMultiLine"
             android:hint="Description"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:textColorHint="#87ffffff"
+            android:textColorHint="#fff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/price" />
 
@@ -117,12 +112,11 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="28dp"
             android:textColor="#fff"
-            android:background="@drawable/bginput"
             android:hint="Image url (https://xxx.jpg)"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:textColorHint="#87ffffff"
+            android:textColorHint="#fff"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/description" />
 
