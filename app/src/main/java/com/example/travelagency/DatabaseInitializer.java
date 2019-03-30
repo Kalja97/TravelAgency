@@ -56,7 +56,7 @@ public class DatabaseInitializer {
                 "Spain", "Madrid", "5 Nights","11.07.2019 bis 16.07.2019" , "CHF 680.-" , "Madrid is the capital of Spain. With about seven million inhabitants, the metropolitan region of Madrid is one of the largest in Europe.  Madrid (excluding suburbs) with around 3.2 million inhabitants is the third largest city in the European Union after London and Berlin and the largest city in southern Europe.", "https://room-matehotels.com/images/img/general/hotel-madrid.jpg", 4f
         );
         addTrip(db,
-                "Switzerland", "Zermatt", "3 Nights","08.08.2019 bis 11.08.2019" , "CHF 390.-" , "Zermatt is a political municipality and a burgher municipality with a burgher council of the district Visp as well as a parish of the deanery Visp in the Swiss canton Valais. After Visp, Zermatt is the second largest town in the district of Visp in terms of population and lies in the Mattertal valley at an altitude of about 1610 m at the north-eastern foot of the Matterhorn.", "https://eightforestlane.com/wp-content/uploads/2018/02/Zermatt19-web.jpg", 2f
+                "Switzerland", "Zermatt", "3 Nights","08.08.2019 bis 11.08.2019" , "CHF 390.-" , "Zermatt is a political municipality and a burgher municipality with a burgher council of the district Visp as well as a parish of the deanery Visp in the Swiss canton Valais. After Visp, Zermatt is the second largest town in the district of Visp in terms of population and lies in the Mattertal valley at an altitude of about 1610 m at the north-eastern foot of the Matterhorn.", "https://www.tom-archer.com/wp-content/uploads/2018/10/zermatt-matterhorn-best-view-1.jpg", 2f
         );
     }
 
