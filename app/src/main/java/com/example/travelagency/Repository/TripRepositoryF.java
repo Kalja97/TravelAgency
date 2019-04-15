@@ -4,7 +4,11 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 
 import com.example.travelagency.Entities.TripF;
+import com.example.travelagency.firebase.TripListLiveData;
+import com.example.travelagency.firebase.TripLiveData;
 import com.example.travelagency.util.OnAsyncEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.MutableData;
@@ -26,37 +30,29 @@ public class TripRepositoryF {
         return instance;
     }
 
-    /*
-    public LiveData<TripF> getAccount(final String accountId) {
+
+    public LiveData<TripF> getTrip(final String tripId) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("accounts")
-                .child(accountId);
-        return new AccountLiveData(reference);
+                .getReference("countries")
+                .child("trips")
+                .child(tripId);
+        return new TripLiveData(reference);
     }
 
-    public LiveData<List<TripF>> getByOwner(final String owner) {
+    public LiveData<List<TripF>> gettripsByCountry(final String countryName) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(owner)
-                .child("accounts");
-        return new AccountListLiveData(reference, owner);
+                .getReference("countries")
+                .child(countryName)
+                .child("trips");
+        return new TripListLiveData(reference, countryName);
     }
 
-    public void insert(final AccountEntity account, final OnAsyncEventListener callback) {
-        DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(account.getOwner())
-                .child("accounts");
-        String key = reference.push().getKey();
-
+    public void insert(final TripF trip, final OnAsyncEventListener callback) {
+        String id = FirebaseDatabase.getInstance().getReference("countries").push().getKey();
         FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(account.getOwner())
-                .child("accounts")
-                .child(key)
-                .setValue(account, (databaseError, databaseReference) -> {
+                .getReference("countries")
+                .child(id)
+                .setValue(trip, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
                     } else {
@@ -65,13 +61,11 @@ public class TripRepositoryF {
                 });
     }
 
-    public void update(final AccountEntity account, OnAsyncEventListener callback) {
+    public void update(final TripF trip, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(account.getOwner())
-                .child("accounts")
-                .child(account.getId())
-                .updateChildren(account.toMap(), (databaseError, databaseReference) -> {
+                .getReference("countries")
+                .child(trip.getCountryName())
+                .updateChildren(trip.toMap(), (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
                     } else {
@@ -80,12 +74,10 @@ public class TripRepositoryF {
                 });
     }
 
-    public void delete(final AccountEntity account, OnAsyncEventListener callback) {
+    public void delete(final TripF trip, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
-                .getReference("clients")
-                .child(account.getOwner())
-                .child("accounts")
-                .child(account.getId())
+                .getReference("countries")
+                .child(trip.getCountryName())
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());
@@ -94,42 +86,4 @@ public class TripRepositoryF {
                     }
                 });
     }
-
-    public void transaction(final AccountEntity sender, final AccountEntity recipient,
-                            OnAsyncEventListener callback) {
-        final DatabaseReference rootReference = FirebaseDatabase.getInstance().getReference();
-
-        rootReference.runTransaction(new Transaction.Handler() {
-            @NonNull
-            @Override
-            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
-                rootReference
-                        .child("clients")
-                        .child(sender.getOwner())
-                        .child("accounts")
-                        .child(sender.getId())
-                        .updateChildren(sender.toMap());
-
-                rootReference
-                        .child("clients")
-                        .child(recipient.getOwner())
-                        .child("accounts")
-                        .child(recipient.getId())
-                        .updateChildren(recipient.toMap());
-
-                return Transaction.success(mutableData);
-            }
-
-            @Override
-            public void onComplete(DatabaseError databaseError, boolean b,
-                                   DataSnapshot dataSnapshot) {
-                if (databaseError != null) {
-                    callback.onFailure(databaseError.toException());
-                } else {
-                    callback.onSuccess();
-                }
-            }
-        });
-    }
-    */
 }

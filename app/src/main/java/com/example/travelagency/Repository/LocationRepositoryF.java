@@ -17,7 +17,7 @@ public class LocationRepositoryF {
 
     private static LocationRepositoryF instance;
 
-    private LocationRepositoryF() {
+    public LocationRepositoryF() {
     }
 
     public static LocationRepositoryF getInstance() {
@@ -44,7 +44,6 @@ public class LocationRepositoryF {
         return new LocationListLiveData(reference);
     }
 
-    // Firebase Database paths must not contain '.', '#', '$', '[', or ']'
     public void insert(final LocationF location, final OnAsyncEventListener callback) {
         String id = FirebaseDatabase.getInstance().getReference("countries").push().getKey();
         FirebaseDatabase.getInstance()
