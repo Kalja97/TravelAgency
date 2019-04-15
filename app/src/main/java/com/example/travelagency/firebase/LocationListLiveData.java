@@ -23,7 +23,7 @@ public class LocationListLiveData extends LiveData<List<LocationF>> {
     private final DatabaseReference reference;
     private final MyValueEventListener listener = new MyValueEventListener();
 
-    public LocationListLiveData(DatabaseReference ref, String countryName) {
+    public LocationListLiveData(DatabaseReference ref) {
         reference = ref;
     }
 
