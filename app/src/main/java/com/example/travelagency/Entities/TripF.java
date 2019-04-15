@@ -1,5 +1,7 @@
 package com.example.travelagency.Entities;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +32,7 @@ public class TripF {
         this.rating = rating;
     }
 
-    //@Exclude
+    @Exclude
     public Long getId() {
         return id;
     }
@@ -39,7 +41,7 @@ public class TripF {
         this.id = id;
     }
 
-    //@Exclude
+    @Exclude
     public String getCountryName() {
         return countryName;
     }
@@ -119,7 +121,7 @@ public class TripF {
         return tripname + "  (" + duration + ")";
     }
 
-    //@Exclude
+    @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("countryName", countryName);

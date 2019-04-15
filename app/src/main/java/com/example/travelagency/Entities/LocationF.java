@@ -3,6 +3,8 @@ package com.example.travelagency.Entities;
 import android.support.annotation.NonNull;
 //import com.google.firebase.database.Exclude;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +24,7 @@ public class LocationF implements Comparable {
         this.language = language;
     }
 
-    //@Exclude
+    @Exclude
     public String getCountryName() {
         return countryName;
     }
@@ -69,7 +71,7 @@ public class LocationF implements Comparable {
         return toString().compareTo(o.toString());
     }
 
-    //@Exclude
+    @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("description", description);

@@ -6,6 +6,10 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.travelagency.Entities.LocationF;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +19,7 @@ public class LocationListLiveData extends LiveData<List<LocationF>> {
     private static final String TAG = "TripListLiveData";
 
 
-    /*
+
     private final DatabaseReference reference;
     private final MyValueEventListener listener = new MyValueEventListener();
 
@@ -56,6 +60,6 @@ public class LocationListLiveData extends LiveData<List<LocationF>> {
         }
         return locations;
     }
-    */
+
 
 }
