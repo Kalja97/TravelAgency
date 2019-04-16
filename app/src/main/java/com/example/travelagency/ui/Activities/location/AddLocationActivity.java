@@ -1,5 +1,6 @@
 package com.example.travelagency.ui.Activities.location;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -14,6 +15,7 @@ import com.example.travelagency.AppDatabase;
 import com.example.travelagency.Entities.Location;
 import com.example.travelagency.Entities.LocationF;
 import com.example.travelagency.R;
+import com.example.travelagency.Repository.LocationRepositoryF;
 import com.example.travelagency.async.Location.CreateLocation;
 import com.example.travelagency.ui.Activities.trip.DetailsTripActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
@@ -24,6 +26,7 @@ public class AddLocationActivity extends AppCompatActivity {
     private static final String TAG = "LocationDetails";
 
     private LocationViewModelF viewModel;
+    private LocationRepositoryF repository;
 
     //Attributs
     String countryName;
@@ -37,6 +40,12 @@ public class AddLocationActivity extends AppCompatActivity {
     //on create method
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //initialize viewmodel
+        repository = new LocationRepositoryF();
+        String loc = "";
+        LocationViewModelF.Factory factory = new LocationViewModelF.Factory(getApplication(), loc, repository);
+        viewModel = ViewModelProviders.of(this, factory).get(LocationViewModelF.class);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
 
@@ -101,7 +110,11 @@ public class AddLocationActivity extends AppCompatActivity {
                 inhabitants = Integer.valueOf(etinhabitant.getText().toString().trim());
 
                 //create new location object
-                LocationF location = new LocationF(countryName, inhabitants, description, language);
+                LocationF location = new LocationF();
+                location.setCountryName(countryName);
+                location.setInhabitants(inhabitants);
+                location.setDescription(description);
+                location.setLanguage(language);
 
                 //add to firebase
                 viewModel.createLocation(location, new OnAsyncEventListener() {
