@@ -20,10 +20,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.travelagency.Entities.Trip;
+import com.example.travelagency.Entities.TripF;
 import com.example.travelagency.R;
+import com.example.travelagency.Repository.TripRepositoryF;
 import com.example.travelagency.ui.Activities.SettingsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
 import com.example.travelagency.viewmodel.trip.TripViewModel;
+import com.example.travelagency.viewmodel.trip.TripViewModelF;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
@@ -43,12 +46,14 @@ public class DetailsTripActivity extends AppCompatActivity  {
     private RatingBar rbratingBar;
 
     //other attributs
-    private TripViewModel vmTrip;
-    private Trip trip;
+    private TripViewModelF vmTrip;
+    private TripF trip;
+    private TripRepositoryF repository;
 
     //intent infos
     String countryName;
     String tripName;
+    String id;
 
 
     //To put the symbols to the actionbar
@@ -68,14 +73,16 @@ public class DetailsTripActivity extends AppCompatActivity  {
 
         setTitle("Trip");
 
-        tripName = getIntent().getStringExtra("tripName");
+        id = getIntent().getStringExtra("id");
         countryName = getIntent().getStringExtra("countryName");
 
         initiateView();
 
+        repository = new TripRepositoryF();
+
         //To show data
-        TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), tripName);
-        vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModel.class);
+        TripViewModelF.Factory tripFac = new TripViewModelF.Factory(getApplication(), countryName, id, repository);
+        vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModelF.class);
         vmTrip.getTrip().observe(this, tripEntity -> {
             if (tripEntity != null) {
                 trip = tripEntity;
@@ -170,7 +177,7 @@ public class DetailsTripActivity extends AppCompatActivity  {
         if (trip != null) {
             setImage();
             tvCountryName.setText(getIntent().getStringExtra("countryName"));
-            tvTripName.setText(trip.getTripname());
+            tvTripName.setText(trip.getTripName());
             tvDuration.setText(trip.getDuration());
             tvDate.setText(trip.getDate());
             tvPrice.setText(trip.getPrice());

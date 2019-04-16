@@ -94,7 +94,7 @@ public class AddTripActivity extends AppCompatActivity {
 
     private void initializeForm() {
         //Initialize editText for input
-        ettripname = findViewById(R.id.tripname);
+        ettripname = findViewById(R.id.tripName);
         etduration = findViewById(R.id.duration);
         etdate = findViewById(R.id.date);
         etprice = findViewById(R.id.price);

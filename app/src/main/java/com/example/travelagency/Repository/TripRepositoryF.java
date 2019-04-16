@@ -31,12 +31,12 @@ public class TripRepositoryF {
     }
 
 
-    public LiveData<TripF> getTrip(final String tripId, final String countryName) {
+    public LiveData<TripF> getTrip(final String countryName, final String id) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("countries")
                 .child(countryName)
                 .child("trips")
-                .child(tripId);
+                .child(id);
         return new TripLiveData(reference);
     }
 

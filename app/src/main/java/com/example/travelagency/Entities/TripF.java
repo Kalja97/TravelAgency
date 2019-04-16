@@ -9,7 +9,7 @@ public class TripF {
 
     private String id;
     private String countryName;
-    private String tripname;
+    private String tripName;
     private String duration;
     private String date;
     private String price;
@@ -21,9 +21,9 @@ public class TripF {
 
     }
 
-    public TripF(String countryName, String tripname, String duration, String date, String price, String description, String imageUrl, float rating){
+    public TripF(String countryName, String tripName, String duration, String date, String price, String description, String imageUrl, float rating){
         this.countryName = countryName;
-        this.tripname = tripname;
+        this.tripName = tripName;
         this. duration = duration;
         this.date = date;
         this.price = price;
@@ -50,12 +50,12 @@ public class TripF {
         this.countryName = countryName;
     }
 
-    public String getTripname() {
-        return tripname;
+    public String getTripName() {
+        return tripName;
     }
 
-    public void setTripname(String tripname) {
-        this.tripname = tripname;
+    public void setTripName(String tripName) {
+        this.tripName = tripName;
     }
 
     public String getDuration() {
@@ -118,7 +118,7 @@ public class TripF {
 
     @Override
     public String toString() {
-        return tripname + "  (" + duration + ")";
+        return tripName + "  (" + duration + ")";
     }
 
     @Exclude
@@ -131,7 +131,7 @@ public class TripF {
         result.put("imageUrl", imageUrl);
         result.put("price", price);
         result.put("rating", rating);
-        result.put("tripName", tripname);
+        result.put("tripName", tripName);
         return result;
 
     }

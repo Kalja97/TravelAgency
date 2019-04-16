@@ -2,7 +2,6 @@ package com.example.travelagency.ui.Activities.trip;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,10 +12,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.travelagency.Entities.Trip;
+import com.example.travelagency.Entities.TripF;
 import com.example.travelagency.R;
 import com.example.travelagency.ui.Activities.SettingsActivity;
-import com.example.travelagency.viewmodel.trip.TripListViewModel;
+import com.example.travelagency.viewmodel.trip.TripListViewModelF;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +24,8 @@ public class TripsActivity extends AppCompatActivity {
 
     //Attributs
     private ListView listview;
-    private List<Trip> tripList;
-    private TripListViewModel viewModel;
+    private List<TripF> tripList;
+    private TripListViewModelF viewModel;
     private String countryName;
 
     //create options menu
@@ -70,10 +69,10 @@ public class TripsActivity extends AppCompatActivity {
 
         //Array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        TripListViewModel.Factory factory = new TripListViewModel.Factory(getApplication(), countryName);
+        TripListViewModelF.Factory factory = new TripListViewModelF.Factory(getApplication(), countryName);
 
         //get data from database
-        viewModel = ViewModelProviders.of(this, factory).get(TripListViewModel.class);
+        viewModel = ViewModelProviders.of(this, factory).get(TripListViewModelF.class);
         viewModel.getTrips().observe(this, tripEntities -> {
             if (tripEntities != null) {
                 tripList = tripEntities;
@@ -90,7 +89,7 @@ public class TripsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(view.getContext(), DetailsTripActivity.class);
 
-                intent.putExtra("tripName", tripList.get(position).getTripname());
+                intent.putExtra("id", tripList.get(position).getId());
                 intent.putExtra("countryName", tripList.get(position).getCountryName());
                 startActivity(intent);
             }
