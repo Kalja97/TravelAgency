@@ -55,7 +55,7 @@ public class TripListLiveData extends LiveData<List<TripF>> {
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             TripF entity = childSnapshot.getValue(TripF.class);
             //Möglicher Fehler...
-            entity.setId(Long.valueOf(childSnapshot.getKey()));
+            entity.setId(childSnapshot.getKey());
             entity.setCountryName(countryName);
             trips.add(entity);
         }

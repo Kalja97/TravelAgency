@@ -53,9 +53,9 @@ public class LocationListLiveData extends LiveData<List<LocationF>> {
     private List<LocationF> toLocations(DataSnapshot snapshot) {
         List<LocationF> locations = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+
             LocationF entity = childSnapshot.getValue(LocationF.class);
-            //entity.setId(childSnapshot.getKey());
-            //entity.setCountryName(countryName);
+            entity.setCountryName(childSnapshot.getKey());
             locations.add(entity);
         }
         return locations;

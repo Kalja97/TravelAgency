@@ -31,9 +31,10 @@ public class TripRepositoryF {
     }
 
 
-    public LiveData<TripF> getTrip(final String tripId) {
+    public LiveData<TripF> getTrip(final String tripId, final String countryName) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("countries")
+                .child(countryName)
                 .child("trips")
                 .child(tripId);
         return new TripLiveData(reference);

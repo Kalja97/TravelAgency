@@ -78,7 +78,11 @@ public class LocationF implements Comparable {
         result.put("inhabitants", inhabitants);
         result.put("language", language);
         return result;
+    }
 
+    @Override
+    public String toString() {
+        return countryName;
     }
 
 }

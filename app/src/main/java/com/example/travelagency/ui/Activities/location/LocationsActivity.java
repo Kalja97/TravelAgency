@@ -19,10 +19,12 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.example.travelagency.Entities.Location;
+import com.example.travelagency.Entities.LocationF;
 import com.example.travelagency.R;
 import com.example.travelagency.ui.Activities.SettingsActivity;
 import com.example.travelagency.ui.Activities.trip.TripsActivity;
 import com.example.travelagency.viewmodel.location.LocationListViewModel;
+import com.example.travelagency.viewmodel.location.LocationListViewModelF;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +35,8 @@ public class LocationsActivity extends AppCompatActivity {
 
     //Attributs
     private SwipeMenuListView listview;
-    private List<Location> locationList;
-    private LocationListViewModel viewModel;
+    private List<LocationF> locationList;
+    private LocationListViewModelF viewModel;
 
     String countryName;
 
@@ -56,10 +58,10 @@ public class LocationsActivity extends AppCompatActivity {
         listview = (SwipeMenuListView) findViewById(R.id.listview);
         locationList = new ArrayList<>();
 
-        LocationListViewModel.Factory factory = new LocationListViewModel.Factory(getApplication());
+        LocationListViewModelF.Factory factory = new LocationListViewModelF.Factory(getApplication());
 
         //get data from database
-        viewModel = ViewModelProviders.of(this, factory).get(LocationListViewModel.class);
+        viewModel = ViewModelProviders.of(this, factory).get(LocationListViewModelF.class);
         viewModel.getLocations().observe(this, locatiomEntities -> {
             if (locatiomEntities != null) {
                 locationList = locatiomEntities;

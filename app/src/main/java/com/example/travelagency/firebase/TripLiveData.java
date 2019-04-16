@@ -40,7 +40,7 @@ public class TripLiveData extends LiveData<TripF> {
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             TripF entity = dataSnapshot.getValue(TripF.class);
             //Möglicher Fehler
-            entity.setId(Long.valueOf(dataSnapshot.getKey()));
+            entity.setId(dataSnapshot.getKey());
             entity.setCountryName(countryName);
             setValue(entity);
         }
