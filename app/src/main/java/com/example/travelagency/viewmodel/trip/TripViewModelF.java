@@ -75,10 +75,14 @@ public class TripViewModelF extends AndroidViewModel {
     }
 
     public void updateTrip(TripF trip, OnAsyncEventListener callback) {
+        //((BaseAppF) getApplication()).getTripRepository()
+                //.update(trip, callback);
         TripRepositoryF.getInstance().update(trip, callback);
     }
 
     public void deleteTrip(TripF trip, OnAsyncEventListener callback) {
+        /*((BaseAppF) getApplication()).getTripRepository()
+                .delete(trip, callback);*/
         TripRepositoryF.getInstance().delete(trip, callback);
     }
 }

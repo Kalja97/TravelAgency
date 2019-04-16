@@ -122,6 +122,7 @@ public class AddLocationActivity extends AppCompatActivity {
                     public void onSuccess() {
                         Log.d(TAG, "create location: success");
                         Intent intent = new Intent(AddLocationActivity.this, LocationsActivity.class);
+
                         startActivity(intent);
                     }
 

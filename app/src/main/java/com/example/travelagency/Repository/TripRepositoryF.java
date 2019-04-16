@@ -83,6 +83,8 @@ public class TripRepositoryF {
         FirebaseDatabase.getInstance()
                 .getReference("countries")
                 .child(trip.getCountryName())
+                .child("trips")
+                .child(trip.getId())
                 .removeValue((databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());

@@ -153,6 +153,7 @@ public class AddTripActivity extends AppCompatActivity {
             public void onSuccess() {
                 Log.d(TAG, "create trip: success");
                 Intent intent = new Intent(AddTripActivity.this, TripsActivity.class);
+                intent.putExtra("countryName", countryName);
                 startActivity(intent);
             }
 
