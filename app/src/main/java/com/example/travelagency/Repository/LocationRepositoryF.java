@@ -45,7 +45,7 @@ public class LocationRepositoryF {
     }
 
     public void insert(final LocationF location, final OnAsyncEventListener callback) {
-        String id = FirebaseDatabase.getInstance().getReference("countries").push().getKey();
+        String id = location.getCountryName();
         FirebaseDatabase.getInstance()
                 .getReference("countries")
                 .child(id)

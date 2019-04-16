@@ -12,14 +12,18 @@ import android.widget.EditText;
 
 import com.example.travelagency.AppDatabase;
 import com.example.travelagency.Entities.Location;
+import com.example.travelagency.Entities.LocationF;
 import com.example.travelagency.R;
 import com.example.travelagency.async.Location.CreateLocation;
 import com.example.travelagency.ui.Activities.trip.DetailsTripActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
+import com.example.travelagency.viewmodel.location.LocationViewModelF;
 
 public class AddLocationActivity extends AppCompatActivity {
 
     private static final String TAG = "LocationDetails";
+
+    private LocationViewModelF viewModel;
 
     //Attributs
     String countryName;
@@ -97,11 +101,10 @@ public class AddLocationActivity extends AppCompatActivity {
                 inhabitants = Integer.valueOf(etinhabitant.getText().toString().trim());
 
                 //create new location object
-                Location location = new Location(countryName, inhabitants, description, language);
+                LocationF location = new LocationF(countryName, inhabitants, description, language);
 
-                //add location
-                new CreateLocation(getApplication(), new OnAsyncEventListener() {
-
+                //add to firebase
+                viewModel.createLocation(location, new OnAsyncEventListener() {
                     @Override
                     public void onSuccess() {
                         Log.d(TAG, "create location: success");
@@ -109,7 +112,6 @@ public class AddLocationActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
 
-                    //Deal with errors
                     @Override
                     public void onFailure(Exception e) {
                         Log.d(TAG, "create location: failure", e);
@@ -120,7 +122,7 @@ public class AddLocationActivity extends AppCompatActivity {
                         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "ok", (dialog, which) -> alertDialog.dismiss());
                         alertDialog.show();
                     }
-                }).execute(location);
+                });
             }
         });
     }

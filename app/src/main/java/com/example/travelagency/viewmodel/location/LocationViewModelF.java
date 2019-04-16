@@ -48,10 +48,10 @@ public class LocationViewModelF extends AndroidViewModel {
         private final String countryName;
         private final LocationRepositoryF repository;
 
-        public Factory(@NonNull Application application, String countryName) {
+        public Factory(@NonNull Application application, String countryName, LocationRepositoryF repository) {
             this.application = application;
             this.countryName = countryName;
-            repository = ((BaseAppF) application).getLocationRepository();
+            this.repository = repository;
         }
 
         @Override
@@ -64,17 +64,21 @@ public class LocationViewModelF extends AndroidViewModel {
     /**
      * Expose the LiveData ClientEntity query so the UI can observe it.
      */
-    public LiveData<LocationF> getClient() {
+    public LiveData<LocationF> getLocation() {
         return mObservableClient;
     }
 
-    public void updateClient(LocationF location, OnAsyncEventListener callback) {
-        ((BaseAppF) getApplication()).getLocationRepository()
-                .update(location, callback);
+    public void createLocation(LocationF location, OnAsyncEventListener callback) {
+        LocationRepositoryF.getInstance().insert(location, callback);
     }
 
-    public void deleteClient(LocationF location, OnAsyncEventListener callback) {
-        ((BaseAppF) getApplication()).getLocationRepository()
-                .delete(location, callback);
+    public void updateLocation(LocationF location, OnAsyncEventListener callback) {
+        //((BaseAppF) getApplication()).getLocationRepository().update(location, callback);
+        LocationRepositoryF.getInstance().update(location, callback);
+    }
+
+    public void deleteLocation(LocationF location, OnAsyncEventListener callback) {
+        //((BaseAppF) getApplication()).getLocationRepository().delete(location, callback);
+        LocationRepositoryF.getInstance().delete(location, callback);
     }
 }
