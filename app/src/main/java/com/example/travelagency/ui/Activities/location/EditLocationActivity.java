@@ -12,11 +12,15 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.example.travelagency.Entities.Location;
+import com.example.travelagency.Entities.LocationF;
 import com.example.travelagency.R;
 import com.example.travelagency.Repository.LocationRepository;
+import com.example.travelagency.Repository.LocationRepositoryF;
 import com.example.travelagency.ui.Activities.SettingsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
 import com.example.travelagency.viewmodel.location.LocationViewModel;
+import com.example.travelagency.viewmodel.location.LocationViewModelF;
+
 public class EditLocationActivity extends AppCompatActivity {
 
     private static final String TAG = "EditLocationActivity";
@@ -34,9 +38,9 @@ public class EditLocationActivity extends AppCompatActivity {
     private String  inhabitant;
     private int inhabitants;
 
-    private LocationViewModel viewModel;
-    private Location location;
-    private LocationRepository repository;
+    private LocationViewModelF viewModel;
+    private LocationF location;
+    private LocationRepositoryF repository;
 
     //on create method
     @Override
@@ -49,11 +53,12 @@ public class EditLocationActivity extends AppCompatActivity {
         initiateView();
 
         //initialize repositoty
-        repository = new LocationRepository();
+        repository = new LocationRepositoryF();
 
         //Get data from database
-        LocationViewModel.Factory factory = new LocationViewModel.Factory(getApplication(),loc, repository);
-        viewModel = ViewModelProviders.of(this, factory).get(LocationViewModel.class);
+        LocationViewModelF.Factory factory = new LocationViewModelF.Factory(getApplication(), loc, repository);
+
+        viewModel = ViewModelProviders.of(this, factory).get(LocationViewModelF.class);
         viewModel.getLocation().observe(this, locationEntity -> {
             if (locationEntity != null) {
                 location = locationEntity;
@@ -155,7 +160,6 @@ public class EditLocationActivity extends AppCompatActivity {
         Intent intentTrip = new Intent(this, LocationsActivity.class);
         startActivity(intentTrip);
     }
-
 
 
     //initialize the edit texts
