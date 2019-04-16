@@ -191,7 +191,7 @@ public class DetailsTripActivity extends AppCompatActivity  {
         switch(item.getItemId()) {
             case R.id.action_edit:
                 Intent intent = new Intent(this, EditTripActivity.class);
-                intent.putExtra("tripName", tripName);
+                intent.putExtra("id", id);
                 intent.putExtra("countryName", countryName);
                 startActivity(intent);
                 return true;

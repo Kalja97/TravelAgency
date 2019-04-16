@@ -52,6 +52,8 @@ public class TripRepositoryF {
         String id = FirebaseDatabase.getInstance().getReference("countries").push().getKey();
         FirebaseDatabase.getInstance()
                 .getReference("countries")
+                .child(trip.getCountryName())
+                .child("trips")
                 .child(id)
                 .setValue(trip, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
@@ -66,6 +68,8 @@ public class TripRepositoryF {
         FirebaseDatabase.getInstance()
                 .getReference("countries")
                 .child(trip.getCountryName())
+                .child("trips")
+                .child(trip.getId())
                 .updateChildren(trip.toMap(), (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());

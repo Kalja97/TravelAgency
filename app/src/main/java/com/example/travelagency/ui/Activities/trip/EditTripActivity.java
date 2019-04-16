@@ -19,10 +19,13 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.travelagency.Entities.Trip;
+import com.example.travelagency.Entities.TripF;
 import com.example.travelagency.R;
+import com.example.travelagency.Repository.TripRepositoryF;
 import com.example.travelagency.ui.Activities.SettingsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
 import com.example.travelagency.viewmodel.trip.TripViewModel;
+import com.example.travelagency.viewmodel.trip.TripViewModelF;
 
 public class EditTripActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,6 +47,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
     //get intent
     String countryName;
     String tripName;
+    String id;
 
     //Strings for saving
     String name;
@@ -58,8 +62,9 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
     AlertDialog dialog;
     EditText editText;
 
-    private Trip trip;
-    private TripViewModel vmTrip;
+    private TripF trip;
+    private TripViewModelF vmTrip;
+    private TripRepositoryF repository;
 
     //create options menu
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -76,10 +81,12 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
 
         setTitle("Edit trip");
 
-        tripName = getIntent().getStringExtra("tripName");
+        id = getIntent().getStringExtra("id");
         countryName = getIntent().getStringExtra("countryName");
 
         initiateView();
+
+        repository = new TripRepositoryF();
 
         //Dialog for choosing textview to change
         dialog = new AlertDialog.Builder(this).create();
@@ -109,8 +116,8 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
         tvImageUrl.setOnClickListener(this);
 
         //Get data from database
-        TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), tripName);
-        vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModel.class);
+        TripViewModelF.Factory tripFac = new TripViewModelF.Factory(getApplication(), countryName, id, repository);
+        vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModelF.class);
         vmTrip.getTrip().observe(this, tripEntity -> {
             if (tripEntity != null) {
                 trip = tripEntity;
@@ -219,7 +226,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
     private void saveChanges(String country, String city, String days, String price, String date, String description, String imageUrl, float rating) {
 
         trip.setCountryName(country);
-        trip.setTripname(city);
+        trip.setTripName(city);
         trip.setDuration(days);
         trip.setPrice(price);
         trip.setDate(date);
@@ -249,7 +256,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
 
                 Intent intentTrip = new Intent(this, TripsActivity.class);
                 intentTrip.putExtra("countryName", countryName);
-                intentTrip.putExtra("tripName", tripName);
+                intentTrip.putExtra("id", id);
                 startActivity(intentTrip);
                 return true;
 
@@ -293,7 +300,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
         if (trip != null) {
             setImage();
             tvCountryName.setText(getIntent().getStringExtra("countryName"));
-            tvTripName.setText(trip.getTripname());
+            tvTripName.setText(trip.getTripName());
             tvDuration.setText(trip.getDuration());
             tvDate.setText(trip.getDate());
             tvPrice.setText(trip.getPrice());

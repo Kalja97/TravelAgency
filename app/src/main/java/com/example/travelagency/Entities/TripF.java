@@ -41,7 +41,7 @@ public class TripF {
         this.id = id;
     }
 
-    @Exclude
+    //@Exclude
     public String getCountryName() {
         return countryName;
     }

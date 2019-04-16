@@ -1,6 +1,7 @@
 package com.example.travelagency.ui.Activities.trip;
 
 import android.app.AlertDialog;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,9 +13,12 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.example.travelagency.Entities.Trip;
+import com.example.travelagency.Entities.TripF;
 import com.example.travelagency.R;
+import com.example.travelagency.Repository.TripRepositoryF;
 import com.example.travelagency.async.Trip.CreateTrip;
 import com.example.travelagency.util.OnAsyncEventListener;
+import com.example.travelagency.viewmodel.trip.TripViewModelF;
 
 public class AddTripActivity extends AppCompatActivity {
 
@@ -28,6 +32,9 @@ public class AddTripActivity extends AppCompatActivity {
     private EditText etdescription;
     private EditText etImageUrl;
     private RatingBar rbratingbar;
+
+    private TripViewModelF viewModel;
+    private TripRepositoryF repository;
 
     //Intent infos
     private String countryName;
@@ -47,6 +54,12 @@ public class AddTripActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_trip);
 
         initializeForm();
+
+        repository = new TripRepositoryF();
+        String loc = "";
+        String loc2 = "";
+        TripViewModelF.Factory factory = new TripViewModelF.Factory(getApplication(), loc, loc2,repository);
+        viewModel = ViewModelProviders.of(this, factory).get(TripViewModelF.class);
 
         //Button cancel
         Button cancel = findViewById(R.id.btncancel);
@@ -133,9 +146,22 @@ public class AddTripActivity extends AppCompatActivity {
     private void saveChanges(String tripname, String duration, String date, String price, String description, String imageUrl, float rating) {
 
         //create new trip
-        Trip newTrip = new Trip(countryName, tripname, duration, date, price, description, imageUrl, rating);
+        TripF newTrip = new TripF(countryName, tripname, duration, date, price, description, imageUrl, rating);
 
-        //add trip
+        viewModel.createTrip(newTrip, new OnAsyncEventListener() {
+            @Override
+            public void onSuccess() {
+                Log.d(TAG, "create trip: success");
+                Intent intent = new Intent(AddTripActivity.this, TripsActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.d(TAG, "create trip: failure");
+            }
+        });
+        /*//add trip
         new CreateTrip(getApplication(), new OnAsyncEventListener() {
 
             @Override
@@ -150,6 +176,6 @@ public class AddTripActivity extends AppCompatActivity {
             public void onFailure(Exception e) {
                 Log.d(TAG, "createTrip: failure", e);
             }
-        }).execute(newTrip);
+        }).execute(newTrip);*/
     }
 }
