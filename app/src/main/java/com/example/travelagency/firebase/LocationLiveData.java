@@ -38,8 +38,10 @@ public class LocationLiveData extends LiveData<LocationF> {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
             LocationF entity = dataSnapshot.getValue(LocationF.class);
-            entity.setCountryName(dataSnapshot.getKey());
-            setValue(entity);
+            if (entity != null) {
+                entity.setCountryName(dataSnapshot.getKey());
+                setValue(entity);
+            }
         }
 
         @Override
