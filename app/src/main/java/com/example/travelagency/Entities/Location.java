@@ -9,11 +9,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Location implements Comparable {
+
+    //Attributes
     private String countryName;
     private int inhabitants;
     private String description;
     private String language;
 
+    //Constructor
     public Location(){
     }
 
@@ -24,6 +27,7 @@ public class Location implements Comparable {
         this.language = language;
     }
 
+    //Getter and Setter
     @Exclude
     public String getCountryName() {
         return countryName;
@@ -71,6 +75,7 @@ public class Location implements Comparable {
         return toString().compareTo(o.toString());
     }
 
+    //Put informations in a map
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();

@@ -67,17 +67,18 @@ public class LocationViewModel extends AndroidViewModel {
         return mObservableClient;
     }
 
+    //create location
     public void createLocation(Location location, OnAsyncEventListener callback) {
         LocationRepository.getInstance().insert(location, callback);
     }
 
+    //update location
     public void updateLocation(Location location, OnAsyncEventListener callback) {
-        //((BaseApp) getApplication()).getLocationRepository().update(location, callback);
         LocationRepository.getInstance().update(location, callback);
     }
 
+    //delete location
     public void deleteLocation(Location location, OnAsyncEventListener callback) {
-        //((BaseApp) getApplication()).getLocationRepository().delete(location, callback);
         LocationRepository.getInstance().delete(location, callback);
     }
 }

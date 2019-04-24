@@ -33,7 +33,6 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-
         textView= findViewById(R.id.remoteText);
         firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         firebaseRemoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
@@ -50,6 +49,7 @@ public class StartActivity extends AppCompatActivity {
                             Activiting fetched parameters. The new parameters will now be available to your app
                              */
                     firebaseRemoteConfig.activate();
+
                 }else {
                     Toast.makeText(StartActivity.this, "Not Activated", Toast.LENGTH_SHORT).show();
                 }
@@ -57,11 +57,10 @@ public class StartActivity extends AppCompatActivity {
         });
 
         /*
-        Setting color, size and string for TextView using parameters returned from
+        Setting string for TextView using parameters returned from
         remote config server
          */
         textView.setText(firebaseRemoteConfig.getString("text_str"));
-
 
         //zooming picture
         bgstart = (ImageView) findViewById(R.id.bgstart);
@@ -73,7 +72,4 @@ public class StartActivity extends AppCompatActivity {
         Intent intent = new Intent (this, LocationsActivity.class);
         startActivity(intent);
     }
-
-
-
 }

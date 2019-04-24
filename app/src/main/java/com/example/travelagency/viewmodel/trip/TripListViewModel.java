@@ -67,6 +67,7 @@ public class TripListViewModel extends AndroidViewModel {
         return observableTrips;
     }
 
+    /*
     public void deleteLocation(Trip trip) {
         repository.delete(trip, new OnAsyncEventListener() {
             @Override
@@ -76,5 +77,6 @@ public class TripListViewModel extends AndroidViewModel {
             public void onFailure(Exception e) {}
         });
     }
+    */
 }
 

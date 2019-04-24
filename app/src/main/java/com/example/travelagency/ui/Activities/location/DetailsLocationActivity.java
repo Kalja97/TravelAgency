@@ -32,7 +32,7 @@ public class DetailsLocationActivity extends AppCompatActivity {
         //countryname from the list view clicker
         String loc = getIntent().getStringExtra("countryName");
 
-        setTitle("Location infos");
+        setTitle("Country infos");
 
         initiateView();
 

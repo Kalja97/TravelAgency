@@ -65,23 +65,23 @@ public class TripViewModel extends AndroidViewModel {
     /**
      * Expose the LiveData ClientEntity query so the UI can observe it.
      */
+    //get a trip
     public LiveData<Trip> getTrip() {
         return mObservableTrip;
     }
 
+    //create a trip
     public void createTrip(Trip trip, OnAsyncEventListener callback) {
         TripRepository.getInstance().insert(trip, callback);
     }
 
+    //update a trip
     public void updateTrip(Trip trip, OnAsyncEventListener callback) {
-        //((BaseApp) getApplication()).getTripRepository()
-                //.update(trip, callback);
         TripRepository.getInstance().update(trip, callback);
     }
 
+    //delete a trip
     public void deleteTrip(Trip trip, OnAsyncEventListener callback) {
-        /*((BaseApp) getApplication()).getTripRepository()
-                .delete(trip, callback);*/
         TripRepository.getInstance().delete(trip, callback);
     }
 }

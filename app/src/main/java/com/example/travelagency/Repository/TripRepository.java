@@ -14,6 +14,10 @@ import java.util.List;
 public class TripRepository {
     private static TripRepository instance;
 
+    public TripRepository() {
+    }
+
+    //Constructor
     public static TripRepository getInstance() {
         if (instance == null) {
             synchronized (TripRepository.class) {
@@ -25,7 +29,7 @@ public class TripRepository {
         return instance;
     }
 
-
+    //Query: get a trip
     public LiveData<Trip> getTrip(final String countryName, final String id) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("countries")
@@ -35,6 +39,7 @@ public class TripRepository {
         return new TripLiveData(reference);
     }
 
+    //Query: get all trips of a location
     public LiveData<List<Trip>> gettripsByCountry(final String countryName) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("countries")
@@ -43,6 +48,7 @@ public class TripRepository {
         return new TripListLiveData(reference, countryName);
     }
 
+    //Query: insert a trip
     public void insert(final Trip trip, final OnAsyncEventListener callback) {
         String id = FirebaseDatabase.getInstance().getReference("countries").push().getKey();
         FirebaseDatabase.getInstance()
@@ -59,6 +65,7 @@ public class TripRepository {
                 });
     }
 
+    //Query: update a trip
     public void update(final Trip trip, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("countries")
@@ -74,6 +81,7 @@ public class TripRepository {
                 });
     }
 
+    //Query: delete a trip
     public void delete(final Trip trip, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("countries")

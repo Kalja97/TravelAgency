@@ -4,4 +4,8 @@
         <key>text_str</key>
         <value>Welcome to the app</value>
     </entry>
+    <entry>
+        <key>add_color</key>
+        <value>#51d8c7</value>
+    </entry>
 </defaultsMap>

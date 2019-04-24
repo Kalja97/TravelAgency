@@ -67,6 +67,7 @@ public class LocationListViewModel extends AndroidViewModel {
         return observableLocations;
     }
 
+    /*
     public void deleteLocation(Location location) {
         repository.delete(location, new OnAsyncEventListener() {
             @Override
@@ -76,4 +77,5 @@ public class LocationListViewModel extends AndroidViewModel {
             public void onFailure(Exception e) {}
         });
     }
+    */
 }

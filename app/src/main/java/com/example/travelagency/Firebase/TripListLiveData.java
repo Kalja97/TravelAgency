@@ -17,7 +17,6 @@ public class TripListLiveData extends LiveData<List<Trip>> {
 
     private static final String TAG = "TripListLiveData";
 
-
     private final DatabaseReference reference;
     private final String countryName;
     private final MyValueEventListener listener = new MyValueEventListener();
@@ -54,7 +53,6 @@ public class TripListLiveData extends LiveData<List<Trip>> {
         List<Trip> trips = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
             Trip entity = childSnapshot.getValue(Trip.class);
-            //Möglicher Fehler...
             entity.setId(childSnapshot.getKey());
             entity.setCountryName(countryName);
             trips.add(entity);

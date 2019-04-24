@@ -50,5 +50,4 @@ public class TripLiveData extends LiveData<Trip> {
             Log.e(TAG, "Can't listen to query " + reference, databaseError.toException());
         }
     }
-
 }

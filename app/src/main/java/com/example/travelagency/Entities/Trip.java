@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class Trip {
 
+    //Attributes
     private String id;
     private String countryName;
     private String tripName;
@@ -17,6 +18,7 @@ public class Trip {
     private String imageUrl;
     private float rating;
 
+    //Constructor
     public Trip(){
 
     }
@@ -32,6 +34,7 @@ public class Trip {
         this.rating = rating;
     }
 
+    //Getter and Setter
     @Exclude
     public String getId() {
         return id;
@@ -121,6 +124,7 @@ public class Trip {
         return tripName + "  (" + duration + ")";
     }
 
+    //Put informations in a map
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();

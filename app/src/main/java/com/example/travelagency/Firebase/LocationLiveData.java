@@ -15,9 +15,7 @@ public class LocationLiveData extends LiveData<Location> {
 
 
     private final DatabaseReference reference;
-
     private final LocationLiveData.MyValueEventListener listener = new LocationLiveData.MyValueEventListener();
-
     public LocationLiveData(DatabaseReference ref) {
         this.reference = ref;
     }
