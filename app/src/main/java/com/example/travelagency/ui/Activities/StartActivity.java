@@ -1,25 +1,31 @@
 package com.example.travelagency.ui.Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.travelagency.R;
 import com.example.travelagency.ui.Activities.location.LocationsActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+
 
 public class StartActivity extends AppCompatActivity {
 
     ImageView bgstart;
     private final String TAG = "Test";
+
+    private FirebaseRemoteConfig firebaseRemoteConfig;
+
+    private TextView textView;
 
     //on create method
     @Override
@@ -27,25 +33,35 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        //Get the registration token
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w(TAG, "getInstanceId failed", task.getException());
-                            return;
-                        }
 
-                        // Get new Instance ID token
-                        String token = task.getResult().getToken();
+        textView= findViewById(R.id.remoteText);
+        firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        firebaseRemoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
+                .setDeveloperModeEnabled(true)
+                .build());
+        firebaseRemoteConfig.setDefaults(R.xml.default_map);
 
-                        // Log and toast
-                        String msg = "Token:" + token;
-                        Log.d(TAG, msg);
-                        Toast.makeText(StartActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
+        firebaseRemoteConfig.fetch(60*5).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(StartActivity.this, "Activated", Toast.LENGTH_SHORT).show();
+                            /*
+                            Activiting fetched parameters. The new parameters will now be available to your app
+                             */
+                    firebaseRemoteConfig.activate();
+                }else {
+                    Toast.makeText(StartActivity.this, "Not Activated", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        /*
+        Setting color, size and string for TextView using parameters returned from
+        remote config server
+         */
+        textView.setText(firebaseRemoteConfig.getString("text_str"));
+
 
         //zooming picture
         bgstart = (ImageView) findViewById(R.id.bgstart);
