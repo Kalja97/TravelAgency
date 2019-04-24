@@ -1,4 +1,4 @@
-package com.example.travelagency.firebase;
+package com.example.travelagency.Firebase;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;

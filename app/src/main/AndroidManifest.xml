@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.travelagency">
-
     <!-- App permissions -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
-
-    <!-- All Activities -->
     <application
-
-
-
         android:name=".BaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,9 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
+        <activity android:name=".ui.Activities.RemoteActivity"></activity>
 
         <service
-            android:name=".firebase.MyFirebaseMessagingServer"
+            android:name=".Firebase.MyFirebaseMessagingServer"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -33,12 +27,13 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
-        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name=".ui.Activities.trip.TripMapsActivity"
-            android:label="@string/title_activity_trips_maps"></activity>
+            android:label="@string/title_activity_trips_maps" />
         <activity android:name=".ui.Activities.trip.TripsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -50,8 +45,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.travelagency.ui.Activities.location.LocationsActivity" />
         </activity>
-        <activity android:name=".ui.Activities.trip.AddTripActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".ui.Activities.trip.AddTripActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".ui.Activities.StartActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -61,11 +57,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Activities.location.AddLocationActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".ui.Activities.trip.DetailsTripActivity">
-            
-        </activity>
+        <activity
+            android:name=".ui.Activities.location.AddLocationActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".ui.Activities.trip.DetailsTripActivity"></activity>
         <activity android:name=".ui.Activities.location.LocationsActivity" />
         <activity
             android:name=".ui.Activities.trip.EditTripActivity"

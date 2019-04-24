@@ -10,7 +10,6 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
 import com.example.travelagency.Entities.LocationF;
-import com.example.travelagency.Repository.LocationRepository;
 import com.example.travelagency.Repository.LocationRepositoryF;
 import com.example.travelagency.util.OnAsyncEventListener;
 

@@ -8,14 +8,13 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import com.example.travelagency.BaseAppF;
 import com.example.travelagency.Entities.TripF;
 import com.example.travelagency.Repository.TripRepositoryF;
 import com.example.travelagency.util.OnAsyncEventListener;
 
 public class TripViewModelF extends AndroidViewModel {
 
-    private static final String TAG = "TripViewModel";
+    private static final String TAG = "TripViewModelF";
 
     private TripRepositoryF repository;
 
@@ -75,13 +74,13 @@ public class TripViewModelF extends AndroidViewModel {
     }
 
     public void updateTrip(TripF trip, OnAsyncEventListener callback) {
-        //((BaseAppF) getApplication()).getTripRepository()
+        //((BaseApp) getApplication()).getTripRepository()
                 //.update(trip, callback);
         TripRepositoryF.getInstance().update(trip, callback);
     }
 
     public void deleteTrip(TripF trip, OnAsyncEventListener callback) {
-        /*((BaseAppF) getApplication()).getTripRepository()
+        /*((BaseApp) getApplication()).getTripRepository()
                 .delete(trip, callback);*/
         TripRepositoryF.getInstance().delete(trip, callback);
     }

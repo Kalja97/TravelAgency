@@ -11,13 +11,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.travelagency.AppDatabase;
-import com.example.travelagency.Entities.Location;
 import com.example.travelagency.Entities.LocationF;
 import com.example.travelagency.R;
 import com.example.travelagency.Repository.LocationRepositoryF;
-import com.example.travelagency.async.Location.CreateLocation;
-import com.example.travelagency.ui.Activities.trip.DetailsTripActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
 import com.example.travelagency.viewmodel.location.LocationViewModelF;
 
@@ -34,8 +30,6 @@ public class AddLocationActivity extends AppCompatActivity {
     String description;
     int inhabitants;
     String inhabitant;
-
-    AppDatabase appDatabase;
 
     //on create method
     @Override
@@ -70,9 +64,6 @@ public class AddLocationActivity extends AppCompatActivity {
                 startActivity(intentCancel);
             }
         });
-
-        //Database builder
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,"travel_database").allowMainThreadQueries().build();
 
         //Add location to the database
         add.setOnClickListener(new View.OnClickListener() {

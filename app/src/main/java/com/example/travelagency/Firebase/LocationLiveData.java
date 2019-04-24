@@ -1,4 +1,4 @@
-package com.example.travelagency.firebase;
+package com.example.travelagency.Firebase;
 
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;

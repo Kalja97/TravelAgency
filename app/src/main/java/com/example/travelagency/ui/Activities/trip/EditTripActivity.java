@@ -18,13 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.Entities.TripF;
 import com.example.travelagency.R;
 import com.example.travelagency.Repository.TripRepositoryF;
 import com.example.travelagency.ui.Activities.SettingsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
-import com.example.travelagency.viewmodel.trip.TripViewModel;
 import com.example.travelagency.viewmodel.trip.TripViewModelF;
 
 public class EditTripActivity extends AppCompatActivity implements View.OnClickListener {

@@ -8,7 +8,6 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import com.example.travelagency.BaseAppF;
 import com.example.travelagency.Entities.LocationF;
 import com.example.travelagency.Repository.LocationRepositoryF;
 import com.example.travelagency.util.OnAsyncEventListener;
@@ -73,12 +72,12 @@ public class LocationViewModelF extends AndroidViewModel {
     }
 
     public void updateLocation(LocationF location, OnAsyncEventListener callback) {
-        //((BaseAppF) getApplication()).getLocationRepository().update(location, callback);
+        //((BaseApp) getApplication()).getLocationRepository().update(location, callback);
         LocationRepositoryF.getInstance().update(location, callback);
     }
 
     public void deleteLocation(LocationF location, OnAsyncEventListener callback) {
-        //((BaseAppF) getApplication()).getLocationRepository().delete(location, callback);
+        //((BaseApp) getApplication()).getLocationRepository().delete(location, callback);
         LocationRepositoryF.getInstance().delete(location, callback);
     }
 }

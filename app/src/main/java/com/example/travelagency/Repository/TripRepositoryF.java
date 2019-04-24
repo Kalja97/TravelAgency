@@ -1,18 +1,13 @@
 package com.example.travelagency.Repository;
 
 import android.arch.lifecycle.LiveData;
-import android.support.annotation.NonNull;
 
 import com.example.travelagency.Entities.TripF;
-import com.example.travelagency.firebase.TripListLiveData;
-import com.example.travelagency.firebase.TripLiveData;
+import com.example.travelagency.Firebase.TripListLiveData;
+import com.example.travelagency.Firebase.TripLiveData;
 import com.example.travelagency.util.OnAsyncEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Transaction;
 
 import java.util.List;
 

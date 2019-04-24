@@ -111,8 +111,8 @@ public class TripF {
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (obj == this) return true;
-        if (!(obj instanceof Trip)) return false;
-        Trip o = (Trip) obj;
+        if (!(obj instanceof TripF)) return false;
+        TripF o = (TripF) obj;
         return o.getId().equals(this.getId());
     }
 

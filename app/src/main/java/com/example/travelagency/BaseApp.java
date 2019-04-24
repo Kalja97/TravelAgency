@@ -2,25 +2,16 @@ package com.example.travelagency;
 
 import android.app.Application;
 
-import com.example.travelagency.Repository.LocationRepository;
-import com.example.travelagency.Repository.TripRepository;
+import com.example.travelagency.Repository.LocationRepositoryF;
+import com.example.travelagency.Repository.TripRepositoryF;
 
-    public class BaseApp extends Application {
-        @Override
-        public void onCreate() {
-            super.onCreate();
-        }
+public class BaseApp extends Application {
 
-        public AppDatabase getDatabase() {
-            return AppDatabase.getInstance(this);
-        }
-
-        public LocationRepository getLocationRepository() {
-            return LocationRepository.getInstance();
-        }
-
-        public TripRepository getTripRepository() {
-            return TripRepository.getInstance();
-        }
+    public LocationRepositoryF getLocationRepository() {
+        return LocationRepositoryF.getInstance();
     }
 
+    public TripRepositoryF getTripRepository() {
+        return TripRepositoryF.getInstance();
+    }
+}

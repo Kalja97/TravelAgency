@@ -61,8 +61,8 @@ public class LocationF implements Comparable {
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (obj == this) return true;
-        if (!(obj instanceof Location)) return false;
-        Location o = (Location) obj;
+        if (!(obj instanceof LocationF)) return false;
+        LocationF o = (LocationF) obj;
         return o.getCountryName().equals(this.getCountryName());
     }
 

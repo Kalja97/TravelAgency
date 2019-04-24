@@ -11,14 +11,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-import com.example.travelagency.Entities.Location;
 import com.example.travelagency.Entities.LocationF;
 import com.example.travelagency.R;
-import com.example.travelagency.Repository.LocationRepository;
 import com.example.travelagency.Repository.LocationRepositoryF;
 import com.example.travelagency.ui.Activities.SettingsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
-import com.example.travelagency.viewmodel.location.LocationViewModel;
 import com.example.travelagency.viewmodel.location.LocationViewModelF;
 
 public class EditLocationActivity extends AppCompatActivity {

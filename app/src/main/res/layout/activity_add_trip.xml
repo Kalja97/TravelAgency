@@ -26,13 +26,13 @@
 
 
         <EditText
-            android:id="@+id/tripName"
+            android:id="@+id/tripname"
             android:layout_width="288dp"
             android:layout_height="50dp"
             android:layout_marginStart="48dp"
             android:layout_marginTop="56dp"
             android:textColor="#fff"
-            android:hint="Tripname"
+            android:hint="tripname"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -54,7 +54,7 @@
             android:paddingBottom="10dp"
             android:textColorHint="#fff"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tripName" />
+            app:layout_constraintTop_toBottomOf="@+id/tripname" />
 
 
         <EditText

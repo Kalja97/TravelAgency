@@ -10,13 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
-import android.widget.Toast;
 
-import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.Entities.TripF;
 import com.example.travelagency.R;
 import com.example.travelagency.Repository.TripRepositoryF;
-import com.example.travelagency.async.Trip.CreateTrip;
 import com.example.travelagency.util.OnAsyncEventListener;
 import com.example.travelagency.viewmodel.trip.TripViewModelF;
 
@@ -107,7 +104,7 @@ public class AddTripActivity extends AppCompatActivity {
 
     private void initializeForm() {
         //Initialize editText for input
-        ettripname = findViewById(R.id.tripName);
+        ettripname = findViewById(R.id.tripname);
         etduration = findViewById(R.id.duration);
         etdate = findViewById(R.id.date);
         etprice = findViewById(R.id.price);
@@ -162,21 +159,6 @@ public class AddTripActivity extends AppCompatActivity {
                 Log.d(TAG, "create trip: failure");
             }
         });
-        /*//add trip
-        new CreateTrip(getApplication(), new OnAsyncEventListener() {
 
-            @Override
-            public void onSuccess() {
-                Log.d(TAG, "createTrip: success");
-                Intent intent = new Intent(AddTripActivity.this, TripsActivity.class);
-                intent.putExtra("countryName", countryName);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                Log.d(TAG, "createTrip: failure", e);
-            }
-        }).execute(newTrip);*/
     }
 }

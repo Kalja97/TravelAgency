@@ -1,11 +1,10 @@
 package com.example.travelagency.Repository;
 
 import android.arch.lifecycle.LiveData;
-import android.util.Log;
 
 import com.example.travelagency.Entities.LocationF;
-import com.example.travelagency.firebase.LocationListLiveData;
-import com.example.travelagency.firebase.LocationLiveData;
+import com.example.travelagency.Firebase.LocationListLiveData;
+import com.example.travelagency.Firebase.LocationLiveData;
 import com.example.travelagency.util.OnAsyncEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

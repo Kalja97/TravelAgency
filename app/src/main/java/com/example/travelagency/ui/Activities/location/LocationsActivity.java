@@ -18,12 +18,10 @@ import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
-import com.example.travelagency.Entities.Location;
 import com.example.travelagency.Entities.LocationF;
 import com.example.travelagency.R;
 import com.example.travelagency.ui.Activities.SettingsActivity;
 import com.example.travelagency.ui.Activities.trip.TripsActivity;
-import com.example.travelagency.viewmodel.location.LocationListViewModel;
 import com.example.travelagency.viewmodel.location.LocationListViewModelF;
 
 import java.util.ArrayList;
