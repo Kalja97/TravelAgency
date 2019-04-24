@@ -38,11 +38,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
 
-    /**
-     * Create and show a simple notification containing the received FCM message.
-     *
-     * @param messageBody FCM message body received.
-     */
+    //Create and show a simple notification containing the received FCM message.
     private void sendNotification(String messageBody) {
         Intent intent = new Intent(this, StartActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
