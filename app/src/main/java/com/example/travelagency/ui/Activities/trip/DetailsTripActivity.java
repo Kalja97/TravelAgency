@@ -73,6 +73,7 @@ public class DetailsTripActivity extends AppCompatActivity  {
 
         id = getIntent().getStringExtra("id");
         countryName = getIntent().getStringExtra("countryName");
+        tripName = getIntent().getStringExtra("tripName");
 
         initiateView();
 

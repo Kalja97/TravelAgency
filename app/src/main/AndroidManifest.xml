@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+
         android:name=".BaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -77,6 +78,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.travelagency.ui.Activities.location.LocationsActivity" />
         </activity>
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>
 
 </manifest>

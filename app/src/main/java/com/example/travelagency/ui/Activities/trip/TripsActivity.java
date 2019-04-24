@@ -90,6 +90,7 @@ public class TripsActivity extends AppCompatActivity {
                 Intent intent = new Intent(view.getContext(), DetailsTripActivity.class);
 
                 intent.putExtra("id", tripList.get(position).getId());
+                intent.putExtra("tripName", tripList.get(position).getTripName());
                 intent.putExtra("countryName", tripList.get(position).getCountryName());
                 startActivity(intent);
             }
