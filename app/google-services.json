@@ -15,19 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "888087193810-uf4s3tvsgci13ipgdgo9gj4jqgdoiqub.apps.googleusercontent.com",
+          "client_id": "888087193810-bn72e1ncq3ho4sflcsdpubf74dhndq6o.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.travelagency",
-            "certificate_hash": "cbaf4e799a87a7280c9132f4715b87cf6eb3170f"
-          }
-        },
-        {
-          "client_id": "888087193810-b986p4ljkjn1pudu9qvojk58tkvosdon.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.travelagency",
-            "certificate_hash": "8bd0c83fbb58d15d990fa02fb5fc8e729eec7f31"
+            "certificate_hash": "72f875b44b3bc5a06158d3e1eabdf5eaf75bbbf3"
           }
         },
         {
