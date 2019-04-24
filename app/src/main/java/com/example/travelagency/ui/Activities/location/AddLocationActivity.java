@@ -1,7 +1,6 @@
 package com.example.travelagency.ui.Activities.location;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -11,18 +10,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.travelagency.Entities.LocationF;
+import com.example.travelagency.Entities.Location;
 import com.example.travelagency.R;
-import com.example.travelagency.Repository.LocationRepositoryF;
+import com.example.travelagency.Repository.LocationRepository;
 import com.example.travelagency.util.OnAsyncEventListener;
-import com.example.travelagency.viewmodel.location.LocationViewModelF;
+import com.example.travelagency.viewmodel.location.LocationViewModel;
 
 public class AddLocationActivity extends AppCompatActivity {
 
     private static final String TAG = "LocationDetails";
 
-    private LocationViewModelF viewModel;
-    private LocationRepositoryF repository;
+    private LocationViewModel viewModel;
+    private LocationRepository repository;
 
     //Attributs
     String countryName;
@@ -35,10 +34,10 @@ public class AddLocationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //initialize viewmodel
-        repository = new LocationRepositoryF();
+        repository = new LocationRepository();
         String loc = "";
-        LocationViewModelF.Factory factory = new LocationViewModelF.Factory(getApplication(), loc, repository);
-        viewModel = ViewModelProviders.of(this, factory).get(LocationViewModelF.class);
+        LocationViewModel.Factory factory = new LocationViewModel.Factory(getApplication(), loc, repository);
+        viewModel = ViewModelProviders.of(this, factory).get(LocationViewModel.class);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_location);
@@ -101,7 +100,7 @@ public class AddLocationActivity extends AppCompatActivity {
                 inhabitants = Integer.valueOf(etinhabitant.getText().toString().trim());
 
                 //create new location object
-                LocationF location = new LocationF();
+                Location location = new Location();
                 location.setCountryName(countryName);
                 location.setInhabitants(inhabitants);
                 location.setDescription(description);

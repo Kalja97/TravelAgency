@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.example.travelagency.Entities.LocationF;
+import com.example.travelagency.Entities.Location;
 import com.example.travelagency.R;
-import com.example.travelagency.Repository.LocationRepositoryF;
-import com.example.travelagency.viewmodel.location.LocationViewModelF;
+import com.example.travelagency.Repository.LocationRepository;
+import com.example.travelagency.viewmodel.location.LocationViewModel;
 
 public class DetailsLocationActivity extends AppCompatActivity {
 
@@ -19,9 +19,9 @@ public class DetailsLocationActivity extends AppCompatActivity {
     private TextView tvDescription;
 
     //other attributs
-    private LocationF location;
-    private LocationRepositoryF repository;
-    private LocationViewModelF viewModel;
+    private Location location;
+    private LocationRepository repository;
+    private LocationViewModel viewModel;
 
     //on create method
     @Override
@@ -37,11 +37,11 @@ public class DetailsLocationActivity extends AppCompatActivity {
         initiateView();
 
         //initialize repositoty
-        repository = new LocationRepositoryF();
+        repository = new LocationRepository();
 
         //Get data from database
-        LocationViewModelF.Factory factory = new LocationViewModelF.Factory(getApplication(), loc, repository);
-        viewModel = ViewModelProviders.of(this, factory).get(LocationViewModelF.class);
+        LocationViewModel.Factory factory = new LocationViewModel.Factory(getApplication(), loc, repository);
+        viewModel = ViewModelProviders.of(this, factory).get(LocationViewModel.class);
         viewModel.getLocation().observe(this, locationEntity -> {
             if (locationEntity != null) {
                 location = locationEntity;

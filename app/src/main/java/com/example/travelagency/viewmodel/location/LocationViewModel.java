@@ -8,21 +8,21 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import com.example.travelagency.Entities.LocationF;
-import com.example.travelagency.Repository.LocationRepositoryF;
+import com.example.travelagency.Entities.Location;
+import com.example.travelagency.Repository.LocationRepository;
 import com.example.travelagency.util.OnAsyncEventListener;
 
-public class LocationViewModelF extends AndroidViewModel {
+public class LocationViewModel extends AndroidViewModel {
 
     private static final String TAG = "AccountViewModel";
 
-    private LocationRepositoryF repository;
+    private LocationRepository repository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<LocationF> mObservableClient;
+    private final MediatorLiveData<Location> mObservableClient;
 
-    public LocationViewModelF(@NonNull Application application,
-                           final String countryName, LocationRepositoryF locationRepository) {
+    public LocationViewModel(@NonNull Application application,
+                             final String countryName, LocationRepository locationRepository) {
         super(application);
 
         repository = locationRepository;
@@ -31,7 +31,7 @@ public class LocationViewModelF extends AndroidViewModel {
         // set by default null, until we get data from the database.
         mObservableClient.setValue(null);
 
-        LiveData<LocationF> account = repository.getLocation(countryName);
+        LiveData<Location> account = repository.getLocation(countryName);
 
         // observe the changes of the client entity from the database and forward them
         mObservableClient.addSource(account, mObservableClient::setValue);
@@ -45,9 +45,9 @@ public class LocationViewModelF extends AndroidViewModel {
         @NonNull
         private final Application application;
         private final String countryName;
-        private final LocationRepositoryF repository;
+        private final LocationRepository repository;
 
-        public Factory(@NonNull Application application, String countryName, LocationRepositoryF repository) {
+        public Factory(@NonNull Application application, String countryName, LocationRepository repository) {
             this.application = application;
             this.countryName = countryName;
             this.repository = repository;
@@ -56,28 +56,28 @@ public class LocationViewModelF extends AndroidViewModel {
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new LocationViewModelF(application, countryName, repository);
+            return (T) new LocationViewModel(application, countryName, repository);
         }
     }
 
     /**
      * Expose the LiveData ClientEntity query so the UI can observe it.
      */
-    public LiveData<LocationF> getLocation() {
+    public LiveData<Location> getLocation() {
         return mObservableClient;
     }
 
-    public void createLocation(LocationF location, OnAsyncEventListener callback) {
-        LocationRepositoryF.getInstance().insert(location, callback);
+    public void createLocation(Location location, OnAsyncEventListener callback) {
+        LocationRepository.getInstance().insert(location, callback);
     }
 
-    public void updateLocation(LocationF location, OnAsyncEventListener callback) {
+    public void updateLocation(Location location, OnAsyncEventListener callback) {
         //((BaseApp) getApplication()).getLocationRepository().update(location, callback);
-        LocationRepositoryF.getInstance().update(location, callback);
+        LocationRepository.getInstance().update(location, callback);
     }
 
-    public void deleteLocation(LocationF location, OnAsyncEventListener callback) {
+    public void deleteLocation(Location location, OnAsyncEventListener callback) {
         //((BaseApp) getApplication()).getLocationRepository().delete(location, callback);
-        LocationRepositoryF.getInstance().delete(location, callback);
+        LocationRepository.getInstance().delete(location, callback);
     }
 }

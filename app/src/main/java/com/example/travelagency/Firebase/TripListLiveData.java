@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.travelagency.Entities.TripF;
+import com.example.travelagency.Entities.Trip;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -13,7 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TripListLiveData extends LiveData<List<TripF>> {
+public class TripListLiveData extends LiveData<List<Trip>> {
 
     private static final String TAG = "TripListLiveData";
 
@@ -50,10 +50,10 @@ public class TripListLiveData extends LiveData<List<TripF>> {
         }
     }
 
-    private List<TripF> toTrips(DataSnapshot snapshot) {
-        List<TripF> trips = new ArrayList<>();
+    private List<Trip> toTrips(DataSnapshot snapshot) {
+        List<Trip> trips = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-            TripF entity = childSnapshot.getValue(TripF.class);
+            Trip entity = childSnapshot.getValue(Trip.class);
             //Möglicher Fehler...
             entity.setId(childSnapshot.getKey());
             entity.setCountryName(countryName);

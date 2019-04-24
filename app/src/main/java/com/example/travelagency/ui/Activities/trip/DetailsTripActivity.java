@@ -19,12 +19,12 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.travelagency.Entities.TripF;
+import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
-import com.example.travelagency.Repository.TripRepositoryF;
+import com.example.travelagency.Repository.TripRepository;
 import com.example.travelagency.ui.Activities.SettingsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
-import com.example.travelagency.viewmodel.trip.TripViewModelF;
+import com.example.travelagency.viewmodel.trip.TripViewModel;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
@@ -44,9 +44,9 @@ public class DetailsTripActivity extends AppCompatActivity  {
     private RatingBar rbratingBar;
 
     //other attributs
-    private TripViewModelF vmTrip;
-    private TripF trip;
-    private TripRepositoryF repository;
+    private TripViewModel vmTrip;
+    private Trip trip;
+    private TripRepository repository;
 
     //intent infos
     String countryName;
@@ -76,11 +76,11 @@ public class DetailsTripActivity extends AppCompatActivity  {
 
         initiateView();
 
-        repository = new TripRepositoryF();
+        repository = new TripRepository();
 
         //To show data
-        TripViewModelF.Factory tripFac = new TripViewModelF.Factory(getApplication(), countryName, id, repository);
-        vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModelF.class);
+        TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), countryName, id, repository);
+        vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModel.class);
         vmTrip.getTrip().observe(this, tripEntity -> {
             if (tripEntity != null) {
                 trip = tripEntity;

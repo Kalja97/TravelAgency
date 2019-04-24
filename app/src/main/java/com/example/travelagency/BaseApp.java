@@ -2,16 +2,16 @@ package com.example.travelagency;
 
 import android.app.Application;
 
-import com.example.travelagency.Repository.LocationRepositoryF;
-import com.example.travelagency.Repository.TripRepositoryF;
+import com.example.travelagency.Repository.LocationRepository;
+import com.example.travelagency.Repository.TripRepository;
 
 public class BaseApp extends Application {
 
-    public LocationRepositoryF getLocationRepository() {
-        return LocationRepositoryF.getInstance();
+    public LocationRepository getLocationRepository() {
+        return LocationRepository.getInstance();
     }
 
-    public TripRepositoryF getTripRepository() {
-        return TripRepositoryF.getInstance();
+    public TripRepository getTripRepository() {
+        return TripRepository.getInstance();
     }
 }

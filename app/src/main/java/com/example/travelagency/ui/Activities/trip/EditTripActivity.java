@@ -18,12 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.travelagency.Entities.TripF;
+import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
-import com.example.travelagency.Repository.TripRepositoryF;
+import com.example.travelagency.Repository.TripRepository;
 import com.example.travelagency.ui.Activities.SettingsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
-import com.example.travelagency.viewmodel.trip.TripViewModelF;
+import com.example.travelagency.viewmodel.trip.TripViewModel;
 
 public class EditTripActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -60,9 +60,9 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
     AlertDialog dialog;
     EditText editText;
 
-    private TripF trip;
-    private TripViewModelF vmTrip;
-    private TripRepositoryF repository;
+    private Trip trip;
+    private TripViewModel vmTrip;
+    private TripRepository repository;
 
     //create options menu
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -84,7 +84,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
 
         initiateView();
 
-        repository = new TripRepositoryF();
+        repository = new TripRepository();
 
         //Dialog for choosing textview to change
         dialog = new AlertDialog.Builder(this).create();
@@ -114,8 +114,8 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
         tvImageUrl.setOnClickListener(this);
 
         //Get data from database
-        TripViewModelF.Factory tripFac = new TripViewModelF.Factory(getApplication(), countryName, id, repository);
-        vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModelF.class);
+        TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), countryName, id, repository);
+        vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModel.class);
         vmTrip.getTrip().observe(this, tripEntity -> {
             if (tripEntity != null) {
                 trip = tripEntity;

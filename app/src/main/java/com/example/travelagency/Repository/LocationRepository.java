@@ -2,7 +2,7 @@ package com.example.travelagency.Repository;
 
 import android.arch.lifecycle.LiveData;
 
-import com.example.travelagency.Entities.LocationF;
+import com.example.travelagency.Entities.Location;
 import com.example.travelagency.Firebase.LocationListLiveData;
 import com.example.travelagency.Firebase.LocationLiveData;
 import com.example.travelagency.util.OnAsyncEventListener;
@@ -11,39 +11,39 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class LocationRepositoryF {
+public class LocationRepository {
     private static final String TAG = "ClientRepository";
 
-    private static LocationRepositoryF instance;
+    private static LocationRepository instance;
 
-    public LocationRepositoryF() {
+    public LocationRepository() {
     }
 
-    public static LocationRepositoryF getInstance() {
+    public static LocationRepository getInstance() {
         if (instance == null) {
-            synchronized (TripRepositoryF.class) {
+            synchronized (TripRepository.class) {
                 if (instance == null) {
-                    instance = new LocationRepositoryF();
+                    instance = new LocationRepository();
                 }
             }
         }
         return instance;
     }
 
-    public LiveData<LocationF> getLocation(final String countryName) {
+    public LiveData<Location> getLocation(final String countryName) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("countries")
                 .child(countryName);
         return new LocationLiveData(reference);
     }
 
-    public LiveData<List<LocationF>> getAllLocations() {
+    public LiveData<List<Location>> getAllLocations() {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("countries");
         return new LocationListLiveData(reference);
     }
 
-    public void insert(final LocationF location, final OnAsyncEventListener callback) {
+    public void insert(final Location location, final OnAsyncEventListener callback) {
         String id = location.getCountryName();
         FirebaseDatabase.getInstance()
                 .getReference("countries")
@@ -57,7 +57,7 @@ public class LocationRepositoryF {
                 });
     }
 
-    public void update(final LocationF location, final OnAsyncEventListener callback) {
+    public void update(final Location location, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("countries")
                 .child(location.getCountryName())
@@ -70,7 +70,7 @@ public class LocationRepositoryF {
                 });
     }
 
-    public void delete(final LocationF location, OnAsyncEventListener callback) {
+    public void delete(final Location location, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("countries")
                 .child(location.getCountryName())

@@ -2,7 +2,7 @@ package com.example.travelagency.Repository;
 
 import android.arch.lifecycle.LiveData;
 
-import com.example.travelagency.Entities.TripF;
+import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.Firebase.TripListLiveData;
 import com.example.travelagency.Firebase.TripLiveData;
 import com.example.travelagency.util.OnAsyncEventListener;
@@ -11,14 +11,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class TripRepositoryF {
-    private static TripRepositoryF instance;
+public class TripRepository {
+    private static TripRepository instance;
 
-    public static TripRepositoryF getInstance() {
+    public static TripRepository getInstance() {
         if (instance == null) {
-            synchronized (TripRepositoryF.class) {
+            synchronized (TripRepository.class) {
                 if (instance == null) {
-                    instance = new TripRepositoryF();
+                    instance = new TripRepository();
                 }
             }
         }
@@ -26,7 +26,7 @@ public class TripRepositoryF {
     }
 
 
-    public LiveData<TripF> getTrip(final String countryName, final String id) {
+    public LiveData<Trip> getTrip(final String countryName, final String id) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("countries")
                 .child(countryName)
@@ -35,7 +35,7 @@ public class TripRepositoryF {
         return new TripLiveData(reference);
     }
 
-    public LiveData<List<TripF>> gettripsByCountry(final String countryName) {
+    public LiveData<List<Trip>> gettripsByCountry(final String countryName) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference("countries")
                 .child(countryName)
@@ -43,7 +43,7 @@ public class TripRepositoryF {
         return new TripListLiveData(reference, countryName);
     }
 
-    public void insert(final TripF trip, final OnAsyncEventListener callback) {
+    public void insert(final Trip trip, final OnAsyncEventListener callback) {
         String id = FirebaseDatabase.getInstance().getReference("countries").push().getKey();
         FirebaseDatabase.getInstance()
                 .getReference("countries")
@@ -59,7 +59,7 @@ public class TripRepositoryF {
                 });
     }
 
-    public void update(final TripF trip, final OnAsyncEventListener callback) {
+    public void update(final Trip trip, final OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("countries")
                 .child(trip.getCountryName())
@@ -74,7 +74,7 @@ public class TripRepositoryF {
                 });
     }
 
-    public void delete(final TripF trip, OnAsyncEventListener callback) {
+    public void delete(final Trip trip, OnAsyncEventListener callback) {
         FirebaseDatabase.getInstance()
                 .getReference("countries")
                 .child(trip.getCountryName())

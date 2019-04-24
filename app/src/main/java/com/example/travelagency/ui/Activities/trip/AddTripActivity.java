@@ -11,11 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 
-import com.example.travelagency.Entities.TripF;
+import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
-import com.example.travelagency.Repository.TripRepositoryF;
+import com.example.travelagency.Repository.TripRepository;
 import com.example.travelagency.util.OnAsyncEventListener;
-import com.example.travelagency.viewmodel.trip.TripViewModelF;
+import com.example.travelagency.viewmodel.trip.TripViewModel;
 
 public class AddTripActivity extends AppCompatActivity {
 
@@ -30,8 +30,8 @@ public class AddTripActivity extends AppCompatActivity {
     private EditText etImageUrl;
     private RatingBar rbratingbar;
 
-    private TripViewModelF viewModel;
-    private TripRepositoryF repository;
+    private TripViewModel viewModel;
+    private TripRepository repository;
 
     //Intent infos
     private String countryName;
@@ -52,11 +52,11 @@ public class AddTripActivity extends AppCompatActivity {
 
         initializeForm();
 
-        repository = new TripRepositoryF();
+        repository = new TripRepository();
         String loc = "";
         String loc2 = "";
-        TripViewModelF.Factory factory = new TripViewModelF.Factory(getApplication(), loc, loc2,repository);
-        viewModel = ViewModelProviders.of(this, factory).get(TripViewModelF.class);
+        TripViewModel.Factory factory = new TripViewModel.Factory(getApplication(), loc, loc2,repository);
+        viewModel = ViewModelProviders.of(this, factory).get(TripViewModel.class);
 
         //Button cancel
         Button cancel = findViewById(R.id.btncancel);
@@ -143,7 +143,7 @@ public class AddTripActivity extends AppCompatActivity {
     private void saveChanges(String tripname, String duration, String date, String price, String description, String imageUrl, float rating) {
 
         //create new trip
-        TripF newTrip = new TripF(countryName, tripname, duration, date, price, description, imageUrl, rating);
+        Trip newTrip = new Trip(countryName, tripname, duration, date, price, description, imageUrl, rating);
 
         viewModel.createTrip(newTrip, new OnAsyncEventListener() {
             @Override

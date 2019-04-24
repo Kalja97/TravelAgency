@@ -8,21 +8,21 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import com.example.travelagency.Entities.TripF;
-import com.example.travelagency.Repository.TripRepositoryF;
+import com.example.travelagency.Entities.Trip;
+import com.example.travelagency.Repository.TripRepository;
 import com.example.travelagency.util.OnAsyncEventListener;
 
-public class TripViewModelF extends AndroidViewModel {
+public class TripViewModel extends AndroidViewModel {
 
-    private static final String TAG = "TripViewModelF";
+    private static final String TAG = "TripViewModel";
 
-    private TripRepositoryF repository;
+    private TripRepository repository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<TripF> mObservableTrip;
+    private final MediatorLiveData<Trip> mObservableTrip;
 
-    public TripViewModelF(@NonNull Application application, final String countryName, final String id,
-                              TripRepositoryF tripRepository) {
+    public TripViewModel(@NonNull Application application, final String countryName, final String id,
+                         TripRepository tripRepository) {
         super(application);
 
         repository = tripRepository;
@@ -31,7 +31,7 @@ public class TripViewModelF extends AndroidViewModel {
         // set by default null, until we get data from the database.
         mObservableTrip.setValue(null);
 
-        LiveData<TripF> trip = repository.getTrip(countryName, id);
+        LiveData<Trip> trip = repository.getTrip(countryName, id);
 
         // observe the changes of the client entity from the database and forward them
         mObservableTrip.addSource(trip, mObservableTrip::setValue);
@@ -46,9 +46,9 @@ public class TripViewModelF extends AndroidViewModel {
         private final Application application;
         private final String countryName;
         private final String id;
-        private final TripRepositoryF repository;
+        private final TripRepository repository;
 
-        public Factory(@NonNull Application application, String countryName, String id, TripRepositoryF repository) {
+        public Factory(@NonNull Application application, String countryName, String id, TripRepository repository) {
             this.application = application;
             this.countryName = countryName;
             this.id = id;
@@ -58,31 +58,31 @@ public class TripViewModelF extends AndroidViewModel {
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new TripViewModelF(application,countryName, id, repository);
+            return (T) new TripViewModel(application,countryName, id, repository);
         }
     }
 
     /**
      * Expose the LiveData ClientEntity query so the UI can observe it.
      */
-    public LiveData<TripF> getTrip() {
+    public LiveData<Trip> getTrip() {
         return mObservableTrip;
     }
 
-    public void createTrip(TripF trip, OnAsyncEventListener callback) {
-        TripRepositoryF.getInstance().insert(trip, callback);
+    public void createTrip(Trip trip, OnAsyncEventListener callback) {
+        TripRepository.getInstance().insert(trip, callback);
     }
 
-    public void updateTrip(TripF trip, OnAsyncEventListener callback) {
+    public void updateTrip(Trip trip, OnAsyncEventListener callback) {
         //((BaseApp) getApplication()).getTripRepository()
                 //.update(trip, callback);
-        TripRepositoryF.getInstance().update(trip, callback);
+        TripRepository.getInstance().update(trip, callback);
     }
 
-    public void deleteTrip(TripF trip, OnAsyncEventListener callback) {
+    public void deleteTrip(Trip trip, OnAsyncEventListener callback) {
         /*((BaseApp) getApplication()).getTripRepository()
                 .delete(trip, callback);*/
-        TripRepositoryF.getInstance().delete(trip, callback);
+        TripRepository.getInstance().delete(trip, callback);
     }
 }
 

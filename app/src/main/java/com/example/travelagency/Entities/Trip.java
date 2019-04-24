@@ -5,7 +5,7 @@ import com.google.firebase.database.Exclude;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TripF {
+public class Trip {
 
     private String id;
     private String countryName;
@@ -17,11 +17,11 @@ public class TripF {
     private String imageUrl;
     private float rating;
 
-    public TripF(){
+    public Trip(){
 
     }
 
-    public TripF(String countryName, String tripName, String duration, String date, String price, String description, String imageUrl, float rating){
+    public Trip(String countryName, String tripName, String duration, String date, String price, String description, String imageUrl, float rating){
         this.countryName = countryName;
         this.tripName = tripName;
         this. duration = duration;
@@ -111,8 +111,8 @@ public class TripF {
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (obj == this) return true;
-        if (!(obj instanceof TripF)) return false;
-        TripF o = (TripF) obj;
+        if (!(obj instanceof Trip)) return false;
+        Trip o = (Trip) obj;
         return o.getId().equals(this.getId());
     }
 

@@ -8,16 +8,16 @@ import com.google.firebase.database.Exclude;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LocationF implements Comparable {
+public class Location implements Comparable {
     private String countryName;
     private int inhabitants;
     private String description;
     private String language;
 
-    public LocationF(){
+    public Location(){
     }
 
-    public LocationF(@NonNull String countryName, int inhabitants, String description, String language){
+    public Location(@NonNull String countryName, int inhabitants, String description, String language){
         this.countryName = countryName;
         this.inhabitants = inhabitants;
         this.description = description;
@@ -61,8 +61,8 @@ public class LocationF implements Comparable {
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (obj == this) return true;
-        if (!(obj instanceof LocationF)) return false;
-        LocationF o = (LocationF) obj;
+        if (!(obj instanceof Location)) return false;
+        Location o = (Location) obj;
         return o.getCountryName().equals(this.getCountryName());
     }
 

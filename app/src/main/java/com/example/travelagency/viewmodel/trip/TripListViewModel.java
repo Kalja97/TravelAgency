@@ -1,5 +1,4 @@
-package com.example.travelagency.viewmodel.location;
-
+package com.example.travelagency.viewmodel.trip;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -9,33 +8,33 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
-import com.example.travelagency.Entities.LocationF;
-import com.example.travelagency.Repository.LocationRepositoryF;
+import com.example.travelagency.Entities.Trip;
+import com.example.travelagency.Repository.TripRepository;
 import com.example.travelagency.util.OnAsyncEventListener;
 
 import java.util.List;
 
+public class TripListViewModel extends AndroidViewModel {
 
-public class LocationListViewModelF extends AndroidViewModel {
-
-    private LocationRepositoryF repository;
+    private TripRepository repository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<LocationF>> observableLocations;
+    private final MediatorLiveData<List<Trip>> observableTrips;
 
-    public LocationListViewModelF(@NonNull Application application, LocationRepositoryF locationRepository) {
+    public TripListViewModel(@NonNull Application application,
+                             final String countryName, TripRepository tripRepository) {
         super(application);
 
-        repository = locationRepository;
+        repository = tripRepository;
 
-        observableLocations = new MediatorLiveData<>();
+        observableTrips = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        observableLocations.setValue(null);
+        observableTrips.setValue(null);
 
-        LiveData<List<LocationF>> locations = repository.getAllLocations();
+        LiveData<List<Trip>> trips = repository.gettripsByCountry(countryName);
 
         // observe the changes of the entities from the database and forward them
-        observableLocations.addSource(locations, observableLocations::setValue);
+        observableTrips.addSource(trips, observableTrips::setValue);
     }
 
     /**
@@ -45,30 +44,31 @@ public class LocationListViewModelF extends AndroidViewModel {
 
         @NonNull
         private final Application application;
+        private final String countryName;
+        private final TripRepository tripRepository;
 
-        private final LocationRepositoryF locationRepository;
-
-        public Factory(@NonNull Application application) {
+        public Factory(@NonNull Application application, String countryName) {
             this.application = application;
-            locationRepository = LocationRepositoryF.getInstance();
+            this.countryName = countryName;
+            tripRepository = TripRepository.getInstance();
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new LocationListViewModelF(application, locationRepository);
+            return (T) new TripListViewModel(application, countryName, tripRepository);
         }
     }
 
     /**
      * Expose the LiveData ClientEntities query so the UI can observe it.
      */
-    public LiveData<List<LocationF>> getLocations() {
-        return observableLocations;
+    public LiveData<List<Trip>> getTrips() {
+        return observableTrips;
     }
 
-    public void deleteLocation(LocationF location) {
-        repository.delete(location, new OnAsyncEventListener() {
+    public void deleteLocation(Trip trip) {
+        repository.delete(trip, new OnAsyncEventListener() {
             @Override
             public void onSuccess() {}
 
@@ -77,3 +77,4 @@ public class LocationListViewModelF extends AndroidViewModel {
         });
     }
 }
+

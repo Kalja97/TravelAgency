@@ -4,13 +4,13 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.travelagency.Entities.LocationF;
+import com.example.travelagency.Entities.Location;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-public class LocationLiveData extends LiveData<LocationF> {
+public class LocationLiveData extends LiveData<Location> {
     private static final String TAG = "LocationLiveData";
 
 
@@ -37,7 +37,7 @@ public class LocationLiveData extends LiveData<LocationF> {
 
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            LocationF entity = dataSnapshot.getValue(LocationF.class);
+            Location entity = dataSnapshot.getValue(Location.class);
             if (entity != null) {
                 entity.setCountryName(dataSnapshot.getKey());
                 setValue(entity);

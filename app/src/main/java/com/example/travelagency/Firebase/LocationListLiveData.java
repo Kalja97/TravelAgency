@@ -5,7 +5,7 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.travelagency.Entities.LocationF;
+import com.example.travelagency.Entities.Location;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -14,7 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LocationListLiveData extends LiveData<List<LocationF>> {
+public class LocationListLiveData extends LiveData<List<Location>> {
 
     private static final String TAG = "TripListLiveData";
 
@@ -50,11 +50,11 @@ public class LocationListLiveData extends LiveData<List<LocationF>> {
         }
     }
 
-    private List<LocationF> toLocations(DataSnapshot snapshot) {
-        List<LocationF> locations = new ArrayList<>();
+    private List<Location> toLocations(DataSnapshot snapshot) {
+        List<Location> locations = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
 
-            LocationF entity = childSnapshot.getValue(LocationF.class);
+            Location entity = childSnapshot.getValue(Location.class);
             entity.setCountryName(childSnapshot.getKey());
             locations.add(entity);
         }

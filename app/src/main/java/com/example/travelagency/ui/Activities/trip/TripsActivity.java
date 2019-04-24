@@ -12,10 +12,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.travelagency.Entities.TripF;
+import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.R;
 import com.example.travelagency.ui.Activities.SettingsActivity;
-import com.example.travelagency.viewmodel.trip.TripListViewModelF;
+import com.example.travelagency.viewmodel.trip.TripListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +24,8 @@ public class TripsActivity extends AppCompatActivity {
 
     //Attributs
     private ListView listview;
-    private List<TripF> tripList;
-    private TripListViewModelF viewModel;
+    private List<Trip> tripList;
+    private TripListViewModel viewModel;
     private String countryName;
 
     //create options menu
@@ -69,10 +69,10 @@ public class TripsActivity extends AppCompatActivity {
 
         //Array adapter
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        TripListViewModelF.Factory factory = new TripListViewModelF.Factory(getApplication(), countryName);
+        TripListViewModel.Factory factory = new TripListViewModel.Factory(getApplication(), countryName);
 
         //get data from database
-        viewModel = ViewModelProviders.of(this, factory).get(TripListViewModelF.class);
+        viewModel = ViewModelProviders.of(this, factory).get(TripListViewModel.class);
         viewModel.getTrips().observe(this, tripEntities -> {
             if (tripEntities != null) {
                 tripList = tripEntities;

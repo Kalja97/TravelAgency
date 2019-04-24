@@ -11,12 +11,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-import com.example.travelagency.Entities.LocationF;
+import com.example.travelagency.Entities.Location;
 import com.example.travelagency.R;
-import com.example.travelagency.Repository.LocationRepositoryF;
+import com.example.travelagency.Repository.LocationRepository;
 import com.example.travelagency.ui.Activities.SettingsActivity;
 import com.example.travelagency.util.OnAsyncEventListener;
-import com.example.travelagency.viewmodel.location.LocationViewModelF;
+import com.example.travelagency.viewmodel.location.LocationViewModel;
 
 public class EditLocationActivity extends AppCompatActivity {
 
@@ -35,9 +35,9 @@ public class EditLocationActivity extends AppCompatActivity {
     private String  inhabitant;
     private int inhabitants;
 
-    private LocationViewModelF viewModel;
-    private LocationF location;
-    private LocationRepositoryF repository;
+    private LocationViewModel viewModel;
+    private Location location;
+    private LocationRepository repository;
 
     //on create method
     @Override
@@ -50,12 +50,12 @@ public class EditLocationActivity extends AppCompatActivity {
         initiateView();
 
         //initialize repositoty
-        repository = new LocationRepositoryF();
+        repository = new LocationRepository();
 
         //Get data from database
-        LocationViewModelF.Factory factory = new LocationViewModelF.Factory(getApplication(), loc, repository);
+        LocationViewModel.Factory factory = new LocationViewModel.Factory(getApplication(), loc, repository);
 
-        viewModel = ViewModelProviders.of(this, factory).get(LocationViewModelF.class);
+        viewModel = ViewModelProviders.of(this, factory).get(LocationViewModel.class);
         viewModel.getLocation().observe(this, locationEntity -> {
             if (locationEntity != null) {
                 location = locationEntity;

@@ -4,13 +4,13 @@ import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.example.travelagency.Entities.TripF;
+import com.example.travelagency.Entities.Trip;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
-public class TripLiveData extends LiveData<TripF> {
+public class TripLiveData extends LiveData<Trip> {
     private static final String TAG = "TripLiveData";
 
 
@@ -37,7 +37,7 @@ public class TripLiveData extends LiveData<TripF> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-            TripF entity = dataSnapshot.getValue(TripF.class);
+            Trip entity = dataSnapshot.getValue(Trip.class);
             if (entity != null) {
                 entity.setId(dataSnapshot.getKey());
                 entity.setCountryName(countryName);
