@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +26,9 @@ public class StartActivity extends AppCompatActivity {
 
     private FirebaseRemoteConfig firebaseRemoteConfig;
 
+    private TextView titel;
     private TextView textView;
+    private Button button;
 
     //on create method
     @Override
@@ -34,6 +37,9 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         textView= findViewById(R.id.remoteText);
+        titel= findViewById(R.id.text_title);
+        button = findViewById(R.id.btnget);
+
         firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         firebaseRemoteConfig.setConfigSettings(new FirebaseRemoteConfigSettings.Builder()
                 .setDeveloperModeEnabled(true)
@@ -45,9 +51,9 @@ public class StartActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(StartActivity.this, "Activated", Toast.LENGTH_SHORT).show();
-                            /*
-                            Activiting fetched parameters. The new parameters will now be available to your app
-                             */
+
+
+                    //Activiting fetched parameters. The new parameters will now be available to your app
                     firebaseRemoteConfig.activate();
 
                 }else {
@@ -56,11 +62,12 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        /*
-        Setting string for TextView using parameters returned from
-        remote config server
-         */
+        //Setting string for TextView using parameters returned from remote config server
+        textView.setTextColor(Color.parseColor(firebaseRemoteConfig.getString("text_color")));
         textView.setText(firebaseRemoteConfig.getString("text_str"));
+        textView.setTextSize((float) firebaseRemoteConfig.getValue("text_size").asDouble());
+        titel.setText(firebaseRemoteConfig.getString("text_title"));
+        button.setTextColor(Color.parseColor(firebaseRemoteConfig.getString("text_btn_color")));
 
         //zooming picture
         bgstart = (ImageView) findViewById(R.id.bgstart);

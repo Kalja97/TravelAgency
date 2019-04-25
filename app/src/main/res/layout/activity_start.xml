@@ -25,12 +25,12 @@
 
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/text_title"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="40dp"
-        android:text="Find your perfect Trip"
+        tools:text="Find your perfect Trip"
         android:lineSpacingExtra="6dp"
         android:textColor="#FFF"
         android:textSize="42sp"
@@ -48,7 +48,7 @@
         android:textColor="#FFF"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
 
     <Button
@@ -60,7 +60,7 @@
         android:background="@drawable/bgbtnstart"
         android:text="Search Trip"
         android:textAllCaps="false"
-        android:textColor="#FFF"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:onClick="gotomain"
         app:layout_constraintStart_toStartOf="parent"

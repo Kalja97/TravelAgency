@@ -5,7 +5,19 @@
         <value>Welcome to the app</value>
     </entry>
     <entry>
-        <key>add_color</key>
-        <value>#51d8c7</value>
+        <key>text_title</key>
+        <value>Find your perfect Trip</value>
+    </entry>
+    <entry>
+        <key>text_size</key>
+        <value>17</value>
+    </entry>
+    <entry>
+        <key>text_color</key>
+        <value>#FFFFFF</value>
+    </entry>
+    <entry>
+        <key>text_btn_color</key>
+        <value>#FFFFFF</value>
     </entry>
 </defaultsMap>
