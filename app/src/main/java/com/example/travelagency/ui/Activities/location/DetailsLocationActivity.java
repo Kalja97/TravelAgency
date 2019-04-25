@@ -20,7 +20,6 @@ public class DetailsLocationActivity extends AppCompatActivity {
 
     //other attributs
     private Location location;
-    private LocationRepository repository;
     private LocationViewModel viewModel;
 
     //on create method
@@ -36,11 +35,8 @@ public class DetailsLocationActivity extends AppCompatActivity {
 
         initiateView();
 
-        //initialize repositoty
-        repository = new LocationRepository();
-
         //Get data from database
-        LocationViewModel.Factory factory = new LocationViewModel.Factory(getApplication(), loc, repository);
+        LocationViewModel.Factory factory = new LocationViewModel.Factory(getApplication(), loc);
         viewModel = ViewModelProviders.of(this, factory).get(LocationViewModel.class);
         viewModel.getLocation().observe(this, locationEntity -> {
             if (locationEntity != null) {

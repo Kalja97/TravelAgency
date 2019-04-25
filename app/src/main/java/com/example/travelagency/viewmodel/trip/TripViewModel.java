@@ -8,6 +8,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
+import com.example.travelagency.BaseApp;
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.Repository.TripRepository;
 import com.example.travelagency.util.OnAsyncEventListener;
@@ -48,17 +49,17 @@ public class TripViewModel extends AndroidViewModel {
         private final String id;
         private final TripRepository repository;
 
-        public Factory(@NonNull Application application, String countryName, String id, TripRepository repository) {
+        public Factory(@NonNull Application application, String countryName, String id) {
             this.application = application;
             this.countryName = countryName;
             this.id = id;
-            this.repository = repository;
+            repository = ((BaseApp) application).getTripRepository();;
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new TripViewModel(application,countryName, id, repository);
+            return (T) new TripViewModel(application, countryName, id, repository);
         }
     }
 

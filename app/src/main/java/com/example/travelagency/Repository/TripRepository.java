@@ -12,6 +12,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 public class TripRepository {
+    private static final String TAG = "TripRepository";
+
     private static TripRepository instance;
 
     public TripRepository() {

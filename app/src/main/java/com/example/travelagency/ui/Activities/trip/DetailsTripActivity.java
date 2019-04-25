@@ -46,7 +46,6 @@ public class DetailsTripActivity extends AppCompatActivity  {
     //other attributs
     private TripViewModel vmTrip;
     private Trip trip;
-    private TripRepository repository;
 
     //intent infos
     String countryName;
@@ -77,10 +76,9 @@ public class DetailsTripActivity extends AppCompatActivity  {
 
         initiateView();
 
-        repository = new TripRepository();
 
         //To show data
-        TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), countryName, id, repository);
+        TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), countryName, id);
         vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModel.class);
         vmTrip.getTrip().observe(this, tripEntity -> {
             if (tripEntity != null) {

@@ -9,6 +9,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
+import com.example.travelagency.BaseApp;
 import com.example.travelagency.Entities.Location;
 import com.example.travelagency.Repository.LocationRepository;
 import com.example.travelagency.util.OnAsyncEventListener;
@@ -17,6 +18,8 @@ import java.util.List;
 
 
 public class LocationListViewModel extends AndroidViewModel {
+
+    private static final String TAG = "LocationListViewModel";
 
     private LocationRepository repository;
 
@@ -50,7 +53,7 @@ public class LocationListViewModel extends AndroidViewModel {
 
         public Factory(@NonNull Application application) {
             this.application = application;
-            locationRepository = LocationRepository.getInstance();
+            locationRepository = ((BaseApp) application).getLocationRepository();
         }
 
         @Override

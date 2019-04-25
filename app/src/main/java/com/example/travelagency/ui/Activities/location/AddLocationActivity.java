@@ -21,7 +21,6 @@ public class AddLocationActivity extends AppCompatActivity {
     private static final String TAG = "LocationDetails";
 
     private LocationViewModel viewModel;
-    private LocationRepository repository;
 
     //Attributs
     String countryName;
@@ -34,9 +33,8 @@ public class AddLocationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //initialize viewmodel
-        repository = new LocationRepository();
         String loc = "";
-        LocationViewModel.Factory factory = new LocationViewModel.Factory(getApplication(), loc, repository);
+        LocationViewModel.Factory factory = new LocationViewModel.Factory(getApplication(), loc);
         viewModel = ViewModelProviders.of(this, factory).get(LocationViewModel.class);
 
         super.onCreate(savedInstanceState);

@@ -13,9 +13,9 @@ import com.google.firebase.database.ValueEventListener;
 public class LocationLiveData extends LiveData<Location> {
     private static final String TAG = "LocationLiveData";
 
-
     private final DatabaseReference reference;
     private final LocationLiveData.MyValueEventListener listener = new LocationLiveData.MyValueEventListener();
+
     public LocationLiveData(DatabaseReference ref) {
         this.reference = ref;
     }

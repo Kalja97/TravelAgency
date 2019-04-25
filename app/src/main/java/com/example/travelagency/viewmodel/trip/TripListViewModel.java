@@ -8,6 +8,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
+import com.example.travelagency.BaseApp;
 import com.example.travelagency.Entities.Trip;
 import com.example.travelagency.Repository.TripRepository;
 import com.example.travelagency.util.OnAsyncEventListener;
@@ -15,6 +16,8 @@ import com.example.travelagency.util.OnAsyncEventListener;
 import java.util.List;
 
 public class TripListViewModel extends AndroidViewModel {
+
+    private static final String TAG = "TripListViewModel";
 
     private TripRepository repository;
 
@@ -50,7 +53,7 @@ public class TripListViewModel extends AndroidViewModel {
         public Factory(@NonNull Application application, String countryName) {
             this.application = application;
             this.countryName = countryName;
-            tripRepository = TripRepository.getInstance();
+            tripRepository = ((BaseApp) application).getTripRepository();
         }
 
         @Override

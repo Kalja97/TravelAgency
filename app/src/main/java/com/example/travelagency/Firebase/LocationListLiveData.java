@@ -16,7 +16,7 @@ import java.util.List;
 
 public class LocationListLiveData extends LiveData<List<Location>> {
 
-    private static final String TAG = "TripListLiveData";
+    private static final String TAG = "LocationListLiveData";
 
     private final DatabaseReference reference;
     private final MyValueEventListener listener = new MyValueEventListener();

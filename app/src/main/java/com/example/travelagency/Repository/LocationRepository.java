@@ -12,7 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 public class LocationRepository {
-    private static final String TAG = "ClientRepository";
+    private static final String TAG = "LocationRepository";
 
     private static LocationRepository instance;
 

@@ -31,7 +31,6 @@ public class AddTripActivity extends AppCompatActivity {
     private RatingBar rbratingbar;
 
     private TripViewModel viewModel;
-    private TripRepository repository;
 
     //Intent infos
     private String countryName;
@@ -52,10 +51,9 @@ public class AddTripActivity extends AppCompatActivity {
 
         initializeForm();
 
-        repository = new TripRepository();
         String loc = "";
         String loc2 = "";
-        TripViewModel.Factory factory = new TripViewModel.Factory(getApplication(), loc, loc2,repository);
+        TripViewModel.Factory factory = new TripViewModel.Factory(getApplication(), loc, loc2);
         viewModel = ViewModelProviders.of(this, factory).get(TripViewModel.class);
 
         //Button cancel

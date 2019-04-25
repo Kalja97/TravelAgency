@@ -62,7 +62,6 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
 
     private Trip trip;
     private TripViewModel vmTrip;
-    private TripRepository repository;
 
     //create options menu
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,8 +82,6 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
         countryName = getIntent().getStringExtra("countryName");
 
         initiateView();
-
-        repository = new TripRepository();
 
         //Dialog for choosing textview to change
         dialog = new AlertDialog.Builder(this).create();
@@ -114,7 +111,7 @@ public class EditTripActivity extends AppCompatActivity implements View.OnClickL
         tvImageUrl.setOnClickListener(this);
 
         //Get data from database
-        TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), countryName, id, repository);
+        TripViewModel.Factory tripFac = new TripViewModel.Factory(getApplication(), countryName, id);
         vmTrip = ViewModelProviders.of(this, tripFac).get(TripViewModel.class);
         vmTrip.getTrip().observe(this, tripEntity -> {
             if (tripEntity != null) {
