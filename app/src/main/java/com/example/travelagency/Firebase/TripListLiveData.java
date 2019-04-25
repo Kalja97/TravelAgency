@@ -17,21 +17,25 @@ public class TripListLiveData extends LiveData<List<Trip>> {
 
     private static final String TAG = "TripListLiveData";
 
+    //Attributes
     private final DatabaseReference reference;
     private final String countryName;
     private final MyValueEventListener listener = new MyValueEventListener();
 
+    //Constructor
     public TripListLiveData(DatabaseReference ref, String countryName) {
         reference = ref;
         this.countryName = countryName;
     }
 
+    //on active method
     @Override
     protected void onActive() {
         Log.d(TAG, "onActive");
         reference.addValueEventListener(listener);
     }
 
+    //on inactive method
     @Override
     protected void onInactive() {
         Log.d(TAG, "onInactive");
@@ -49,6 +53,7 @@ public class TripListLiveData extends LiveData<List<Trip>> {
         }
     }
 
+    //fill the arraylist with the trips
     private List<Trip> toTrips(DataSnapshot snapshot) {
         List<Trip> trips = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {

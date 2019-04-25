@@ -13,19 +13,23 @@ import com.google.firebase.database.ValueEventListener;
 public class LocationLiveData extends LiveData<Location> {
     private static final String TAG = "LocationLiveData";
 
+    //Attributes
     private final DatabaseReference reference;
     private final LocationLiveData.MyValueEventListener listener = new LocationLiveData.MyValueEventListener();
 
+    //Constructor
     public LocationLiveData(DatabaseReference ref) {
         this.reference = ref;
     }
 
+    //on active method
     @Override
     protected void onActive() {
         Log.d(TAG, "onActive");
         reference.addValueEventListener(listener);
     }
 
+    //on inactive method
     @Override
     protected void onInactive() {
         Log.d(TAG, "onInactive");

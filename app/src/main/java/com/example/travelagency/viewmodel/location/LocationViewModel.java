@@ -38,9 +38,7 @@ public class LocationViewModel extends AndroidViewModel {
         mObservableLocation.addSource(account, mObservableLocation::setValue);
     }
 
-    /**
-     * A creator is used to inject the account id into the ViewModel
-     */
+    //Factory of the location view model
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
         @NonNull
@@ -61,9 +59,7 @@ public class LocationViewModel extends AndroidViewModel {
         }
     }
 
-    /**
-     * Expose the LiveData ClientEntity query so the UI can observe it.
-     */
+    //get a location
     public LiveData<Location> getLocation() {
         return mObservableLocation;
     }

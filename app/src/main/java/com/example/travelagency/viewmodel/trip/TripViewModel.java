@@ -38,9 +38,7 @@ public class TripViewModel extends AndroidViewModel {
         mObservableTrip.addSource(trip, mObservableTrip::setValue);
     }
 
-    /**
-     * A creator is used to inject the account id into the ViewModel
-     */
+    //Factory of the trip view model
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
         @NonNull

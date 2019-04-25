@@ -30,6 +30,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
             return;
     }
 
+    //update token
     public void updateToken(String token){
         loginToken = token;
         onTokenRefresh();

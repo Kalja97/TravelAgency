@@ -40,9 +40,7 @@ public class TripListViewModel extends AndroidViewModel {
         observableTrips.addSource(trips, observableTrips::setValue);
     }
 
-    /**
-     * A creator is used to inject the account id into the ViewModel
-     */
+    //Factory of the trip list view model
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
         @NonNull
@@ -63,9 +61,7 @@ public class TripListViewModel extends AndroidViewModel {
         }
     }
 
-    /**
-     * Expose the LiveData ClientEntities query so the UI can observe it.
-     */
+    //Get all trips
     public LiveData<List<Trip>> getTrips() {
         return observableTrips;
     }

@@ -18,19 +18,23 @@ public class LocationListLiveData extends LiveData<List<Location>> {
 
     private static final String TAG = "LocationListLiveData";
 
+    //Attributes
     private final DatabaseReference reference;
     private final MyValueEventListener listener = new MyValueEventListener();
 
+    //Constructor
     public LocationListLiveData(DatabaseReference ref) {
         reference = ref;
     }
 
+    //on active method
     @Override
     protected void onActive() {
         Log.d(TAG, "onActive");
         reference.addValueEventListener(listener);
     }
 
+    //on inactive method
     @Override
     protected void onInactive() {
         Log.d(TAG, "onInactive");
@@ -48,6 +52,7 @@ public class LocationListLiveData extends LiveData<List<Location>> {
         }
     }
 
+    //fill the arraylist with the locations
     private List<Location> toLocations(DataSnapshot snapshot) {
         List<Location> locations = new ArrayList<>();
         for (DataSnapshot childSnapshot : snapshot.getChildren()) {
